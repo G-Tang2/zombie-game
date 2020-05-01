@@ -1,0 +1,30 @@
+Each member is to create his class diagrams, interaction diagram and design rationale for their own specific sub sections. The subsections and who is in charge of each is as bellow:
+
+Garvin:
+-Zombie attacks
+	-Bites (restoring health functionality)
+	-Use of weapons
+	-Speech
+-Beating up the Zombies
+	-Limbs being knocked off
+	-Limb count affecting attacks and movement speed
+	-Lost limbs position and becoming weapons
+
+Kevin:
+-Crafting weapons
+	-Upgrading limbs (club or mace)
+-Rising from the dead
+	-Dead humans becoming zombies
+-Farmers and food
+	-Extends human class
+	-Farmer creating crops and 
+	-Farmer affecting growing crops
+	-Harvesting
+	-Eating
+
+Completion dates are as follows:
+Final Date to be complete tasks: Wednesday 6th May 10pm for later review by other team member
+Final Review process to be completed by Friday 8th May 10pm 
+
+
+Signed:
