@@ -32,33 +32,56 @@ public class AttackAction extends Action {
 		this.target = target;
 	}
 
+	String targetDeath(GameMap map) {
+
+		Item corpse = new PortableItem("dead " + target, '%');
+		map.locationOf(target).addItem(corpse);
+
+		// corpse drop items
+		Actions dropActions = new Actions();
+		for (Item item : target.getInventory())
+			dropActions.add(item.getDropAction());
+		for (Action drop : dropActions)
+			drop.execute(target, map);
+		map.removeActor(target);
+
+		String result = System.lineSeparator() + target + " is killed.";
+		return result;
+	}
+
+	String missDescription(Actor actor) {
+		// NOTE: Used in both AttackAction and BiteAction
+		return actor + " misses " + target + ".";
+	}
+
+	String attackDescription(Actor actor, Weapon weapon, int damage) {
+		// NOTE: Used in both AttackAction and BiteAction
+		return actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+	}
+
+	String dealDamage(GameMap map, int damage) {
+		String result = "";
+
+		target.hurt(damage);
+		if (!target.isConscious()) {
+			result += targetDeath(map);
+		}
+		return result;
+	}
+
 	@Override
 	public String execute(Actor actor, GameMap map) {
 
 		Weapon weapon = actor.getWeapon();
 
 		if (rand.nextBoolean()) {
-			return actor + " misses " + target + ".";
+			return missDescription(actor);
 		}
 
 		int damage = weapon.damage();
-		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+		String result = attackDescription(actor, weapon, damage);
 
-		target.hurt(damage);
-		if (!target.isConscious()) {
-			Item corpse = new PortableItem("dead " + target, '%');
-			map.locationOf(target).addItem(corpse);
-
-			// corpse drop items
-			Actions dropActions = new Actions();
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction());
-			for (Action drop : dropActions)
-				drop.execute(target, map);
-			map.removeActor(target);
-
-			result += System.lineSeparator() + target + " is killed.";
-		}
+		result += dealDamage(map, damage);
 
 		return result;
 	}
