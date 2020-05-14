@@ -32,48 +32,56 @@ public class AttackAction extends Action {
 		this.target = target;
 	}
 
-	@Override
-	public String execute(Actor actor, GameMap map) {
+	String targetDeath(GameMap map) {
 
-		Boolean biteAttack = false;
-		Weapon weapon = null;
+		Item corpse = new PortableItem("dead " + target, '%');
+		map.locationOf(target).addItem(corpse);
 
-		if (actor.hasCapability(ZombieCapability.UNDEAD)) {
-			if (rand.nextBoolean()) {
-				weapon = ((Zombie) actor).getBitingWeapon(); // TODO: Remove downcasting
-				biteAttack = true;
-			}
-		}
+		// corpse drop items
+		Actions dropActions = new Actions();
+		for (Item item : target.getInventory())
+			dropActions.add(item.getDropAction());
+		for (Action drop : dropActions)
+			drop.execute(target, map);
+		map.removeActor(target);
 
-		if (weapon == null) {
-			weapon = actor.getWeapon();
-		}
+		String result = System.lineSeparator() + target + " is killed.";
+		return result;
+	}
 
-		String missDescription = actor + " misses " + target + ".";
-		if (biteAttack && rand.nextDouble() <= 0.7) { // bite attack miss
-			return missDescription;
-		} else if (rand.nextBoolean()) { // normal attack miss
-			return missDescription;
-		}
+	String missDescription(Actor actor) {
+		// NOTE: Used in both AttackAction and BiteAction
+		return actor + " misses " + target + ".";
+	}
 
-		int damage = weapon.damage();
-		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+	String attackDescription(Actor actor, Weapon weapon, int damage) {
+		// NOTE: Used in both AttackAction and BiteAction
+		return actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+	}
+
+	String dealDamage(GameMap map, int damage) {
+		String result = "";
 
 		target.hurt(damage);
 		if (!target.isConscious()) {
-			Item corpse = new PortableItem("dead " + target, '%');
-			map.locationOf(target).addItem(corpse);
-
-			// corpse drop items
-			Actions dropActions = new Actions();
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction());
-			for (Action drop : dropActions)
-				drop.execute(target, map);
-			map.removeActor(target);
-
-			result += System.lineSeparator() + target + " is killed.";
+			result += targetDeath(map);
 		}
+		return result;
+	}
+
+	@Override
+	public String execute(Actor actor, GameMap map) {
+
+		Weapon weapon = actor.getWeapon();
+
+		if (rand.nextBoolean()) {
+			return missDescription(actor);
+		}
+
+		int damage = weapon.damage();
+		String result = attackDescription(actor, weapon, damage);
+
+		result += dealDamage(map, damage);
 
 		return result;
 	}
