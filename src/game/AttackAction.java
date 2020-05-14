@@ -35,10 +35,25 @@ public class AttackAction extends Action {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 
-		Weapon weapon = actor.getWeapon();
+		Boolean biteAttack = false;
+		Weapon weapon = null;
 
-		if (rand.nextBoolean()) {
-			return actor + " misses " + target + ".";
+		if (actor.hasCapability(ZombieCapability.UNDEAD)) {
+			if (rand.nextBoolean()) {
+				weapon = ((Zombie) actor).getBitingWeapon(); // TODO: Remove downcasting
+				biteAttack = true;
+			}
+		}
+
+		if (weapon == null) {
+			weapon = actor.getWeapon();
+		}
+
+		String missDescription = actor + " misses " + target + ".";
+		if (biteAttack && rand.nextDouble() <= 0.7) { // bite attack miss
+			return missDescription;
+		} else if (rand.nextBoolean()) { // normal attack miss
+			return missDescription;
 		}
 
 		int damage = weapon.damage();
