@@ -32,12 +32,28 @@ public class AttackAction extends Action {
 		this.target = target;
 	}
 
+	String missDescription(Actor actor) {
+		// NOTE: Used in both AttackAction and BiteAction
+		return actor + " misses " + target + ".";
+	}
+
+	String attackTarget(Actor actor, GameMap map, Weapon weapon, int damage) {
+		// NOTE: Used in both AttackAction and BiteAction
+		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+
+		target.hurt(damage);
+		if (!target.isConscious()) {
+			result += targetDeath(map);
+		}
+		return result;
+	}
+
 	String targetDeath(GameMap map) {
 
 		Item corpse = new PortableItem("dead " + target, '%');
 		map.locationOf(target).addItem(corpse);
 
-		// corpse drop items
+		// corpse drop items and removed from map
 		Actions dropActions = new Actions();
 		for (Item item : target.getInventory())
 			dropActions.add(item.getDropAction());
@@ -49,41 +65,16 @@ public class AttackAction extends Action {
 		return result;
 	}
 
-	String missDescription(Actor actor) {
-		// NOTE: Used in both AttackAction and BiteAction
-		return actor + " misses " + target + ".";
-	}
-
-	String attackDescription(Actor actor, Weapon weapon, int damage) {
-		// NOTE: Used in both AttackAction and BiteAction
-		return actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
-	}
-
-	String dealDamage(GameMap map, int damage) {
-		String result = "";
-
-		target.hurt(damage);
-		if (!target.isConscious()) {
-			result += targetDeath(map);
-		}
-		return result;
-	}
-
 	@Override
 	public String execute(Actor actor, GameMap map) {
 
 		Weapon weapon = actor.getWeapon();
 
+		// 50% miss probability
 		if (rand.nextBoolean()) {
 			return missDescription(actor);
 		}
-
-		int damage = weapon.damage();
-		String result = attackDescription(actor, weapon, damage);
-
-		result += dealDamage(map, damage);
-
-		return result;
+		return attackTarget(actor, map, weapon, weapon.damage());
 	}
 
 	@Override

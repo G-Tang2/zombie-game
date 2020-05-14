@@ -15,16 +15,14 @@ public class BiteAction extends AttackAction {
 
         Weapon weapon = ((Zombie) actor).getBitingWeapon(); // TODO: Remove Zombie downcast
 
-        // 70% to miss
+        // 70% miss probability
         if (rand.nextInt(100) < 70) {
             return missDescription(actor);
         }
 
-        int damage = weapon.damage();
+        String result = attackTarget(actor, map, weapon, weapon.damage());
         actor.heal(5);
-        String result = attackDescription(actor, weapon, damage);
-
-        result += dealDamage(map, damage);
+        System.out.println(actor.getHitPoints());
 
         return result;
     }
