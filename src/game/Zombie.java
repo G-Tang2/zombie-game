@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Random;
+
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
@@ -16,6 +18,9 @@ import edu.monash.fit2099.engine.IntrinsicWeapon;
  *
  */
 public class Zombie extends ZombieActor {
+
+	private Random rand = new Random();
+
 	private Behaviour[] behaviours = { new AttackBehaviour(ZombieCapability.ALIVE), new HuntBehaviour(Human.class, 10),
 			new WanderBehaviour() };
 
@@ -43,6 +48,9 @@ public class Zombie extends ZombieActor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		if (rand.nextInt(100) < 10) {
+			display.println(name + ": Braaaaains");
+		}
 		for (Behaviour behaviour : behaviours) {
 			Action action = behaviour.getAction(this, map);
 			if (action != null)
