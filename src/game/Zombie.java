@@ -21,8 +21,8 @@ public class Zombie extends ZombieActor {
 
 	private Random rand = new Random();
 
-	private Behaviour[] behaviours = { new AttackBehaviour(ZombieCapability.ALIVE), new HuntBehaviour(Human.class, 10),
-			new WanderBehaviour() };
+	private Behaviour[] behaviours = { new ScavengeBehaviour(), new AttackBehaviour(ZombieCapability.ALIVE),
+			new HuntBehaviour(Human.class, 10), new WanderBehaviour() };
 
 	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);

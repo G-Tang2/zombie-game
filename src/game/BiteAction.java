@@ -15,7 +15,8 @@ public class BiteAction extends AttackAction {
 
         Weapon weapon = ((Zombie) actor).getBitingWeapon(); // TODO: Remove Zombie downcast
 
-        if (rand.nextInt(100) < 30) {
+        // 70% to miss
+        if (rand.nextInt(100) < 70) {
             return missDescription(actor);
         }
 
