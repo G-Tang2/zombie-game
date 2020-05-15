@@ -53,11 +53,19 @@ public class AttackBehaviour implements Behaviour {
 			if (!(e.getDestination().containsAnActor()))
 				continue;
 			if (e.getDestination().getActor().hasCapability(attackableTeam)) {
-				if (actor.hasCapability(ZombieCapability.UNDEAD) && rand.nextBoolean()) {
-					return new BiteAction(e.getDestination().getActor());
-				} else {
-					return new AttackAction(e.getDestination().getActor());
+				if (actor.hasCapability(ZombieCapability.UNDEAD)) {
+					int biteProbability = 50;
+					if (((Zombie) actor).getArmCount() == 1) {
+						biteProbability *= 1.5;
+					} else if (((Zombie) actor).getArmCount() == 0) {
+						biteProbability = 100;
+					}
+
+					if (rand.nextInt(100) < biteProbability) {
+						return new BiteAction(e.getDestination().getActor());
+					}
 				}
+				return new AttackAction(e.getDestination().getActor());
 			}
 		}
 		return null;
