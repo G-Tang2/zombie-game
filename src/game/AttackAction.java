@@ -74,7 +74,23 @@ public class AttackAction extends Action {
 		if (rand.nextBoolean()) {
 			return missDescription(actor);
 		}
-		return attackTarget(actor, map, weapon, weapon.damage());
+		String result = attackTarget(actor, map, weapon, weapon.damage());
+		if (target.hasCapability(ZombieCapability.UNDEAD)) {
+			int limbCount = ((Zombie) target).getArmCount() + ((Zombie) target).getArmCount();
+			if (limbCount > 0 && rand.nextInt(100) < 25) {
+				int val = rand.nextInt(100);
+				if (val > 15) {
+					// lose one limb
+				} else if (val > 5) {
+					// lose up to two limbs
+				} else if (val > 1) {
+					// lose up to three limbs
+				} else {
+					// lose up to four limbs
+				}
+			}
+		}
+		return result;
 	}
 
 	@Override
