@@ -20,12 +20,17 @@ import edu.monash.fit2099.engine.IntrinsicWeapon;
 public class Zombie extends ZombieActor {
 
 	private Random rand = new Random();
+	private int armCount;
+	private int legCount;
+	private boolean movedLastTurn = false;
 
 	private Behaviour[] behaviours = { new ScavengeBehaviour(), new AttackBehaviour(ZombieCapability.ALIVE),
 			new HuntBehaviour(Human.class, 10), new WanderBehaviour() };
 
 	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);
+		armCount = 2;
+		legCount = 2;
 	}
 
 	@Override
@@ -53,9 +58,51 @@ public class Zombie extends ZombieActor {
 		}
 		for (Behaviour behaviour : behaviours) {
 			Action action = behaviour.getAction(this, map);
-			if (action != null)
+			if (action != null) {
+				if ((behaviour instanceof HuntBehaviour || behaviour instanceof WanderBehaviour)) {
+					if (!canMove()) {
+						movedLastTurn = false;
+						return new DoNothingAction();
+					} else {
+						movedLastTurn = true;
+					}
+				}
 				return action;
+			}
 		}
 		return new DoNothingAction();
+	}
+
+	boolean canMove() {
+		if (legCount < 2) {
+			if (legCount == 0 || (legCount == 1 && movedLastTurn)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public void loseArm() {
+		if (armCount > 0) {
+			armCount--;
+		}
+	}
+
+	public void loseLeg() {
+		if (legCount > 0) {
+			legCount--;
+		}
+	}
+
+	public int getArmCount() {
+		return armCount;
+	}
+
+	int getLegCount() {
+		return legCount;
+	}
+
+	int getLimbCount() {
+		return armCount + legCount;
 	}
 }

@@ -28,6 +28,7 @@ public class World {
 
 	/**
 	 * Add a GameMap to the World.
+	 * 
 	 * @param gameMap the GameMap to add
 	 */
 	public void addGameMap(GameMap gameMap) {
@@ -120,10 +121,13 @@ public class World {
 			// Game rule. You don't get to interact with the ground if someone is standing
 			// on it.
 			if (actorLocations.isAnActorAt(destination)) {
+				// adds actions actor at destination can do to current actor
 				actions.add(actorLocations.getActorAt(destination).getAllowableActions(actor, exit.getName(), map));
 			} else {
+				// adds actions current actor can do to destination
 				actions.add(destination.getGround().allowableActions(actor, destination, exit.getName()));
 			}
+			// adds move action to destination if actor can enter
 			actions.add(destination.getMoveAction(actor, exit.getName(), exit.getHotKey()));
 		}
 
@@ -136,7 +140,7 @@ public class World {
 
 		Action action = actor.playTurn(actions, lastActionMap.get(actor), map, display);
 		lastActionMap.put(actor, action);
-		
+
 		String result = action.execute(actor, map);
 		display.println(result);
 	}
