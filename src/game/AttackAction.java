@@ -65,6 +65,36 @@ public class AttackAction extends Action {
 		return result;
 	}
 
+	String dropLimbs(GameMap map) {
+		int limbsLost = 0;
+		int val = rand.nextInt(100);
+		if (val > 15) {
+			limbsLost = 1;
+		} else if (val > 5) {
+			limbsLost = 2;
+		} else if (val > 1) {
+			limbsLost = 3;
+		} else {
+			limbsLost = 4;
+		}
+		Actions actions = new Actions();
+		while (((Zombie) target).getLimbCount() > 0 && limbsLost > 0) {
+			if (((Zombie) target).getLegCount() <= 0 || (((Zombie) target).getArmCount() > 0 && rand.nextBoolean())) {
+				actions.add(new DropAdjacentItemAction(new ZombieLimb("Zombie arm", '~', 8, "slaps")));
+				((Zombie) target).loseArm();
+			} else {
+				actions.add(new DropAdjacentItemAction(new ZombieLimb("Zombie leg", '/', 10, "slaps")));
+				((Zombie) target).loseLeg();
+			}
+			limbsLost--;
+			System.out.println(((Zombie) target).getArmCount() + ", " + ((Zombie) target).getLegCount());
+		}
+		for (Action action : actions) {
+			action.execute(target, map);
+		}
+		return System.lineSeparator() + target + " lost " + actions.size() + " limbs!";
+	}
+
 	@Override
 	public String execute(Actor actor, GameMap map) {
 
@@ -75,20 +105,10 @@ public class AttackAction extends Action {
 			return missDescription(actor);
 		}
 		String result = attackTarget(actor, map, weapon, weapon.damage());
-		if (target.hasCapability(ZombieCapability.UNDEAD)) {
-			int limbCount = ((Zombie) target).getArmCount() + ((Zombie) target).getArmCount();
-			if (limbCount > 0 && rand.nextInt(100) < 25) {
-				int val = rand.nextInt(100);
-				if (val > 15) {
-					// lose one limb
-				} else if (val > 5) {
-					// lose up to two limbs
-				} else if (val > 1) {
-					// lose up to three limbs
-				} else {
-					// lose up to four limbs
-				}
-			}
+
+		if (target.hasCapability(ZombieCapability.UNDEAD) && ((Zombie) target).getLimbCount() > 0
+				&& rand.nextInt(100) < 25) {
+			result += dropLimbs(map);
 		}
 		return result;
 	}

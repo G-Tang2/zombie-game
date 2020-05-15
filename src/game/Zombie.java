@@ -63,23 +63,27 @@ public class Zombie extends ZombieActor {
 		return new DoNothingAction();
 	}
 
-	void loseArm() {
-		if (armCount < 0) {
+	public void loseArm() {
+		if (armCount > 0) {
 			armCount--;
 		}
 	}
 
-	void loseLeg() {
-		if (legCount < 0) {
+	public void loseLeg() {
+		if (legCount > 0) {
 			legCount--;
 		}
 	}
 
-	int getArmCount() {
+	public int getArmCount() {
 		return armCount;
 	}
 
 	int getLegCount() {
 		return legCount;
+	}
+
+	int getLimbCount() {
+		return armCount + legCount;
 	}
 }
