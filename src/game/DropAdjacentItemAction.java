@@ -29,6 +29,7 @@ public class DropAdjacentItemAction extends DropItemAction {
             if (destination.canActorEnter(actor)) {
                 validDropLocations.add(destination);
             }
+        }
         validDropLocations.get(rand.nextInt(validDropLocations.size())).addItem(item);
         return menuDescription(actor);
     }
