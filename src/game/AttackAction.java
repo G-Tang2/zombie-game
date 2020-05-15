@@ -87,7 +87,6 @@ public class AttackAction extends Action {
 				((Zombie) target).loseLeg();
 			}
 			limbsLost--;
-			System.out.println(((Zombie) target).getArmCount() + ", " + ((Zombie) target).getLegCount());
 		}
 		for (Action action : actions) {
 			action.execute(target, map);
@@ -107,7 +106,7 @@ public class AttackAction extends Action {
 		String result = attackTarget(actor, map, weapon, weapon.damage());
 
 		if (target.hasCapability(ZombieCapability.UNDEAD) && ((Zombie) target).getLimbCount() > 0
-				&& rand.nextInt(100) < 25) {
+				&& rand.nextInt(100) < 100) {
 			result += dropLimbs(map);
 		}
 		return result;

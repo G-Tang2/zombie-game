@@ -22,7 +22,6 @@ public class BiteAction extends AttackAction {
 
         String result = attackTarget(actor, map, weapon, weapon.damage());
         actor.heal(5);
-        System.out.println(actor.getHitPoints());
 
         return result;
     }

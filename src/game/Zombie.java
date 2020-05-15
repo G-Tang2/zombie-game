@@ -22,6 +22,7 @@ public class Zombie extends ZombieActor {
 	private Random rand = new Random();
 	private int armCount;
 	private int legCount;
+	private boolean movedLastTurn = false;
 
 	private Behaviour[] behaviours = { new ScavengeBehaviour(), new AttackBehaviour(ZombieCapability.ALIVE),
 			new HuntBehaviour(Human.class, 10), new WanderBehaviour() };
@@ -57,10 +58,28 @@ public class Zombie extends ZombieActor {
 		}
 		for (Behaviour behaviour : behaviours) {
 			Action action = behaviour.getAction(this, map);
-			if (action != null)
+			if (action != null) {
+				if ((behaviour instanceof HuntBehaviour || behaviour instanceof WanderBehaviour)) {
+					if (!canMove()) {
+						movedLastTurn = false;
+						return new DoNothingAction();
+					} else {
+						movedLastTurn = true;
+					}
+				}
 				return action;
+			}
 		}
 		return new DoNothingAction();
+	}
+
+	boolean canMove() {
+		if (legCount < 2) {
+			if (legCount == 0 || (legCount == 1 && movedLastTurn)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public void loseArm() {
