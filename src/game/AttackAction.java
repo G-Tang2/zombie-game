@@ -32,35 +32,49 @@ public class AttackAction extends Action {
 		this.target = target;
 	}
 
+	String missDescription(Actor actor) {
+		// NOTE: Used in both AttackAction and BiteAction
+		return actor + " misses " + target + ".";
+	}
+
+	String attackTarget(Actor actor, GameMap map, Weapon weapon, int damage) {
+		// NOTE: Used in both AttackAction and BiteAction
+		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+
+		target.hurt(damage);
+		if (!target.isConscious()) {
+			result += targetDeath(map);
+		}
+		return result;
+	}
+
+	String targetDeath(GameMap map) {
+
+		Item corpse = new PortableItem("dead " + target, '%');
+		map.locationOf(target).addItem(corpse);
+
+		// corpse drop items and removed from map
+		Actions dropActions = new Actions();
+		for (Item item : target.getInventory())
+			dropActions.add(item.getDropAction());
+		for (Action drop : dropActions)
+			drop.execute(target, map);
+		map.removeActor(target);
+
+		String result = System.lineSeparator() + target + " is killed.";
+		return result;
+	}
+
 	@Override
 	public String execute(Actor actor, GameMap map) {
 
 		Weapon weapon = actor.getWeapon();
 
+		// 50% miss probability
 		if (rand.nextBoolean()) {
-			return actor + " misses " + target + ".";
+			return missDescription(actor);
 		}
-
-		int damage = weapon.damage();
-		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
-
-		target.hurt(damage);
-		if (!target.isConscious()) {
-			Item corpse = new PortableItem("dead " + target, '%');
-			map.locationOf(target).addItem(corpse);
-
-			// corpse drop items
-			Actions dropActions = new Actions();
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction());
-			for (Action drop : dropActions)
-				drop.execute(target, map);
-			map.removeActor(target);
-
-			result += System.lineSeparator() + target + " is killed.";
-		}
-
-		return result;
+		return attackTarget(actor, map, weapon, weapon.damage());
 	}
 
 	@Override

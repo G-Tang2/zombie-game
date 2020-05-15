@@ -17,9 +17,10 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 
 	/**
 	 * Constructor.
-	 * @param name the name of the Actor
+	 * 
+	 * @param name        the name of the Actor
 	 * @param displayChar the character that will represent the Actor in the display
-	 * @param hitPoints the Actor's starting hit points
+	 * @param hitPoints   the Actor's starting hit points
 	 */
 	public Actor(String name, char displayChar, int hitPoints) {
 		this.name = name;
@@ -40,6 +41,7 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 
 	/**
 	 * Add an item to this Actor's inventory.
+	 * 
 	 * @param item The Item to add.
 	 */
 	public void addItemToInventory(Item item) {
@@ -48,6 +50,7 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 
 	/**
 	 * Remove an item from this Actor's inventory.
+	 * 
 	 * @param item The Item to remove.
 	 */
 	public void removeItemFromInventory(Item item) {
@@ -55,7 +58,8 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 	}
 
 	/**
-	 * Get a copy of this Actor's inventory list. 
+	 * Get a copy of this Actor's inventory list.
+	 * 
 	 * @return An unmodifiable wrapper of the inventory.
 	 */
 	public List<Item> getInventory() {
@@ -63,10 +67,11 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 	}
 
 	/**
-	 * Select and return an action to perform on the current turn. 
+	 * Select and return an action to perform on the current turn.
 	 *
 	 * @param actions    collection of possible Actions for this Actor
-	 * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+	 * @param lastAction The Action this Actor took last turn. Can do interesting
+	 *                   things in conjunction with Action.getNextAction()
 	 * @param map        the map containing the Actor
 	 * @param display    the I/O object to which messages may be written
 	 * @return the Action to be performed
@@ -74,7 +79,8 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 	public abstract Action playTurn(Actions actions, Action lastAction, GameMap map, Display display);
 
 	/**
-	 * Returns a collection of the Actions that the otherActor can do to the current Actor.
+	 * Returns a collection of the Actions that the otherActor can do to the current
+	 * Actor.
 	 *
 	 * @param otherActor the Actor that might be performing attack
 	 * @param direction  String representing the direction of the other Actor
@@ -86,11 +92,10 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 	}
 
 	/**
-	 * Is this Actor conscious?
-	 * Returns true if the current Actor has positive hit points.
-	 * Actors on zero hit points are deemed to be unconscious.
+	 * Is this Actor conscious? Returns true if the current Actor has positive hit
+	 * points. Actors on zero hit points are deemed to be unconscious.
 	 * 
-	 * Depending on the game client, this status may be interpreted as either 
+	 * Depending on the game client, this status may be interpreted as either
 	 * unconsciousness or death, or inflict some other kind of status.
 	 *
 	 * @return true if and only if hitPoints is positive.
@@ -105,8 +110,8 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 	 * This cannot take the hitpoints over the Actor's maximum. If there is an
 	 * overflow, hitpoints are silently capped at the maximum.
 	 *
-	 * Does not check for consciousness: unconscious Actors can still be healed
-	 * if the game client allows.
+	 * Does not check for consciousness: unconscious Actors can still be healed if
+	 * the game client allows.
 	 *
 	 * @param points number of hitpoints to add.
 	 */
@@ -180,11 +185,19 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 		capabilities.addCapability(capability);
 	}
 
-	/** Remove a capability from this Actor.
+	/**
+	 * Remove a capability from this Actor.
 	 * 
 	 * @param capability the Capability to remove
 	 */
 	public void removeCapability(Enum<?> capability) {
 		capabilities.removeCapability(capability);
+	}
+
+	/**
+	 * Testing purposes
+	 */
+	public int getHitPoints() {
+		return hitPoints;
 	}
 }
