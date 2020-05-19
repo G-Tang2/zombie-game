@@ -2,6 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Weapon;
 
 public class BiteAction extends AttackAction {
@@ -13,14 +14,13 @@ public class BiteAction extends AttackAction {
     @Override
     public String execute(Actor actor, GameMap map) {
 
-        Weapon weapon = ((Zombie) actor).getBitingWeapon(); // TODO: Remove Zombie downcast
+        Weapon weapon = new IntrinsicWeapon(12, "bites");
 
-        // 70% miss probability
         if (rand.nextInt(100) < 70) {
             return missDescription(actor);
         }
 
-        String result = attackTarget(actor, map, weapon, weapon.damage());
+        String result = attackTarget(actor, map, weapon);
         actor.heal(5);
 
         return result;

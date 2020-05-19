@@ -54,10 +54,10 @@ public class AttackBehaviour implements Behaviour {
 				continue;
 			if (e.getDestination().getActor().hasCapability(attackableTeam)) {
 				if (actor.hasCapability(ZombieCapability.UNDEAD)) {
-					int biteProbability = 50;
-					if (((Zombie) actor).getArmCount() == 1) {
+					int biteProbability = 50; // default bite probability
+					if (actor.getArmCount() == 1) {
 						biteProbability *= 1.5;
-					} else if (((Zombie) actor).getArmCount() == 0) {
+					} else if (actor.getArmCount() == 0) {
 						biteProbability = 100;
 					}
 

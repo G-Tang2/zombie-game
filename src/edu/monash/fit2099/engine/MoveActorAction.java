@@ -10,15 +10,16 @@ public class MoveActorAction extends Action {
 	protected String hotKey;
 
 	/**
-	 * Constructor to create an Action that will move the Actor to a Location in a given Direction, using
-	 * a given menu hotkey.
+	 * Constructor to create an Action that will move the Actor to a Location in a
+	 * given Direction, using a given menu hotkey.
 	 *
-	 * Note that this constructor does not check whether the supplied Location is actually in the given direction
-	 * from the Actor's current location.  This allows for (e.g.) teleporters, etc.
+	 * Note that this constructor does not check whether the supplied Location is
+	 * actually in the given direction from the Actor's current location. This
+	 * allows for (e.g.) teleporters, etc.
 	 *
 	 * @param moveToLocation the destination of the move
-	 * @param direction the direction of the move (to be displayed in menu)
-	 * @param hotKey the menu hotkey for this move
+	 * @param direction      the direction of the move (to be displayed in menu)
+	 * @param hotKey         the menu hotkey for this move
 	 */
 	public MoveActorAction(Location moveToLocation, String direction, String hotKey) {
 		this.moveToLocation = moveToLocation;
@@ -27,14 +28,16 @@ public class MoveActorAction extends Action {
 	}
 
 	/**
-	 * Constructor to create an Action that will move the Actor to a Location in a given Direction.  A currently-unused
-	 * menu hotkey will be assigned.
+	 * Constructor to create an Action that will move the Actor to a Location in a
+	 * given Direction. A currently-unused menu hotkey will be assigned.
 	 *
-	 * Note that this constructor does not check whether the supplied Location is actually in the given direction
-	 * from the Actor's current location.  This allows for (e.g.) teleporters, etc.
+	 * Note that this constructor does not check whether the supplied Location is
+	 * actually in the given direction from the Actor's current location. This
+	 * allows for (e.g.) teleporters, etc.
 	 *
 	 * @param moveToLocation Location to move to
-	 * @param direction String describing the direction to move in, e.g. "north"
+	 * @param direction      String describing the direction to move in, e.g.
+	 *                       "north"
 	 */
 	public MoveActorAction(Location moveToLocation, String direction) {
 		this.moveToLocation = moveToLocation;
@@ -49,7 +52,7 @@ public class MoveActorAction extends Action {
 	 *
 	 * @see Action#execute(Actor, GameMap)
 	 * @param actor The actor performing the action.
-	 * @param map The map the actor is on.
+	 * @param map   The map the actor is on.
 	 * @return a description of the Action suitable for the menu
 	 */
 	@Override

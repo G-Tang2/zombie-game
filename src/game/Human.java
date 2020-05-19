@@ -42,5 +42,4 @@ public class Human extends ZombieActor {
 		// zombies?
 		return behaviour.getAction(this, map);
 	}
-
 }
