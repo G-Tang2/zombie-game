@@ -8,11 +8,27 @@ import edu.monash.fit2099.engine.GameMap;
  */
 
 public interface ActorInterface {
+
+    /**
+     * Executes actions the actor has stored.
+     * 
+     * @param map current GameMap
+     * @return a string that describes the actions executed
+     */
     String executeReaction(GameMap map);
 
+    /**
+     * Returns actor arm count.
+     */
     int getArmCount();
 
+    /**
+     * Returns actor leg count.
+     */
     int getLegCount();
 
+    /**
+     * Returns actor limb count.
+     */
     int getLimbCount();
 }

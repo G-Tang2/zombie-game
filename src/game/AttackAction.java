@@ -11,6 +11,10 @@ import edu.monash.fit2099.engine.Weapon;
 
 /**
  * Special Action for attacking other Actors.
+ * 
+ * @author ram
+ * @author Garvin Tang
+ * 
  */
 public class AttackAction extends Action {
 
@@ -32,6 +36,14 @@ public class AttackAction extends Action {
 		this.target = target;
 	}
 
+	/**
+	 * Actor attacks target.
+	 *
+	 * @see Action#execute(Actor, GameMap)
+	 * @param actor The actor performing the action.
+	 * @param map   The map the actor is on.
+	 * @return a string, e.g. "Player attacks rock".
+	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
 
@@ -45,18 +57,23 @@ public class AttackAction extends Action {
 		return result;
 	}
 
+	/**
+	 * Describe the action in a format suitable for displaying in the menu.
+	 *
+	 * @see Action#menuDescription(Actor)
+	 * @param actor The actor performing the action.
+	 * @return a string, e.g. "Player attacks rock".
+	 */
 	@Override
 	public String menuDescription(Actor actor) {
 		return actor + " attacks " + target;
 	}
 
-	String missDescription(Actor actor) {
-		// NOTE: Used in both AttackAction and BiteAction
+	String missDescription(Actor actor) { // NOTE: default for subclass in package
 		return actor + " misses " + target + ".";
 	}
 
-	String attackTarget(Actor actor, GameMap map, Weapon weapon) {
-		// NOTE: Used in both AttackAction and BiteAction
+	String attackTarget(Actor actor, GameMap map, Weapon weapon) { // NOTE: default for subclass in package
 		String result = actor + " " + weapon.verb() + " " + target + " for " + weapon.damage() + " damage.";
 
 		target.hurt(weapon.damage());

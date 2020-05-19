@@ -12,6 +12,9 @@ import edu.monash.fit2099.engine.World;
 /**
  * The main class for the zombie apocalypse game.
  *
+ * @author ram
+ * @author Garvin Tang
+ * 
  */
 public class Application {
 

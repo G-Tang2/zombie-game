@@ -15,6 +15,7 @@ import edu.monash.fit2099.engine.GameMap;
  * to an Actor that they can attack.
  * 
  * @author ram
+ * @author Garvin Tang
  *
  */
 public class AttackBehaviour implements Behaviour {
@@ -42,6 +43,11 @@ public class AttackBehaviour implements Behaviour {
 	 * 
 	 * Actors are attackable if their ZombieCapability matches the "undeadness
 	 * status" set
+	 * 
+	 * @see Behaviour#getAction(Actor, GameMap)
+	 * @param actor The Actor acting.
+	 * @param map   The map the actor is on.
+	 * @return an Action that actor can perform, or null if actor can't do this.
 	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {

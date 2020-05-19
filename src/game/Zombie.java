@@ -23,8 +23,8 @@ public class Zombie extends ZombieActor {
 	private Random rand = new Random();
 	private boolean movedLastTurn = false;
 
-	private Behaviour[] behaviours = { new ScavengeBehaviour(), new AttackBehaviour(ZombieCapability.ALIVE),
-			new HuntBehaviour(Human.class, 10), new WanderBehaviour() };
+	private Behaviour[] behaviours = { new ScavengeBehaviour(), new SpeechBehaviour(),
+			new AttackBehaviour(ZombieCapability.ALIVE), new HuntBehaviour(Human.class, 10), new WanderBehaviour() };
 
 	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);
@@ -46,9 +46,6 @@ public class Zombie extends ZombieActor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		if (rand.nextInt(100) < 10) {
-			display.println(name + ": Braaaaains");
-		}
 		for (Behaviour behaviour : behaviours) {
 			Action action = behaviour.getAction(this, map);
 			if (action != null) {
@@ -66,6 +63,12 @@ public class Zombie extends ZombieActor {
 		return new DoNothingAction();
 	}
 
+	/**
+	 * The zombie will receive damage and possibly lose some limbs
+	 * 
+	 * @see Actor#hurt(int)
+	 * @param points the amount of damage inflicted on the zombie
+	 */
 	@Override
 	public void hurt(int points) {
 		hitPoints -= points;
