@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.IntrinsicWeapon;
+import edu.monash.fit2099.engine.Item;
 
 /**
  * A Zombie.
@@ -20,8 +21,6 @@ import edu.monash.fit2099.engine.IntrinsicWeapon;
 public class Zombie extends ZombieActor {
 
 	private Random rand = new Random();
-	private int armCount;
-	private int legCount;
 	private boolean movedLastTurn = false;
 
 	private Behaviour[] behaviours = { new ScavengeBehaviour(), new AttackBehaviour(ZombieCapability.ALIVE),
@@ -29,17 +28,11 @@ public class Zombie extends ZombieActor {
 
 	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);
-		armCount = 2;
-		legCount = 2;
 	}
 
 	@Override
 	public IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(10, "punches");
-	}
-
-	public IntrinsicWeapon getBitingWeapon() {
-		return new IntrinsicWeapon(20, "bites");
 	}
 
 	/**
@@ -73,36 +66,56 @@ public class Zombie extends ZombieActor {
 		return new DoNothingAction();
 	}
 
-	boolean canMove() {
+	@Override
+	public void hurt(int points) {
+		hitPoints -= points;
+		if (getLimbCount() > 0 && rand.nextInt(100) < 25) {
+			dropLimbs();
+		}
+	}
+
+	private void dropLimbs() {
+		int limbsLost = 0;
+		int val = rand.nextInt(100);
+		if (val > 15) {
+			limbsLost = 1;
+		} else if (val > 5) {
+			limbsLost = 2;
+		} else if (val > 1) {
+			limbsLost = 3;
+		} else {
+			limbsLost = 4;
+		}
+		while (getLimbCount() > 0 && limbsLost > 0) {
+			if (getLegCount() <= 0 || (getArmCount() > 0 && rand.nextBoolean())) {
+				this.actions.add(new DropAdjacentItemAction(new ZombieLimb("Zombie arm", '~', 10, "slaps")));
+				armCount--;
+				if (getArmCount() == 0 || (getArmCount() == 1 && rand.nextBoolean())) {
+					dropWeapon();
+				}
+			} else {
+				this.actions.add(new DropAdjacentItemAction(new ZombieLimb("Zombie leg", '/', 12, "slaps")));
+				legCount--;
+			}
+			limbsLost--;
+		}
+	}
+
+	private void dropWeapon() {
+		for (Item item : getInventory()) {
+			if (item.asWeapon() != null) {
+				this.actions.add(new DropAdjacentItemAction(item));
+				return;
+			}
+		}
+	}
+
+	private boolean canMove() {
 		if (legCount < 2) {
 			if (legCount == 0 || (legCount == 1 && movedLastTurn)) {
 				return false;
 			}
 		}
 		return true;
-	}
-
-	public void loseArm() {
-		if (armCount > 0) {
-			armCount--;
-		}
-	}
-
-	public void loseLeg() {
-		if (legCount > 0) {
-			legCount--;
-		}
-	}
-
-	public int getArmCount() {
-		return armCount;
-	}
-
-	int getLegCount() {
-		return legCount;
-	}
-
-	int getLimbCount() {
-		return armCount + legCount;
 	}
 }

@@ -49,31 +49,42 @@ public class Application {
 		GameMap gameMap = new GameMap(groundFactory, map);
 		world.addGameMap(gameMap);
 
-		Actor player = new Player("Player", '@', 300);
-		world.addPlayer(player, gameMap.at(42, 15));
+		Actor player = new Player("Player", '@', 300); // FIXME: Change back to 100 when done with testing
+		try {
+			world.addPlayer(player, gameMap.at(42, 15));
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
 
 		// Place some random humans
 		String[] humans = { "Carlton", "May", "Vicente", "Andrea", "Wendy", "Elina", "Winter", "Clem", "Jacob",
 				"Jaquelyn" };
-		int x, y;
-		for (String name : humans) {
-			do {
-				x = (int) Math.floor(Math.random() * 20.0 + 30.0);
-				y = (int) Math.floor(Math.random() * 7.0 + 5.0);
-			} while (gameMap.at(x, y).containsAnActor());
-			gameMap.at(x, y).addActor(new Human(name));
+		try {
+			int x, y;
+			for (String name : humans) {
+				do {
+					x = (int) Math.floor(Math.random() * 20.0 + 30.0);
+					y = (int) Math.floor(Math.random() * 7.0 + 5.0);
+				} while (gameMap.at(x, y).containsAnActor());
+				gameMap.at(x, y).addActor(new Human(name));
+			}
+			// place a simple weapon
+			gameMap.at(74, 20).addItem(new Plank());
+
+			// FIXME: Add more zombies!
+			gameMap.at(30, 20).addActor(new Zombie("Groan"));
+			gameMap.at(30, 18).addActor(new Zombie("Boo"));
+			gameMap.at(10, 4).addActor(new Zombie("Uuuurgh"));
+			gameMap.at(50, 18).addActor(new Zombie("Mortalis"));
+			gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
+			gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(-1);
 		}
 
-		// place a simple weapon
-		gameMap.at(74, 20).addItem(new Plank());
-
-		// FIXME: Add more zombies!
-		gameMap.at(30, 20).addActor(new Zombie("Groan"));
-		gameMap.at(30, 18).addActor(new Zombie("Boo"));
-		gameMap.at(10, 4).addActor(new Zombie("Uuuurgh"));
-		gameMap.at(50, 18).addActor(new Zombie("Mortalis"));
-		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
-		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
 		world.run();
 	}
 }
