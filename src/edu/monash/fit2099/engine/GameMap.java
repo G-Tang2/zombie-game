@@ -61,7 +61,7 @@ public class GameMap {
 		this.groundFactory = groundFactory;
 		createMapFromStrings(groundFactory, lines);
 	}
-	
+
 	/**
 	 * Constructor that reads a map from file.
 	 *
@@ -127,10 +127,11 @@ public class GameMap {
 
 	/**
 	 * Builder method for making Exits.
-	 * @param here the current location
-	 * @param x X coordinate
-	 * @param y Y coordinate
-	 * @param name name of the Exit
+	 * 
+	 * @param here   the current location
+	 * @param x      X coordinate
+	 * @param y      Y coordinate
+	 * @param name   name of the Exit
 	 * @param hotKey the hotkey for the appropiate Action
 	 */
 	protected void addExitFromHere(Location here, int x, int y, String name, String hotKey) {
@@ -146,7 +147,7 @@ public class GameMap {
 	 *
 	 * @param x X coordinate
 	 * @param y Y coordinate
-	 * @return a new Location. 
+	 * @return a new Location.
 	 */
 	protected Location makeNewLocation(int x, int y) {
 		return new Location(this, x, y);
@@ -155,8 +156,8 @@ public class GameMap {
 	/**
 	 * Display the current GameMap.
 	 * 
-	 * Draws Actors, then locations. These need to be printed in rows because that's the way the
-	 * console works.
+	 * Draws Actors, then locations. These need to be printed in rows because that's
+	 * the way the console works.
 	 * 
 	 * @param display Display that will draw the state of the game
 	 */
@@ -171,20 +172,29 @@ public class GameMap {
 
 	/**
 	 * Returns the Location at these coordinates.
+	 * 
 	 * @param x X coordinate
 	 * @param y Y coordinate
 	 * @return the Location at (x, y)
 	 */
 	public Location at(int x, int y) {
+		if (x < widths.min() || x > widths.max()) {
+			throw new IndexOutOfBoundsException(
+					String.format("Your x coordinate is out of bounds: (%d, %d). It must be between %d-%d", x, y,
+							widths.min(), widths.max()));
+		} else if (y < heights.min() || y > heights.max()) {
+			throw new IndexOutOfBoundsException("Your y coordinate is out of bounds: " + y);
+		}
 		return map[x][y];
+
 	}
 
 	/**
 	 * Set the Ground type in a rectangle
 	 * 
 	 * @param groundChar the character representing the Ground to set
-	 * @param xs the range of X coordinates
-	 * @param ys the range of Y coordinates
+	 * @param xs         the range of X coordinates
+	 * @param ys         the range of Y coordinates
 	 */
 	public void add(char groundChar, NumberRange xs, NumberRange ys) {
 		for (int x : xs) {
@@ -193,9 +203,10 @@ public class GameMap {
 			}
 		}
 	}
-	
+
 	/**
-	 * Returns an enumerable NumberRange representing the valid X values of the game map. 
+	 * Returns an enumerable NumberRange representing the valid X values of the game
+	 * map.
 	 * 
 	 * @return the valid X indices
 	 */
@@ -204,7 +215,8 @@ public class GameMap {
 	}
 
 	/**
-	 * Returns an enumerable NumberRange representing the valid Y values of the game map. 
+	 * Returns an enumerable NumberRange representing the valid Y values of the game
+	 * map.
 	 * 
 	 * @return the valid Y indices
 	 */
@@ -219,7 +231,8 @@ public class GameMap {
 		// Tick over all the items in inventories.
 		for (Actor actor : actorLocations) {
 			if (this.contains(actor)) {
-				for (Item item : new ArrayList<Item>(actor.getInventory())) { // Copy the list in case the item wants to leave
+				for (Item item : new ArrayList<Item>(actor.getInventory())) { // Copy the list in case the item wants to
+																				// leave
 					item.tick(actorLocations.locationOf(actor), actor);
 				}
 			}
@@ -236,7 +249,7 @@ public class GameMap {
 	 * Returns a reference to the Actor at the given location, if there is one.
 	 *
 	 * @param location the location to check
-	 * @return a reference to the Actor, or null if there isn't one 
+	 * @return a reference to the Actor, or null if there isn't one
 	 */
 	public Actor getActorAt(Location location) {
 		return actorLocations.getActorAt(location);
@@ -245,9 +258,10 @@ public class GameMap {
 	/**
 	 * Add a new Actor at the given Location.
 	 *
-	 * @param actor the Actor to place
+	 * @param actor    the Actor to place
 	 * @param location where to place the Actor
-	 * @throws IllegalArgumentException if the Actor is already placed or there is already an Actor at the target Location
+	 * @throws IllegalArgumentException if the Actor is already placed or there is
+	 *                                  already an Actor at the target Location
 	 */
 	public void addActor(Actor actor, Location location) {
 		Objects.requireNonNull(actor);
@@ -267,7 +281,7 @@ public class GameMap {
 	/**
 	 * Move an existing Actor to a new Location.
 	 *
-	 * @param actor the Actor to move
+	 * @param actor       the Actor to move
 	 * @param newLocation the Actor's destination
 	 * @throws IllegalArgumentException if another Actor is already at that Location
 	 */
@@ -278,6 +292,7 @@ public class GameMap {
 
 	/**
 	 * Return a reference to the Location containing the given Actor.
+	 * 
 	 * @param actor the Actor to look for
 	 * @return the Location containing actor
 	 */
