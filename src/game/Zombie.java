@@ -66,7 +66,7 @@ public class Zombie extends ZombieActor {
 	/**
 	 * The zombie will receive damage and possibly lose some limbs
 	 * 
-	 * @see Actor#hurt(int)
+	 * @see ZombieActor#hurt(int)
 	 * @param points the amount of damage inflicted on the zombie
 	 */
 	@Override

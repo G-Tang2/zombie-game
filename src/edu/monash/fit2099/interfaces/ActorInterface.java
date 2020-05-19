@@ -19,16 +19,22 @@ public interface ActorInterface {
 
     /**
      * Returns actor arm count.
+     * 
+     * @return actor arm count
      */
     int getArmCount();
 
     /**
      * Returns actor leg count.
+     * 
+     * @return actor leg count
      */
     int getLegCount();
 
     /**
      * Returns actor limb count.
+     * 
+     * @return actor limb count
      */
     int getLimbCount();
 }

@@ -193,11 +193,4 @@ public abstract class Actor implements ActorInterface, Capable, Printable {
 	public void removeCapability(Enum<?> capability) {
 		capabilities.removeCapability(capability);
 	}
-
-	/**
-	 * Testing purposes
-	 */
-	public int getHitPoints() {
-		return hitPoints;
-	}
 }
