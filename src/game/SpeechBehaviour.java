@@ -6,6 +6,11 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 
+/**
+ * Returns a speak action or null
+ * 
+ * @author Garvin Tang
+ */
 public class SpeechBehaviour implements Behaviour {
     /**
      * 10% chance to return a speak action.
