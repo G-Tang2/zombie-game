@@ -48,9 +48,16 @@ public class AttackBehaviour implements Behaviour {
 	 * @param actor The Actor acting.
 	 * @param map   The map the actor is on.
 	 * @return an Action that actor can perform, or null if actor can't do this.
+	 * @throws Exception
 	 */
 	@Override
-	public Action getAction(Actor actor, GameMap map) {
+	public Action getAction(Actor actor, GameMap map) throws Exception {
+		if (actor == null) {
+			throw new Exception("There is no actor who will attack");
+		}
+		if (map == null) {
+			throw new Exception("There is no map");
+		}
 		// Is there an attackable Actor next to me?
 		List<Exit> exits = new ArrayList<Exit>(map.locationOf(actor).getExits());
 		Collections.shuffle(exits);

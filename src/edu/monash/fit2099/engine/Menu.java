@@ -7,10 +7,10 @@ import java.util.HashMap;
 public class Menu {
 
 	/**
-	 * Display a menu to the user and have them select an option.
-	 * Ignores more than 26 options. Go on, write a better one.
+	 * Display a menu to the user and have them select an option. Ignores more than
+	 * 26 options. Go on, write a better one.
 	 *
-	 * @param actor the Actor representing the player
+	 * @param actor   the Actor representing the player
 	 * @param actions the Actions that the user can choose from
 	 * @param display the I/O object that will display the map
 	 * @return the Action selected by the user
@@ -49,17 +49,17 @@ public class Menu {
 	/**
 	 * Inner class that provides the ability to compare two Actions.
 	 * 
-	 * This allows Actions to be sorted in order of their hotkeys. 
+	 * This allows Actions to be sorted in order of their hotkeys.
 	 *
 	 */
 	class SortHotkeysFirst implements Comparator<Action> {
 		public int compare(Action a, Action b) {
 			if (a.hotkey() != null && b.hotkey() == null)
 				return -1;
-			
+
 			if (a.hotkey() == null && b.hotkey() != null)
 				return 1;
-			
+
 			return 0;
 		}
 	}

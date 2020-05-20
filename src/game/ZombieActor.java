@@ -24,8 +24,9 @@ public abstract class ZombieActor extends Actor {
 	 * @param displayChar the character that represents the actor
 	 * @param hitPoints   the health points of the actor
 	 * @param team        identify if actor is alive or undead
+	 * @throws Exception
 	 */
-	public ZombieActor(String name, char displayChar, int hitPoints, ZombieCapability team) {
+	public ZombieActor(String name, char displayChar, int hitPoints, ZombieCapability team) throws Exception {
 		super(name, displayChar, hitPoints);
 
 		addCapability(team);
@@ -47,7 +48,11 @@ public abstract class ZombieActor extends Actor {
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions list = super.getAllowableActions(otherActor, direction, map);
 		if (otherActor.hasCapability(ZombieCapability.UNDEAD) != this.hasCapability(ZombieCapability.UNDEAD))
-			list.add(new AttackAction(this));
+			try {
+				list.add(new AttackAction(this));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		return list;
 	}
 
