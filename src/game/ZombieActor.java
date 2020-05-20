@@ -51,21 +51,46 @@ public abstract class ZombieActor extends Actor {
 		return list;
 	}
 
+	/**
+	 * Returns actor arm count.
+	 * 
+	 * @see ActionInterface#getArmCount()
+	 * @return actor arm count
+	 */
 	@Override
 	public int getArmCount() {
 		return armCount;
 	}
 
+	/**
+	 * Returns actor leg count.
+	 * 
+	 * @see ActionInterface#getLegCount()
+	 * @return actor leg count
+	 */
 	@Override
 	public int getLegCount() {
 		return legCount;
 	}
 
+	/**
+	 * Returns actor arm count.
+	 * 
+	 * @see ActionInterface#getLimbCount()
+	 * @return actor limb count
+	 */
 	@Override
 	public int getLimbCount() {
 		return armCount + legCount;
 	}
 
+	/**
+	 * Executes actions the actor has stored.
+	 * 
+	 * @see ActionInterface#executeReaction(GameMap)
+	 * @param map current GameMap
+	 * @return a string that describes the actions executed
+	 */
 	@Override
 	public String executeReaction(GameMap map) {
 		String result = "";
