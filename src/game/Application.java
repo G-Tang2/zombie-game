@@ -52,7 +52,7 @@ public class Application {
 		GameMap gameMap = new GameMap(groundFactory, map);
 		world.addGameMap(gameMap);
 
-		Actor player = new Player("Player", '@', 300); // FIXME: Change back to 100 when done with testing
+		Actor player = new Player("Player", '@', 3000); // FIXME: Change back to 100 when done with testing
 		try {
 			world.addPlayer(player, gameMap.at(42, 15));
 		} catch (Exception e) {
@@ -83,6 +83,7 @@ public class Application {
 			gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
 			gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
 
+			gameMap.at(43, 15).addItem(new HumanCorpse("test", '%')); // FIX ME: testing
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(-1);

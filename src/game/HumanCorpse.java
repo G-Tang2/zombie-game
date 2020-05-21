@@ -3,6 +3,7 @@ package game;
 import java.util.ArrayList;
 import java.util.Random;
 
+import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Location;
 
@@ -30,7 +31,17 @@ public class HumanCorpse extends PortableItem {
                 location.addActor(zombie);
             }
         }
+    }
 
+    @Override
+    public void tick(Location location, Actor actor) {
+        super.tick(location);
+        deathTime--;
+        if (deathTime < 0) {
+            actor.removeItemFromInventory(this);
+            Zombie zombie = new Zombie(name);
+            randAdjacentLocation(zombie, location).addActor(zombie);
+        }
     }
 
     private Location randAdjacentLocation(Zombie actor, Location location) {
