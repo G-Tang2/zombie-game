@@ -86,8 +86,11 @@ public class AttackAction extends Action {
 
 	private String targetDeath(GameMap map) {
 
-		Item corpse = new HumanCorpse("dead " + target, '%');
-		map.locationOf(target).addItem(corpse);
+		if (target.hasCapability(ZombieCapability.ALIVE)) {
+			map.locationOf(target).addItem(new HumanCorpse("dead " + target, 'x'));
+		} else {
+			map.locationOf(target).addItem(new PortableItem("dead" + target, '%'));
+		}
 
 		// corpse drop items and removed from map
 		Actions dropActions = new Actions();
