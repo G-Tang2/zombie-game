@@ -1,9 +1,7 @@
 package game;
 
-import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
-import edu.monash.fit2099.engine.Location;
 
 /**
  * An impenetrable barrier.
@@ -25,5 +23,9 @@ public class Fence extends Ground {
 	@Override
 	public boolean blocksThrownObjects() {
 		return true;
+	}
+
+	@Override
+	public void fertilize(int time) {
 	}
 }

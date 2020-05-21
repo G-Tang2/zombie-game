@@ -31,7 +31,7 @@ public class Farmer extends Human {
 
 		if (here.getGround() instanceof Crop) {
 			Actions allowableActions = here.getGround().allowableActions(this, map.locationOf(this), null);
-			if (allowableActions.size() > 0) {
+			if (allowableActions.size() == 0) {
 				return new FertilizeAction(here.getGround());
 			}
 		}

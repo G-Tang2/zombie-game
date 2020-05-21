@@ -35,7 +35,7 @@ public class Crop extends Ground {
 		return actions;
 	}
 
-	protected void fertilize(int time) {
+	public void fertilize(int time) {
 		ripeTime = Math.max(ripeTime - time, 0);
 	}
 }

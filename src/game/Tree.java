@@ -1,6 +1,5 @@
 package game;
 
-import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 
@@ -27,4 +26,9 @@ public class Tree extends Ground {
 		if (age == 20)
 			displayChar = 'T';
 	}
+
+	@Override
+	public void fertilize(int time) {
+	}
+
 }
