@@ -23,6 +23,7 @@ public class ZombieLimb extends WeaponItem {
      */
     public ZombieLimb(String name, char displayChar, int damage, String verb) {
         super(name, displayChar, damage, verb);
+        allowableActions.add(new CraftWeaponAction(this));
     }
 
 }
