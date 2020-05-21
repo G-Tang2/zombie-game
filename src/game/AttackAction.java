@@ -86,7 +86,7 @@ public class AttackAction extends Action {
 
 	private String targetDeath(GameMap map) {
 
-		Item corpse = new PortableItem("dead " + target, '%');
+		Item corpse = new HumanCorpse("dead " + target, '%');
 		map.locationOf(target).addItem(corpse);
 
 		// corpse drop items and removed from map
