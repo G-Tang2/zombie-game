@@ -32,8 +32,4 @@ public class Player extends Human {
 			return lastAction.getNextAction();
 		return menu.showMenu(this, actions, display);
 	}
-	
-	public void craftWeapon(Item limb) {
-		this.actions.add(new CraftWeaponAction(limb));
-	}
 }

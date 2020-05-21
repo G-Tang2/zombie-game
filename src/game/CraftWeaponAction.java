@@ -10,10 +10,10 @@ import edu.monash.fit2099.engine.Item;
  * 
  * @author Mike Kevin Balapitiya
  */
-public class CraftWeaponAction extends Action{
+public class CraftWeaponAction extends Action {
 
 	protected Item item;
-	
+
 	/**
 	 * Constructor.
 	 *
@@ -22,29 +22,30 @@ public class CraftWeaponAction extends Action{
 	public CraftWeaponAction(Item item) {
 		this.item = item;
 	}
-	
+
 	/**
 	 * Perform the Action.
 	 *
 	 * @param actor The actor performing the action.
-	 * @param map The map the actor is on.
+	 * @param map   The map the actor is on.
 	 * @return a description of what happened that can be displayed to the user.
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		map.locationOf(actor).removeItem(item);
+		Item newItem = item;
+		actor.removeItemFromInventory(item);
 		if (item.toString() == "Zombie arm") {
-			item = new ZombieClub();
+			newItem = new ZombieClub();
+		} else if (item.toString() == "Zombie leg") {
+			newItem = new ZombieMace();
 		}
-		else if (item.toString() == "Zombie leg") {
-			item = new ZombieMace();
-		}
-		map.locationOf(actor).addItem(item);
-		return menuDescription(actor);
+		actor.addItemToInventory(newItem);
+		return actor + " crafts a weapon to " + newItem;
 	}
 
 	/**
 	 * Returns a descriptive string
+	 * 
 	 * @param actor The actor performing the action.
 	 * @return the text we put on the menu
 	 */

@@ -53,6 +53,7 @@ public class HumanCorpse extends PortableItem {
                 validDropLocations.add(destination);
             }
         }
+        // TODO: When validDropLocations has no locations
         return validDropLocations.get(rand.nextInt(validDropLocations.size()));
     }
 
