@@ -42,6 +42,7 @@ public interface Behaviour {
 	 * @param actor the Actor acting
 	 * @param map   the GameMap containing the Actor
 	 * @return an Action that actor can perform, or null if actor can't do this.
+	 * @throws Exception
 	 */
-	Action getAction(Actor actor, GameMap map);
+	Action getAction(Actor actor, GameMap map) throws Exception;
 }

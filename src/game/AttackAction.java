@@ -31,8 +31,12 @@ public class AttackAction extends Action {
 	 * Constructor.
 	 * 
 	 * @param target the Actor to attack
+	 * @throws Exception
 	 */
-	public AttackAction(Actor target) {
+	public AttackAction(Actor target) throws Exception {
+		if (target == null) {
+			throw new Exception("There is no target to attack");
+		}
 		this.target = target;
 	}
 

@@ -21,7 +21,7 @@ public class PickUpItemAction extends Action {
 	 *
 	 * @see Action#execute(Actor, GameMap)
 	 * @param actor The actor performing the action.
-	 * @param map The map the actor is on.
+	 * @param map   The map the actor is on.
 	 * @return a suitable description to display in the UI
 	 */
 	@Override

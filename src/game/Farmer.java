@@ -20,9 +20,10 @@ public class Farmer extends Human {
 	 * @param name        Name to call the farmer in the UI
 	 * @param displayChar Character to represent the farmer in the UI
 	 * @param hitPoints   Farmers's starting number of hitpoints
+	 * @throws Exception
 	 */
-	public Farmer(String name) {
-		super(name, 'F', 500);
+	public Farmer(String name) throws Exception {
+		super(name, 'F', 50);
 	}
 
 	@Override
@@ -49,7 +50,12 @@ public class Farmer extends Human {
 			}
 		}
 
-		return behaviour.getAction(this, map);
+		try {
+			return behaviour.getAction(this, map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
