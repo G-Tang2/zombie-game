@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
@@ -8,12 +9,12 @@ import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 
-public class Harvest extends Action {
+public class HarvestAction extends Action {
 
     private Location location;
     private Random rand = new Random();
 
-    public Harvest(Location location) {
+    public HarvestAction(Location location) {
         this.location = location;
     }
 
@@ -24,22 +25,21 @@ public class Harvest extends Action {
 
             for (Exit exit : location.getExits()) {
                 Location destination = exit.getDestination();
-                if (destination.canActorEnter(actor)) {
+                if (destination.getGround().canActorEnter(actor)) {
                     validDropLocations.add(destination);
                 }
             }
-            if (validDropLocations.size() > 0) {
-                validDropLocations.get(rand.nextInt(validDropLocations.size())).addItem(new Food());
-            }
+            validDropLocations.get(rand.nextInt(validDropLocations.size())).addItem(new Food());
+        } else if (actor instanceof Player) {
+            actor.addItemToInventory(new Food());
         }
-        this.location.setGround(new Dirt());
-        return null;
+        location.setGround(new Dirt());
+        return actor + " harvested the ripe crop";
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        // TODO Auto-generated method stub
-        return null;
+        return "Harvest the ripe crop";
     }
 
 }

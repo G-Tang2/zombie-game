@@ -11,6 +11,9 @@ import edu.monash.fit2099.engine.Location;
 
 public class Farmer extends Human {
 
+	private Behaviour behaviour = new WanderBehaviour();
+	Random rand = new Random();
+
 	/**
 	 * Constructor.
 	 *
@@ -19,20 +22,34 @@ public class Farmer extends Human {
 	 * @param hitPoints   Farmers's starting number of hitpoints
 	 */
 	public Farmer(String name) {
-		super(name, 'F', 50);
+		super(name, 'F', 500);
 	}
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		Location here = map.locationOf(this);
 
+		if (here.getGround() instanceof Crop) {
+			Actions allowableActions = here.getGround().allowableActions(this, map.locationOf(this), null);
+			if (allowableActions.size() > 0) {
+				return new FertilizeAction(here.getGround());
+			}
+		}
 		for (Exit exit : here.getExits()) {
 			Location location = exit.getDestination();
 			if (location.getGround() instanceof Dirt) {
-				return new SowAction(location);
+				if (rand.nextInt(100) < 33) {
+					return new SowAction(location);
+				}
+			} else if (location.getGround() instanceof Crop) {
+				Actions allowableActions = location.getGround().allowableActions(this, map.locationOf(this), null);
+				if (allowableActions.size() > 0) {
+					return allowableActions.get(rand.nextInt(allowableActions.size()));
+				}
 			}
 		}
-		return null;
+
+		return behaviour.getAction(this, map);
 	}
 
 }

@@ -84,6 +84,7 @@ public class Application {
 			gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
 
 			gameMap.at(43, 15).addItem(new HumanCorpse("test", '%')); // FIX ME: testing
+			gameMap.at(40, 11).addActor(new Farmer("Bob"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(-1);

@@ -26,8 +26,4 @@ public class Fence extends Ground {
 	public boolean blocksThrownObjects() {
 		return true;
 	}
-
-	public Actions allowableActions(Location location) {
-		return new Actions();
-	}
 }

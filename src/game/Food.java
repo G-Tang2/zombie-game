@@ -1,16 +1,15 @@
 package game;
 
-import edu.monash.fit2099.engine.Item;
+public class Food extends PortableItem {
 
-public class Food extends Item {
-	
 	private int nutrition = 20;
-	
+
 	public Food() {
-		super("food", 'f', true);
+		super("food", 'f');
+		allowableActions.add(new Eat(this)); // FIXME: remove this allowable action when dropped on ground
 	}
-	
-	public void eat() {
+
+	public int getNutrition() {
 		return nutrition;
 	}
 

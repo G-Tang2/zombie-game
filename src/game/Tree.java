@@ -27,9 +27,4 @@ public class Tree extends Ground {
 		if (age == 20)
 			displayChar = 'T';
 	}
-
-	@Override
-	public Actions allowableActions(Location location) {
-		return new Actions();
-	}
 }
