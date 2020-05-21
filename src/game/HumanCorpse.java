@@ -22,7 +22,7 @@ public class HumanCorpse extends PortableItem {
     public void tick(Location location) {
         super.tick(location);
         deathTime--;
-        if (deathTime < 0) {
+        if (deathTime <= 0) {
             location.removeItem(this);
             Zombie zombie = new Zombie(name);
             if (location.containsAnActor()) {

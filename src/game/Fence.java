@@ -1,7 +1,9 @@
 package game;
 
+import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
+import edu.monash.fit2099.engine.Location;
 
 /**
  * An impenetrable barrier.
@@ -14,14 +16,18 @@ public class Fence extends Ground {
 	public Fence() {
 		super('#');
 	}
-	
+
 	@Override
 	public boolean canActorEnter(Actor actor) {
 		return false;
 	}
-	
+
 	@Override
 	public boolean blocksThrownObjects() {
 		return true;
+	}
+
+	public Actions allowableActions(Location location) {
+		return new Actions();
 	}
 }
