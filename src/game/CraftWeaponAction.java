@@ -32,12 +32,14 @@ public class CraftWeaponAction extends Action{
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
+		map.locationOf(actor).removeItem(item);
 		if (item.toString() == "Zombie arm") {
 			item = new ZombieClub();
 		}
 		else if (item.toString() == "Zombie leg") {
 			item = new ZombieMace();
 		}
+		map.locationOf(actor).addItem(item);
 		return menuDescription(actor);
 	}
 
@@ -48,7 +50,7 @@ public class CraftWeaponAction extends Action{
 	 */
 	@Override
 	public String menuDescription(Actor actor) {
-		return actor + " crafts a " + item;
+		return actor + " crafts a weapon from " + item;
 	}
 
 }
