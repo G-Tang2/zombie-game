@@ -17,7 +17,7 @@ public class CraftWeaponAction extends Action{
 	/**
 	 * Constructor.
 	 *
-	 * @param item the item to drop
+	 * @param item the item to craft
 	 */
 	public CraftWeaponAction(Item item) {
 		this.item = item;
@@ -32,14 +32,12 @@ public class CraftWeaponAction extends Action{
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		actor.removeItemFromInventory(item);
 		if (item.toString() == "Zombie arm") {
 			item = new ZombieClub();
 		}
 		else if (item.toString() == "Zombie leg") {
 			item = new ZombieMace();
 		}
-		actor.addItemToInventory(item);
 		return menuDescription(actor);
 	}
 
