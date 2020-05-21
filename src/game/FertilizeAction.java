@@ -15,7 +15,7 @@ public class FertilizeAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        ((Crop) ground).fertilize(10);
+        ground.fertilize(10);
         return actor + " has fertilized the crop";
     }
 

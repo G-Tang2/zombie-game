@@ -19,8 +19,9 @@ public class Human extends ZombieActor {
 	 * The default constructor creates default Humans
 	 * 
 	 * @param name the human's display name
+	 * @throws Exception
 	 */
-	public Human(String name) {
+	public Human(String name) throws Exception {
 		super(name, 'H', 50, ZombieCapability.ALIVE);
 	}
 
@@ -31,8 +32,9 @@ public class Human extends ZombieActor {
 	 * @param name        the human's display name
 	 * @param displayChar character that will represent the Human in the map
 	 * @param hitPoints   amount of damage that the Human can take before it dies
+	 * @throws Exception
 	 */
-	protected Human(String name, char displayChar, int hitPoints) {
+	protected Human(String name, char displayChar, int hitPoints) throws Exception {
 		super(name, displayChar, hitPoints, ZombieCapability.ALIVE);
 	}
 
@@ -40,6 +42,11 @@ public class Human extends ZombieActor {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// FIXME humans are pretty dumb, maybe they should at least run away from
 		// zombies?
-		return behaviour.getAction(this, map);
+		try {
+			return behaviour.getAction(this, map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

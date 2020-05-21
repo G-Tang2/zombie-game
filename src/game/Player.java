@@ -19,8 +19,9 @@ public class Player extends Human {
 	 * @param name        Name to call the player in the UI
 	 * @param displayChar Character to represent the player in the UI
 	 * @param hitPoints   Player's starting number of hitpoints
+	 * @throws Exception
 	 */
-	public Player(String name, char displayChar, int hitPoints) {
+	public Player(String name, char displayChar, int hitPoints) throws Exception {
 		super(name, displayChar, hitPoints);
 	}
 
