@@ -18,8 +18,8 @@ public class ZombieMace extends WeaponItem {
      * @param damage      amount of damage this weapon does
      * @param verb        verb to use for this weapon, e.g. "hits", "zaps"
      */
-	public ZombieMace(String name, char displayChar, int damage, String verb) {
-		super(name, displayChar, damage, verb);
+	public ZombieMace() {
+		super("Mace", '?', 24, "bludgeons");
 	}
 
 }

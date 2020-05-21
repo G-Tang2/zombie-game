@@ -34,10 +34,10 @@ public class CraftWeaponAction extends Action{
 	public String execute(Actor actor, GameMap map) {
 		actor.removeItemFromInventory(item);
 		if (item.toString() == "Zombie arm") {
-			item = new ZombieClub("Club", 'p', 20, "thumps");
+			item = new ZombieClub();
 		}
 		else if (item.toString() == "Zombie leg") {
-			item = new ZombieMace("Mace", '?', 24, "bludgeons");
+			item = new ZombieMace();
 		}
 		actor.addItemToInventory(item);
 		return menuDescription(actor);

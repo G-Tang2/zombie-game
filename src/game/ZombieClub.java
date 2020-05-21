@@ -18,8 +18,8 @@ public class ZombieClub extends WeaponItem {
      * @param damage      amount of damage this weapon does
      * @param verb        verb to use for this weapon, e.g. "hits", "zaps"
      */
-	public ZombieClub(String name, char displayChar, int damage, String verb) {
-		super(name, displayChar, damage, verb);
+	public ZombieClub() {
+		super("Club", 'p', 20, "thumps");
 	}
 
 
