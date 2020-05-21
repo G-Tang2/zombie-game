@@ -38,9 +38,12 @@ public class HumanCorpse extends PortableItem {
         super.tick(location);
         deathTime--;
         if (deathTime < 0) {
-            actor.removeItemFromInventory(this);
             Zombie zombie = new Zombie(name);
-            randAdjacentLocation(zombie, location).addActor(zombie);
+            Location spawnLocation = randAdjacentLocation(zombie, location);
+            if (spawnLocation != null) {
+                spawnLocation.addActor(zombie);
+                actor.removeItemFromInventory(this);
+            }
         }
     }
 
@@ -53,8 +56,12 @@ public class HumanCorpse extends PortableItem {
                 validDropLocations.add(destination);
             }
         }
-        // TODO: When validDropLocations has no locations
-        return validDropLocations.get(rand.nextInt(validDropLocations.size()));
+
+        if (validDropLocations.size() > 0) {
+            return validDropLocations.get(rand.nextInt(validDropLocations.size()));
+        } else {
+            return null;
+        }
     }
 
 }
