@@ -4,11 +4,11 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 
-public class Eat extends Action {
+public class EatAction extends Action {
 
     Food food;
 
-    public Eat(Food food) {
+    public EatAction(Food food) {
         this.food = food;
     }
 

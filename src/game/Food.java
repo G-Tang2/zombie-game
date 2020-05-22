@@ -6,7 +6,7 @@ public class Food extends PortableItem {
 
 	public Food() {
 		super("food", 'f');
-		allowableActions.add(new Eat(this)); // FIXME: remove this allowable action when dropped on ground
+		allowableActions.add(new EatAction(this)); // FIXME: remove this allowable action when dropped on ground
 	}
 
 	public int getNutrition() {
