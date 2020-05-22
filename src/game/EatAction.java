@@ -6,8 +6,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
 /**
- * Eat Action for a Human to consume food to recover
- * health
+ * Eat Action for a Human to consume food to recover health
  * 
  * @author Garvin Tang
  * 
@@ -48,7 +47,7 @@ public class EatAction extends Action {
     public String execute(Actor actor, GameMap map) {
         actor.removeItemFromInventory(item);
         actor.heal(item.getNutrition());
-        return actor + " ate " + item + " to restore health";
+        return actor + " ate " + item + " to restore " + item.getNutrition() + " health";
     }
 
     /**
