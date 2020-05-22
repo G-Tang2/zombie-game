@@ -13,6 +13,7 @@ import edu.monash.fit2099.engine.WeaponItem;
 public class ZombieLimb extends WeaponItem {
 
     boolean onGround = true;
+    int nutrition = 0;
 
     /**
      * Constructor.
@@ -56,6 +57,11 @@ public class ZombieLimb extends WeaponItem {
             allowableActions = new Actions();
             onGround = true;
         }
+    }
+
+    @Override
+    public int getNutrition() {
+        return nutrition;
     }
 
 }

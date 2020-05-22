@@ -10,9 +10,16 @@ import edu.monash.fit2099.engine.WeaponItem;
  */
 public class Plank extends WeaponItem {
 
+	int nutrition = 0;
+
 	public Plank() {
 		super("plank", ')', 20, "whacks");
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public int getNutrition() {
+		return nutrition;
 	}
 
 }

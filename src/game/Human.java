@@ -5,6 +5,8 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.PickUpItemAction;
 
 /**
  * Class representing an ordinary human.
@@ -43,11 +45,52 @@ public class Human extends ZombieActor {
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// FIXME humans are pretty dumb, maybe they should at least run away from
 		// zombies?
+
+		// prioritise consuming food when hurt
+		if (hitPoints < maxHitPoints) {
+			Action action = searchForFood(map);
+			if (action != null) {
+				return action;
+			}
+		}
 		try {
 			return behaviour.getAction(this, map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return new DoNothingAction();
+	}
+
+	protected Action searchForFood(GameMap map) {
+		Item item;
+		// consume food if they have food in their inventory
+		item = foodInInventory();
+		if (item != null) {
+			return new EatAction(item);
+		}
+		// pick up food if they are stand on top of it
+		item = pickUpFood(map);
+		if (item != null) {
+			return new PickUpItemAction(item);
+		}
+		return null;
+	}
+
+	private Item foodInInventory() {
+		for (Item item : inventory) {
+			if (item instanceof Food) {
+				return item;
+			}
+		}
+		return null;
+	}
+
+	private Item pickUpFood(GameMap map) {
+		for (Item item : map.locationOf(this).getItems()) {
+			if (item instanceof Food) {
+				return item;
+			}
+		}
+		return null;
 	}
 }

@@ -32,6 +32,14 @@ public class Farmer extends Human {
 		boolean ableToSow = true;
 		Location here = map.locationOf(this);
 
+		// prioritise consuming food when hurt
+		if (hitPoints < maxHitPoints) {
+			Action action = searchForFood(map);
+			if (action != null) {
+				return action;
+			}
+		}
+
 		if (here.getGround() instanceof Crop) {
 			Actions allowableActions = here.getGround().allowableActions(this, map.locationOf(this), null);
 			if (allowableActions.size() == 0) { // means the crop is not ripe
@@ -47,7 +55,7 @@ public class Farmer extends Human {
 					ableToSow = false; // this makes the farmer only have one chance to sow per turn
 				}
 			} else if (location.getGround() instanceof Crop) {
-				Actions allowableActions = location.getGround().allowableActions(this, map.locationOf(this), null);
+				Actions allowableActions = location.getGround().allowableActions(this, location, null);
 				if (allowableActions.size() > 0) { // crop is ripe and ready to harvest
 					return allowableActions.get(rand.nextInt(allowableActions.size())); // this should only have the
 																						// harvest action
