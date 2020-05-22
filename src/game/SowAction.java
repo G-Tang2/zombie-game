@@ -18,7 +18,7 @@ public class SowAction extends Action {
     /**
      * Constructor.
      *
-     * @see SowAction#SowAction(Location)
+     * @see Action#SowAction(Location)
      * @param location the location to plant the crop
      */
     public SowAction(Location location) {

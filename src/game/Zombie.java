@@ -82,6 +82,13 @@ public class Zombie extends ZombieActor {
 		}
 	}
 
+	/**
+	 * when zombies are hit they have a chance to drop limbs
+	 * which is done in this method. It changes the attributes
+	 * of zombie hence does not require any parameters or 
+	 * return values.
+	 * 
+	 */
 	private void dropLimbs() {
 		int limbsLost = 0;
 		int val = rand.nextInt(100);
@@ -109,6 +116,10 @@ public class Zombie extends ZombieActor {
 		}
 	}
 
+	/**
+	 * Method for the Zombie actor to drop its weapon
+	 * 
+	 */
 	private void dropWeapon() {
 		for (Item item : getInventory()) {
 			if (item.asWeapon() != null) {
@@ -118,6 +129,12 @@ public class Zombie extends ZombieActor {
 		}
 	}
 
+	/**
+	 * Method to see if the zombie can move based on limbs lost
+	 * 
+	 * @return returns a boolean which will detmine weather the zombie can move
+	 * or not
+	 */
 	private boolean canMove() {
 		if (legCount < 2) {
 			if (legCount == 0 || (legCount == 1 && movedLastTurn)) {

@@ -25,6 +25,11 @@ public class ZombieClub extends WeaponItem {
           super("Club", 'p', 20, "thumps");
      }
 
+     /**
+      * getter needed for foods which is not needed for this class
+      * but is required because of the ItemInterface
+      * 
+      */
      @Override
      public int getNutrition() {
           return nutrition;

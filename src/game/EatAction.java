@@ -5,18 +5,45 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
+/**
+ * Eat Action for a Human to consume food to recover
+ * health
+ * 
+ * @author Garvin Tang
+ * 
+ */
 public class EatAction extends Action {
 
     Item item;
 
+    /**
+     * Constructor.
+     *
+     * @see Action#EatAction(Item)
+     * @param item the item is the food we want to eat
+     */
     public EatAction(Item item) {
         this.item = item;
     }
 
+    /**
+     * Constructor.
+     *
+     * @see Action#EatAction(Food)
+     * @param item the food we want to eat
+     */
     public EatAction(Food food) {
         this.item = food;
     }
 
+    /**
+     * Actor heals itself.
+     *
+     * @see Action#execute(Actor, GameMap)
+     * @param actor The actor performing the action.
+     * @param map   The map the actor is on.
+     * @return a string, e.g. "Player ate food to restore health".
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         actor.removeItemFromInventory(item);
@@ -24,6 +51,13 @@ public class EatAction extends Action {
         return actor + " ate " + item + " to restore health";
     }
 
+    /**
+     * Describe the action in a format suitable for displaying in the menu.
+     *
+     * @see Action#menuDescription(Actor)
+     * @param actor The actor performing the action.
+     * @return a string, e.g. "Fertilize crop".
+     */
     @Override
     public String menuDescription(Actor actor) {
         return "Consume " + item;

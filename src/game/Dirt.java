@@ -11,6 +11,11 @@ public class Dirt extends Ground {
 		super('.');
 	}
 
+	/**
+     * getter needed for foods which is not needed for this class
+     * but is required because of the ItemInterface
+     * 
+     */
 	@Override
 	public void fertilize(int time) {
 	}

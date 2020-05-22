@@ -10,6 +10,13 @@ import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 
+/**
+ * Farmer Actor who extends Humans and can grow and 
+ * fertilise crops
+ * 
+ * @author Garvin Tang
+ * 
+ */
 public class Farmer extends Human {
 
 	private Behaviour behaviour = new WanderBehaviour();
@@ -39,13 +46,14 @@ public class Farmer extends Human {
 				return action;
 			}
 		}
-
+		// Farmer fertilising ground if there is a crop there
 		if (here.getGround() instanceof Crop) {
 			Actions allowableActions = here.getGround().allowableActions(this, map.locationOf(this), null);
 			if (allowableActions.size() == 0) { // means the crop is not ripe
 				return new FertilizeAction(here.getGround());
 			}
 		}
+		// 33% chance when a farmer is standing on a dirt ground to turn it into a crop
 		for (Exit exit : here.getExits()) {
 			Location location = exit.getDestination();
 			if (ableToSow && location.getGround() instanceof Dirt) {

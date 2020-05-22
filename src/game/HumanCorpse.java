@@ -86,6 +86,13 @@ public class HumanCorpse extends PortableItem {
         }
     }
 
+    /**
+     * Method to return a random location around the actor to drop the 
+     * corpse when it becomes a Zombie
+     *
+     * @param actor The location where the corpse is.
+     * @param location location where actor carrying zombies is
+     */
     private Location randAdjacentLocation(Zombie actor, Location location) {
         ArrayList<Location> validDropLocations = new ArrayList<Location>();
 
