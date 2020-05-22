@@ -15,7 +15,8 @@ public class HumanCorpse extends PortableItem {
 
     public HumanCorpse(String name, char displayChar) {
         super(name, displayChar);
-        deathTime = rand.nextInt((MAXDEATHTIME - MINDEATHTIME) + 1) + MINDEATHTIME;
+        deathTime = rand.nextInt((MAXDEATHTIME - MINDEATHTIME) + 1) + MINDEATHTIME; // value between MINDEATHTIME and
+                                                                                    // MAXDEATHTIME
     }
 
     @Override
@@ -23,7 +24,6 @@ public class HumanCorpse extends PortableItem {
         super.tick(location);
         deathTime--;
         if (deathTime <= 0) {
-            location.removeItem(this);
             Zombie zombie = null;
             try {
                 zombie = new Zombie(name);
@@ -35,6 +35,7 @@ public class HumanCorpse extends PortableItem {
             } else {
                 location.addActor(zombie);
             }
+            location.removeItem(this);
         }
     }
 
