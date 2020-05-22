@@ -3,7 +3,6 @@ package game;
 import java.util.ArrayList;
 import java.util.Random;
 
-import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Location;
@@ -24,7 +23,7 @@ public class HumanCorpse extends PortableItem {
      * Constructor.
      *
      * @see PortableItem#HumanCorpse(String, char)
-     * @param name the name of the corpse
+     * @param name        the name of the corpse
      * @param displayChar the character to be displayed on the map for item
      */
     public HumanCorpse(String name, char displayChar) {
@@ -34,12 +33,12 @@ public class HumanCorpse extends PortableItem {
     }
 
     /**
-	 * Corpses experience time passing and may become a Zombie
-	 * This tick method is for if the corpse is on the ground
-	 *
-	 * @see Item#tick(Location)
-	 * @param location The location where the corpse is.
-	 */
+     * Corpses experience time passing and may become a Zombie This tick method is
+     * for if the corpse is on the ground
+     *
+     * @see Item#tick(Location)
+     * @param location The location where the corpse is.
+     */
     @Override
     public void tick(Location location) {
         super.tick(location);
@@ -61,13 +60,13 @@ public class HumanCorpse extends PortableItem {
     }
 
     /**
-	 * Corpses experience time passing and may become a Zombie
-	 * This tick method is for if the corpse is in the players inventory
-	 *
-	 * @see Item#tick(Location, Actor)
-	 * @param location The location where the corpse is.
-	 * @param actor the actor carrying the corpse
-	 */
+     * Corpses experience time passing and may become a Zombie This tick method is
+     * for if the corpse is in the players inventory
+     *
+     * @see Item#tick(Location, Actor)
+     * @param location The location where the corpse is.
+     * @param actor    the actor carrying the corpse
+     */
     @Override
     public void tick(Location location, Actor actor) {
         super.tick(location);
@@ -86,7 +85,7 @@ public class HumanCorpse extends PortableItem {
             }
         }
     }
-    
+
     private Location randAdjacentLocation(Zombie actor, Location location) {
         ArrayList<Location> validDropLocations = new ArrayList<Location>();
 

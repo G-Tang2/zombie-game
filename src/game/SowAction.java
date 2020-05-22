@@ -2,9 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 
 /**
@@ -16,7 +14,7 @@ import edu.monash.fit2099.engine.Location;
 public class SowAction extends Action {
 
     Location location;
-    
+
     /**
      * Constructor.
      *
@@ -26,7 +24,7 @@ public class SowAction extends Action {
     public SowAction(Location location) {
         this.location = location;
     }
-    
+
     /**
      * Actor sows crop into ground.
      *
@@ -40,14 +38,14 @@ public class SowAction extends Action {
         this.location.setGround(new Crop());
         return actor + " sowed a crop";
     }
-    
+
     /**
-	 * Describe the action in a format suitable for displaying in the menu.
-	 *
-	 * @see Action#menuDescription(Actor)
-	 * @param actor The actor performing the action.
-	 * @return a string, e.g. "Sow a crop".
-	 */
+     * Describe the action in a format suitable for displaying in the menu.
+     *
+     * @see Action#menuDescription(Actor)
+     * @param actor The actor performing the action.
+     * @return a string, e.g. "Sow a crop".
+     */
     @Override
     public String menuDescription(Actor actor) {
         return "Sow a crop";
