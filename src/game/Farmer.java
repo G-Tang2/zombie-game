@@ -5,6 +5,7 @@ import java.util.Random;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
@@ -28,24 +29,28 @@ public class Farmer extends Human {
 
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
+		boolean ableToSow = true;
 		Location here = map.locationOf(this);
 
 		if (here.getGround() instanceof Crop) {
 			Actions allowableActions = here.getGround().allowableActions(this, map.locationOf(this), null);
-			if (allowableActions.size() == 0) {
+			if (allowableActions.size() == 0) { // means the crop is not ripe
 				return new FertilizeAction(here.getGround());
 			}
 		}
 		for (Exit exit : here.getExits()) {
 			Location location = exit.getDestination();
-			if (location.getGround() instanceof Dirt) {
+			if (ableToSow && location.getGround() instanceof Dirt) {
 				if (rand.nextInt(100) < 33) {
 					return new SowAction(location);
+				} else {
+					ableToSow = false; // this makes the farmer only have one chance to sow per turn
 				}
 			} else if (location.getGround() instanceof Crop) {
 				Actions allowableActions = location.getGround().allowableActions(this, map.locationOf(this), null);
-				if (allowableActions.size() > 0) {
-					return allowableActions.get(rand.nextInt(allowableActions.size()));
+				if (allowableActions.size() > 0) { // crop is ripe and ready to harvest
+					return allowableActions.get(rand.nextInt(allowableActions.size())); // this should only have the
+																						// harvest action
 				}
 			}
 		}
@@ -55,7 +60,7 @@ public class Farmer extends Human {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return new DoNothingAction();
 	}
 
 }
