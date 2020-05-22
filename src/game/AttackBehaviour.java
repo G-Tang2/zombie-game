@@ -62,12 +62,13 @@ public class AttackBehaviour implements Behaviour {
 		List<Exit> exits = new ArrayList<Exit>(map.locationOf(actor).getExits());
 		Collections.shuffle(exits);
 
+		// searches adjacent passable locations for an actor of opposite team to attack
 		for (Exit e : exits) {
 			if (!(e.getDestination().containsAnActor()))
 				continue;
 			if (e.getDestination().getActor().hasCapability(attackableTeam)) {
 				if (actor.hasCapability(ZombieCapability.UNDEAD)) {
-					int biteProbability = 50; // default bite probability
+					int biteProbability = 50; // default bite probability of 50%
 					if (actor.getArmCount() == 1) {
 						biteProbability *= 1.5;
 					} else if (actor.getArmCount() == 0) {

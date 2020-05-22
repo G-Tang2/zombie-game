@@ -42,6 +42,15 @@ public class Human extends ZombieActor {
 		super(name, displayChar, hitPoints, ZombieCapability.ALIVE);
 	}
 
+	/**
+	 * If a Human is hurt it will attempt to pick up food and eat it or else it will
+	 * wander around.
+	 * 
+	 * @param actions    list of possible Actions
+	 * @param lastAction previous Action, if it was a multiturn action
+	 * @param map        the map where the current Zombie is
+	 * @param display    the Display where the Zombie's utterances will be displayed
+	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// FIXME humans are pretty dumb, maybe they should at least run away from
@@ -62,14 +71,6 @@ public class Human extends ZombieActor {
 		return new DoNothingAction();
 	}
 
-	/**
-	 * Method for human to either pick up food or heal
-	 * themselves by eating the food
-	 * 
-	 * @param map        the human's display name
-	 * @return returns an Action either being picking up the food or
-	 * eating it
-	 */
 	protected Action searchForFood(GameMap map) {
 		Item item;
 		// consume food if they have food in their inventory
@@ -85,12 +86,6 @@ public class Human extends ZombieActor {
 		return null;
 	}
 
-	/**
-	 * Method to check if food is in players inventory
-	 * 
-	 * @return returns the food item in the players inventory
-	 * if its there, if not returns null
-	 */
 	private Item foodInInventory() {
 		for (Item item : inventory) {
 			if (item instanceof Food) {
@@ -100,14 +95,6 @@ public class Human extends ZombieActor {
 		return null;
 	}
 
-	/**
-	 * Method to pick up food from the ground
-	 * 
-	 * @param map the location of where we want to search if there
-	 * is food
-	 * @return returns the food item on the ground
-	 * if its there, if not returns null
-	 */
 	private Item pickUpFood(GameMap map) {
 		for (Item item : map.locationOf(this).getItems()) {
 			if (item instanceof Food) {

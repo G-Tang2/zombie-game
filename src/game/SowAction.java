@@ -48,7 +48,7 @@ public class SowAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Sow a crop";
+        return actor + " sow a crop";
     }
 
 }

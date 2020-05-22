@@ -13,7 +13,8 @@ import edu.monash.fit2099.engine.Location;
 public class Food extends PortableItem {
 
 	private int nutrition = 20;
-	private boolean onGround = true;
+	private boolean onGround = true; // default value, cannot be false - would not allow player that harvest the crop
+										// to not be able to eat it unless they drop and pick it up
 
 	/**
 	 * Constructor.
@@ -36,7 +37,7 @@ public class Food extends PortableItem {
 	@Override
 	public void tick(Location currentLocation, Actor actor) {
 		if (onGround) {
-			allowableActions.add(new EatAction(this));
+			allowableActions.add(new EatAction(this)); // in inventory, can be consumed
 			onGround = false;
 		}
 	}
@@ -50,7 +51,7 @@ public class Food extends PortableItem {
 	@Override
 	public void tick(Location currentLocation) {
 		if (!onGround) {
-			allowableActions = new Actions();
+			allowableActions = new Actions(); // on ground, cannot be consumed
 			onGround = true;
 		}
 	}

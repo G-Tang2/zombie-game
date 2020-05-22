@@ -19,7 +19,7 @@ public class HarvestAction extends Action {
 
     private Location location;
     private Random rand = new Random();
-    
+
     /**
      * Constructor.
      *
@@ -42,7 +42,7 @@ public class HarvestAction extends Action {
     public String execute(Actor actor, GameMap map) {
         if (actor instanceof Farmer) {
             ArrayList<Location> validDropLocations = new ArrayList<Location>();
-
+            // find passable location to drop harvested food by farmer
             for (Exit exit : location.getExits()) {
                 Location destination = exit.getDestination();
                 if (destination.getGround().canActorEnter(actor)) {
@@ -53,20 +53,20 @@ public class HarvestAction extends Action {
         } else if (actor instanceof Player) {
             actor.addItemToInventory(new Food());
         }
-        location.setGround(new Dirt());
+        location.setGround(new Dirt()); // harvested crop returns to dirt
         return actor + " harvested the ripe crop";
     }
 
     /**
-	 * Describe the action in a format suitable for displaying in the menu.
-	 *
-	 * @see Action#menuDescription(Actor)
-	 * @param actor The actor performing the action.
-	 * @return a string, e.g. "Harvest the ripe crop".
-	 */
+     * Describe the action in a format suitable for displaying in the menu.
+     *
+     * @see Action#menuDescription(Actor)
+     * @param actor The actor performing the action.
+     * @return a string, e.g. "Harvest the ripe crop".
+     */
     @Override
     public String menuDescription(Actor actor) {
-        return "Harvest the ripe crop";
+        return actor + " harvest the ripe crop";
     }
 
 }

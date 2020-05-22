@@ -40,7 +40,7 @@ public class CraftWeaponAction extends Action {
 			newItem = new ZombieMace();
 		}
 		actor.addItemToInventory(newItem);
-		return actor + " crafts a weapon to " + newItem;
+		return actor + " upgrades " + item.toString() + " to " + newItem;
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class CraftWeaponAction extends Action {
 	 */
 	@Override
 	public String menuDescription(Actor actor) {
-		return actor + " crafts a weapon from " + item;
+		return actor + " upgrades " + item;
 	}
 
 }

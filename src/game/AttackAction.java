@@ -73,11 +73,11 @@ public class AttackAction extends Action {
 		return actor + " attacks " + target;
 	}
 
-	String missDescription(Actor actor) { // NOTE: default for subclass in package
+	String missDescription(Actor actor) { // default visibility
 		return actor + " misses " + target + ".";
 	}
 
-	String attackTarget(Actor actor, GameMap map, Weapon weapon) { // NOTE: default for subclass in package
+	String attackTarget(Actor actor, GameMap map, Weapon weapon) { // default visibility
 		String result = actor + " " + weapon.verb() + " " + target + " for " + weapon.damage() + " damage.";
 
 		target.hurt(weapon.damage());
@@ -91,9 +91,9 @@ public class AttackAction extends Action {
 	private String targetDeath(GameMap map) {
 
 		if (target.hasCapability(ZombieCapability.ALIVE)) {
-			map.locationOf(target).addItem(new HumanCorpse("dead " + target, 'x'));
+			map.locationOf(target).addItem(new HumanCorpse("Dead " + target, 'x'));
 		} else {
-			map.locationOf(target).addItem(new PortableItem("dead" + target, '%'));
+			map.locationOf(target).addItem(new PortableItem("Dead" + target, '%'));
 		}
 
 		// corpse drop items and removed from map

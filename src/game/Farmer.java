@@ -11,8 +11,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 
 /**
- * Farmer Actor who extends Humans and can grow and 
- * fertilise crops
+ * Farmer Actor who extends Humans and can grow and fertilise crops
  * 
  * @author Garvin Tang
  * 

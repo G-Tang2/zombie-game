@@ -16,8 +16,8 @@ import edu.monash.fit2099.engine.Location;
 public class HumanCorpse extends PortableItem {
     private Random rand = new Random();
     private int deathTime;
-    private int MINDEATHTIME = 5;
-    private int MAXDEATHTIME = 10;
+    private final int MINDEATHTIME = 5;
+    private final int MAXDEATHTIME = 10;
 
     /**
      * Constructor.
@@ -51,11 +51,16 @@ public class HumanCorpse extends PortableItem {
                 e.printStackTrace();
             }
             if (location.containsAnActor()) {
-                randAdjacentLocation(zombie, location).addActor(zombie);
+                // spawn zombie in an adjacent location
+                Location spawnLocation = randAdjacentLocation(zombie, location);
+                if (spawnLocation != null) {
+                    spawnLocation.addActor(zombie);
+                    location.removeItem(this);
+                }
             } else {
                 location.addActor(zombie);
+                location.removeItem(this);
             }
-            location.removeItem(this);
         }
     }
 
@@ -86,13 +91,6 @@ public class HumanCorpse extends PortableItem {
         }
     }
 
-    /**
-     * Method to return a random location around the actor to drop the 
-     * corpse when it becomes a Zombie
-     *
-     * @param actor The location where the corpse is.
-     * @param location location where actor carrying zombies is
-     */
     private Location randAdjacentLocation(Zombie actor, Location location) {
         ArrayList<Location> validDropLocations = new ArrayList<Location>();
 

@@ -53,7 +53,7 @@ public class Application {
 			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
 
-			Actor player = new Player("Player", '@', 300); // FIXME: Change back to 100 when done with testing
+			Actor player = new Player("Player", '@', 100);
 
 			world.addPlayer(player, gameMap.at(42, 15));
 
@@ -71,7 +71,7 @@ public class Application {
 			// place a simple weapon
 			gameMap.at(74, 20).addItem(new Plank());
 
-			// FIXME: Add more zombies!
+			// zombies
 			gameMap.at(30, 20).addActor(new Zombie("Groan"));
 			gameMap.at(30, 18).addActor(new Zombie("Boo"));
 			gameMap.at(10, 4).addActor(new Zombie("Uuuurgh"));

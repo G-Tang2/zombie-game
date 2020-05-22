@@ -14,14 +14,13 @@ public class Plank extends WeaponItem {
 
 	public Plank() {
 		super("plank", ')', 20, "whacks");
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
-     * getter needed for foods which is not needed for this class
-     * but is required because of the ItemInterface
-     * 
-     */
+	 * getter needed for foods which is not needed for this class but is required
+	 * because of the ItemInterface
+	 * 
+	 */
 	@Override
 	public int getNutrition() {
 		return nutrition;

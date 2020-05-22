@@ -26,16 +26,6 @@ public class EatAction extends Action {
     }
 
     /**
-     * Constructor.
-     *
-     * @see Action#EatAction(Food)
-     * @param item the food we want to eat
-     */
-    public EatAction(Food food) {
-        this.item = food;
-    }
-
-    /**
      * Actor heals itself.
      *
      * @see Action#execute(Actor, GameMap)
@@ -59,7 +49,7 @@ public class EatAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Consume " + item;
+        return actor + " consume " + item;
     }
 
 }

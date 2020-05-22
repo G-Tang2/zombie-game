@@ -5,7 +5,6 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 
-
 /**
  * Fertilize action for fertilising a crop in the ground
  * 
@@ -37,7 +36,7 @@ public class FertilizeAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         ground.fertilize(10);
-        return actor + " has fertilized the crop";
+        return actor + " fertilized the crop";
     }
 
     /**
@@ -49,7 +48,7 @@ public class FertilizeAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return "Fertilize crop";
+        return actor + " fertilize crop";
     }
 
 }

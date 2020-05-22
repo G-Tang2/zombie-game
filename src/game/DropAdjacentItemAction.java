@@ -44,13 +44,14 @@ public class DropAdjacentItemAction extends DropItemAction {
         Location here = map.locationOf(actor);
 
         actor.removeItemFromInventory(item);
+        // finds an adjacent passable location to drop the item
         for (Exit exit : here.getExits()) {
             Location destination = exit.getDestination();
             if (destination.canActorEnter(actor)) {
                 validDropLocations.add(destination);
             }
         }
-        validDropLocations.get(rand.nextInt(validDropLocations.size())).addItem(item);
+        validDropLocations.get(rand.nextInt(validDropLocations.size())).addItem(item); // random possible drop location
         return menuDescription(actor);
     }
 }
