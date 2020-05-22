@@ -3,8 +3,8 @@ package game;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
 
 /**
  * Class representing an ordinary human.
@@ -48,6 +48,6 @@ public class Human extends ZombieActor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return new DoNothingAction();
 	}
 }
