@@ -1,5 +1,8 @@
 package game;
 
+import edu.monash.fit2099.engine.Actions;
+import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.WeaponItem;
 
 /**
@@ -8,6 +11,8 @@ import edu.monash.fit2099.engine.WeaponItem;
  * @author Garvin Tang
  */
 public class ZombieLimb extends WeaponItem {
+
+    boolean onGround = true;
 
     /**
      * Constructor.
@@ -21,7 +26,36 @@ public class ZombieLimb extends WeaponItem {
      */
     public ZombieLimb(String name, char displayChar, int damage, String verb) {
         super(name, displayChar, damage, verb);
-        allowableActions.add(new CraftWeaponAction(this));
+    }
+
+    /**
+     * Inform a carried Item of the passage of time.
+     * 
+     * This method is called once per turn, if the Item is being carried.
+     * 
+     * @param currentLocation The location of the actor carrying this Item.
+     * @param actor           The actor carrying this Item.
+     */
+    @Override
+    public void tick(Location currentLocation, Actor actor) {
+        if (onGround) {
+            allowableActions.add(new CraftWeaponAction(this));
+            onGround = false;
+        }
+    }
+
+    /**
+     * Inform an Item on the ground of the passage of time. This method is called
+     * once per turn, if the item rests upon the ground.
+     * 
+     * @param currentLocation The location of the ground on which we lie.
+     */
+    @Override
+    public void tick(Location currentLocation) {
+        if (!onGround) {
+            allowableActions = new Actions();
+            onGround = true;
+        }
     }
 
 }
