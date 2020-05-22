@@ -13,15 +13,11 @@ public class EatAction extends Action {
         this.item = item;
     }
 
-    public EatAction(Food food) {
-        this.item = food;
-    }
-
     @Override
     public String execute(Actor actor, GameMap map) {
         actor.removeItemFromInventory(item);
         actor.heal(item.getNutrition());
-        return actor + " ate " + item + " to restore health";
+        return actor + " ate " + item + " to restore " + item.getNutrition() + " health";
     }
 
     @Override
