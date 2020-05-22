@@ -5,6 +5,11 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 
+/**
+ * Crafting a weapon from a zombie limb
+ * 
+ * @author Garvin Tang
+ */
 public class Crop extends Ground {
 
 	private int ripeTime = 20;
