@@ -6,14 +6,13 @@ import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 
 /**
- * Crop on the ground that will eventually rippen into fruit
+ * Crop on the ground that will eventually ripen into fruit
  * 
  * @author Garvin Tang
  */
 public class Crop extends Ground {
 
 	private int ripeTime = 20; // number of turns to become ripe
-	boolean ripe = false; // crop is unripe when planted
 
 	/**
 	 * Constructor.
