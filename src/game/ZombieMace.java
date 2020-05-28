@@ -23,14 +23,14 @@ public class ZombieMace extends WeaponItem {
      public ZombieMace() {
           super("Mace", '?', 24, "bludgeons");
      }
-     
+
      /**
-      * getter needed for foods which is not needed for this class
-      * but is required because of the ItemInterface
+      * getter needed for foods which is not needed for this class but is required
+      * because of the ItemInterface
       * 
       */
      @Override
      public int getNutrition() {
-          return 0;
+          return nutrition;
      }
 }

@@ -23,6 +23,7 @@ public class Crop extends Ground {
 	 */
 	public Crop() {
 		super('c');
+		addCapability(CropCapability.UNRIPE);
 	}
 
 	/**
@@ -35,10 +36,11 @@ public class Crop extends Ground {
 	@Override
 	public void tick(Location location) {
 		super.tick(location);
-		if (!ripe) {
+		if (hasCapability(CropCapability.UNRIPE)) {
 			ripeTime--;
 			if (ripeTime <= 0) {
-				ripe = true;
+				removeCapability(CropCapability.UNRIPE);
+				addCapability(CropCapability.RIPE);
 				displayChar = 'C';
 			}
 		}
@@ -55,7 +57,7 @@ public class Crop extends Ground {
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction) {
 		Actions actions = new Actions();
-		if (ripe) {
+		if (hasCapability(CropCapability.RIPE)) {
 			actions.add(new HarvestAction(location));
 		}
 		return actions;
