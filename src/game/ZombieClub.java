@@ -1,5 +1,6 @@
 package game;
 
+import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.WeaponItem;
 
 /**
@@ -26,12 +27,17 @@ public class ZombieClub extends WeaponItem {
      }
 
      /**
-      * getter needed for foods which is not needed for this class
-      * but is required because of the ItemInterface
+      * getter needed for foods which is not needed for this class but is required
+      * because of the ItemInterface
       * 
       */
      @Override
      public int getNutrition() {
           return nutrition;
+     }
+
+     @Override
+     public Item upgrade() {
+          return null;
      }
 }

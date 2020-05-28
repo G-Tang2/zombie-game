@@ -10,7 +10,7 @@ import edu.monash.fit2099.engine.WeaponItem;
  * 
  * @author Garvin Tang
  */
-public class ZombieLimb extends WeaponItem {
+public abstract class ZombieLimb extends WeaponItem {
 
     boolean onGround = true;
     int nutrition = 0;
@@ -58,10 +58,10 @@ public class ZombieLimb extends WeaponItem {
             onGround = true;
         }
     }
-    
+
     /**
-     * getter needed for foods which is not needed for this class
-     * but is required because of the ItemInterface
+     * getter needed for foods which is not needed for this class but is required
+     * because of the ItemInterface
      * 
      */
     @Override

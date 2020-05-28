@@ -83,10 +83,9 @@ public class Zombie extends ZombieActor {
 	}
 
 	/**
-	 * when zombies are hit they have a chance to drop limbs
-	 * which is done in this method. It changes the attributes
-	 * of zombie hence does not require any parameters or 
-	 * return values.
+	 * when zombies are hit they have a chance to drop limbs which is done in this
+	 * method. It changes the attributes of zombie hence does not require any
+	 * parameters or return values.
 	 * 
 	 */
 	private void dropLimbs() {
@@ -103,13 +102,13 @@ public class Zombie extends ZombieActor {
 		}
 		while (getLimbCount() > 0 && limbsLost > 0) {
 			if (getLegCount() <= 0 || (getArmCount() > 0 && rand.nextBoolean())) {
-				this.actions.add(new DropAdjacentItemAction(new ZombieLimb("Zombie arm", '~', 10, "slaps")));
+				this.actions.add(new DropAdjacentItemAction(new ZombieArm("Zombie arm", '~', 10, "slaps")));
 				armCount--;
 				if (getArmCount() == 0 || (getArmCount() == 1 && rand.nextBoolean())) {
 					dropWeapon();
 				}
 			} else {
-				this.actions.add(new DropAdjacentItemAction(new ZombieLimb("Zombie leg", '/', 12, "slaps")));
+				this.actions.add(new DropAdjacentItemAction(new ZombieLeg("Zombie leg", '/', 12, "slaps")));
 				legCount--;
 			}
 			limbsLost--;
@@ -132,8 +131,8 @@ public class Zombie extends ZombieActor {
 	/**
 	 * Method to see if the zombie can move based on limbs lost
 	 * 
-	 * @return returns a boolean which will detmine weather the zombie can move
-	 * or not
+	 * @return returns a boolean which will detmine weather the zombie can move or
+	 *         not
 	 */
 	private boolean canMove() {
 		if (legCount < 2) {

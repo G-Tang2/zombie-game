@@ -32,15 +32,10 @@ public class CraftWeaponAction extends Action {
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		Item newItem = item;
 		actor.removeItemFromInventory(item);
-		if (item.toString() == "Zombie arm") {
-			newItem = new ZombieClub();
-		} else if (item.toString() == "Zombie leg") {
-			newItem = new ZombieMace();
-		}
+		Item newItem = item.upgrade();
 		actor.addItemToInventory(newItem);
-		return actor + " upgrades " + item.toString() + " to " + newItem;
+		return actor + " upgrades " + item + " to " + newItem;
 	}
 
 	/**
