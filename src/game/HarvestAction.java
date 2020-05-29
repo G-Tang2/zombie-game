@@ -40,7 +40,7 @@ public class HarvestAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (actor instanceof Farmer) {
+        if (actor instanceof Farmer) { // strictly Farmer class only
             ArrayList<Location> validDropLocations = new ArrayList<Location>();
             // find passable location to drop harvested food by farmer
             for (Exit exit : location.getExits()) {
@@ -50,7 +50,7 @@ public class HarvestAction extends Action {
                 }
             }
             validDropLocations.get(rand.nextInt(validDropLocations.size())).addItem(new Food());
-        } else if (actor instanceof Player) {
+        } else if (actor instanceof Player) { // strictly Player class only
             actor.addItemToInventory(new Food());
         }
         location.setGround(new Dirt()); // harvested crop returns to dirt

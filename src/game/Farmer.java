@@ -31,6 +31,7 @@ public class Farmer extends Human {
 	 */
 	public Farmer(String name) throws Exception {
 		super(name, 'F', 50);
+		addCapability(ActorCapability.HARVEST);
 	}
 
 	@Override
@@ -52,7 +53,7 @@ public class Farmer extends Human {
 		// 33% chance when a farmer is standing on a dirt ground to turn it into a crop
 		for (Exit exit : here.getExits()) {
 			Location location = exit.getDestination();
-			if (ableToSow && location.getGround() instanceof Dirt) {
+			if (ableToSow && location.getGround().hasCapability(GroundCapability.SOWABLE)) {
 				if (rand.nextInt(100) < 33) {
 					return new SowAction(location);
 				} else {
