@@ -88,7 +88,7 @@ public class Human extends ZombieActor {
 
 	private Item foodInInventory() {
 		for (Item item : inventory) {
-			if (item instanceof Food) {
+			if (item.hasCapability(EatCapability.EDIBLE)) {
 				return item;
 			}
 		}
@@ -97,7 +97,7 @@ public class Human extends ZombieActor {
 
 	private Item pickUpFood(GameMap map) {
 		for (Item item : map.locationOf(this).getItems()) {
-			if (item instanceof Food) {
+			if (item.hasCapability(EatCapability.EDIBLE)) {
 				return item;
 			}
 		}
