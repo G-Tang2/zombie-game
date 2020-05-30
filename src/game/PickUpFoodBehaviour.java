@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.PickUpItemAction;
 
 public class PickUpFoodBehaviour implements Behaviour {
 
@@ -12,7 +11,7 @@ public class PickUpFoodBehaviour implements Behaviour {
     public Action getAction(Actor actor, GameMap map) {
         for (Item item : map.locationOf(actor).getItems()) {
             if (item.hasCapability(EatCapability.EDIBLE)) {
-                return new PickUpItemAction(item);
+                return item.getPickUpAction();
             }
         }
         return null;

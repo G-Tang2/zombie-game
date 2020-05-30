@@ -40,18 +40,13 @@ public class DropAdjacentItemAction extends DropItemAction {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        ArrayList<Location> validDropLocations = new ArrayList<Location>();
         Location here = map.locationOf(actor);
-
-        actor.removeItemFromInventory(item);
-        // finds an adjacent passable location to drop the item
-        for (Exit exit : here.getExits()) {
-            Location destination = exit.getDestination();
-            if (destination.canActorEnter(actor)) {
-                validDropLocations.add(destination);
-            }
+        Location validDropLocation = new ValidDropAdjacentItemLocation(actor, here).getValidLocation();
+        if (validDropLocation == null) {
+            return actor + " could not drop " + item;
         }
-        validDropLocations.get(rand.nextInt(validDropLocations.size())).addItem(item); // random possible drop location
+        actor.removeItemFromInventory(item);
+        validDropLocation.addItem(item);
         return menuDescription(actor);
     }
 }

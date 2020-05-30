@@ -41,15 +41,12 @@ public class HarvestAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         if (actor.hasCapability(ActorCapability.DROPS_HARVEST)) {
-            ArrayList<Location> validDropLocations = new ArrayList<Location>();
-            // find passable location to drop harvested food by farmer
-            for (Exit exit : location.getExits()) {
-                Location destination = exit.getDestination();
-                if (destination.getGround().canActorEnter(actor)) {
-                    validDropLocations.add(destination);
-                }
+            Location here = map.locationOf(actor);
+            Location validDropLocation = new ValidDropAdjacentItemLocation(actor, here).getValidLocation();
+            if (validDropLocation == null) {
+                return actor + " could not harvest the crop as there is no valid drop location";
             }
-            validDropLocations.get(rand.nextInt(validDropLocations.size())).addItem(new Food());
+            validDropLocation.addItem(new Food());
         } else if (actor.hasCapability(ActorCapability.POCKETS_HARVEST)) {
             actor.addItemToInventory(new Food());
         }

@@ -67,7 +67,6 @@ public class AttackBehaviour implements Behaviour {
 					} else if (actor.getArmCount() == 0) {
 						biteProbability = 100;
 					}
-
 					if (rand.nextInt(100) < biteProbability) {
 						return new BiteAction(e.getDestination().getActor());
 					}

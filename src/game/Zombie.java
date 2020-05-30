@@ -77,7 +77,7 @@ public class Zombie extends ZombieActor {
 	@Override
 	public void hurt(int points) {
 		hitPoints -= points;
-		if (getLimbCount() > 0 && rand.nextInt(100) < 25) {
+		if (legCount + armCount > 0 && rand.nextInt(100) < 25) {
 			dropLimbs();
 		}
 	}
@@ -94,11 +94,11 @@ public class Zombie extends ZombieActor {
 		} else {
 			limbsLost = 4;
 		}
-		while (getLimbCount() > 0 && limbsLost > 0) {
-			if (getLegCount() <= 0 || (getArmCount() > 0 && rand.nextBoolean())) {
+		while (legCount + armCount > 0 && limbsLost > 0) {
+			if (legCount <= 0 || (armCount > 0 && rand.nextBoolean())) {
 				this.actions.add(new DropAdjacentItemAction(new ZombieArm("Zombie arm", '~', 10, "slaps")));
 				armCount--;
-				if (getArmCount() == 0 || (getArmCount() == 1 && rand.nextBoolean())) {
+				if (armCount == 0 || (armCount == 1 && rand.nextBoolean())) {
 					dropWeapon();
 				}
 			} else {
