@@ -1,5 +1,5 @@
 package game;
 
 public enum ActorCapability {
-    HARVEST
+    DROPS_HARVEST, POCKETS_HARVEST
 }

@@ -24,7 +24,9 @@ public class Zombie extends ZombieActor {
 	private boolean movedLastTurn = false;
 
 	private Behaviour[] behaviours = { new ScavengeBehaviour(), new SpeechBehaviour(),
-			new AttackBehaviour(ZombieCapability.ALIVE), new HuntBehaviour(Human.class, 10), new WanderBehaviour() };
+			new AttackBehaviour(ZombieCapability.ALIVE) };
+
+	private Behaviour[] moveBehaviours = { new HuntBehaviour(Human.class, 10), new WanderBehaviour() };
 
 	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);
@@ -49,17 +51,20 @@ public class Zombie extends ZombieActor {
 		for (Behaviour behaviour : behaviours) {
 			Action action = behaviour.getAction(this, map);
 			if (action != null) {
-				if ((behaviour instanceof HuntBehaviour || behaviour instanceof WanderBehaviour)) {
-					if (!canMove()) {
-						movedLastTurn = false;
-						return new DoNothingAction();
-					} else {
-						movedLastTurn = true;
-					}
-				}
+				movedLastTurn = false;
 				return action;
 			}
 		}
+		if (canMove()) {
+			for (Behaviour behaviour : moveBehaviours) {
+				Action action = behaviour.getAction(this, map);
+				if (action != null) {
+					movedLastTurn = true;
+					return action;
+				}
+			}
+		}
+		movedLastTurn = false;
 		return new DoNothingAction();
 	}
 
@@ -77,12 +82,6 @@ public class Zombie extends ZombieActor {
 		}
 	}
 
-	/**
-	 * when zombies are hit they have a chance to drop limbs which is done in this
-	 * method. It changes the attributes of zombie hence does not require any
-	 * parameters or return values.
-	 * 
-	 */
 	private void dropLimbs() {
 		int limbsLost = 0;
 		int val = rand.nextInt(100);
@@ -110,10 +109,6 @@ public class Zombie extends ZombieActor {
 		}
 	}
 
-	/**
-	 * Method for the Zombie actor to drop its weapon
-	 * 
-	 */
 	private void dropWeapon() {
 		for (Item item : getInventory()) {
 			if (item.asWeapon() != null) {
@@ -123,12 +118,6 @@ public class Zombie extends ZombieActor {
 		}
 	}
 
-	/**
-	 * Method to see if the zombie can move based on limbs lost
-	 * 
-	 * @return returns a boolean which will detmine weather the zombie can move or
-	 *         not
-	 */
 	private boolean canMove() {
 		if (legCount < 2) {
 			if (legCount == 0 || (legCount == 1 && movedLastTurn)) {

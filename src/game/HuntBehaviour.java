@@ -12,10 +12,11 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 
 /**
- * Returns a MoveAction that will take the Actor closer to the nearest instance of a target class.
+ * Returns a MoveAction that will take the Actor closer to the nearest instance
+ * of a target class.
  * 
- * This uses a breadth-first search algorithm and is based on code written for the
- * FIT2099 assignment in S2 2019 by Spike.
+ * This uses a breadth-first search algorithm and is based on code written for
+ * the FIT2099 assignment in S2 2019 by Spike.
  * 
  * @author ram
  *
@@ -23,26 +24,26 @@ import edu.monash.fit2099.engine.Location;
 public class HuntBehaviour implements Behaviour {
 
 	private Class<?> targetClass;
-	private String targetName; 
+	private String targetName;
 	private int maxRange;
 	private HashSet<Location> visitedLocations = new HashSet<Location>();
-	
+
 	public HuntBehaviour(Class<?> cls, int range) {
 		this.targetClass = cls;
 		this.targetName = targetClass.getSimpleName();
 		this.maxRange = range;
 	}
-	
+
 	private Action hunt(Actor actor, Location here) {
 		visitedLocations.clear();
 		ArrayList<Location> now = new ArrayList<Location>();
-		
+
 		now.add(here);
-		
+
 		ArrayList<ArrayList<Location>> layer = new ArrayList<ArrayList<Location>>();
 		layer.add(now);
 
-		for (int i = 0; i<maxRange; i++) {
+		for (int i = 0; i < maxRange; i++) {
 			layer = getNextLayer(actor, layer);
 			Location there = search(layer);
 			if (there != null)
@@ -70,7 +71,7 @@ public class HuntBehaviour implements Behaviour {
 		}
 		return nextLayer;
 	}
-	
+
 	private Location search(ArrayList<ArrayList<Location>> layer) {
 
 		for (ArrayList<Location> path : layer) {
@@ -80,13 +81,10 @@ public class HuntBehaviour implements Behaviour {
 		}
 		return null;
 	}
-	
+
 	private boolean containsTarget(Location here) {
-		return (here.getActor() != null &&
-				targetClass.isInstance(here.getActor()));
+		return (here.getActor() != null && targetClass.isInstance(here.getActor()));
 	}
-
-
 
 	@Override
 	public Action getAction(Actor actor, GameMap map) {

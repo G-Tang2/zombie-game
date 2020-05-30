@@ -26,7 +26,7 @@ public class Farmer extends Human {
 	 */
 	public Farmer(String name) {
 		super(name, 'F', 50);
-		addCapability(ActorCapability.HARVEST);
+		addCapability(ActorCapability.DROPS_HARVEST);
 	}
 
 	@Override
