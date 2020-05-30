@@ -26,7 +26,7 @@ public class Zombie extends ZombieActor {
 	private Behaviour[] behaviours = { new ScavengeBehaviour(), new SpeechBehaviour(),
 			new AttackBehaviour(ZombieCapability.ALIVE), new HuntBehaviour(Human.class, 10), new WanderBehaviour() };
 
-	public Zombie(String name) throws Exception {
+	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);
 	}
 
@@ -47,12 +47,7 @@ public class Zombie extends ZombieActor {
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		for (Behaviour behaviour : behaviours) {
-			Action action = null;
-			try {
-				action = behaviour.getAction(this, map);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			Action action = behaviour.getAction(this, map);
 			if (action != null) {
 				if ((behaviour instanceof HuntBehaviour || behaviour instanceof WanderBehaviour)) {
 					if (!canMove()) {

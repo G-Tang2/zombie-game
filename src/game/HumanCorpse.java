@@ -44,12 +44,7 @@ public class HumanCorpse extends PortableItem {
         super.tick(location);
         deathTime--;
         if (deathTime <= 0) {
-            Zombie zombie = null;
-            try {
-                zombie = new Zombie(name);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Zombie zombie = new Zombie(name);
             if (location.containsAnActor()) {
                 // spawn zombie in an adjacent location
                 Location spawnLocation = randAdjacentLocation(zombie, location);
@@ -77,12 +72,7 @@ public class HumanCorpse extends PortableItem {
         super.tick(location);
         deathTime--;
         if (deathTime < 0) {
-            Zombie zombie = null;
-            try {
-                zombie = new Zombie(name);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Zombie zombie = new Zombie(name);
             Location spawnLocation = randAdjacentLocation(zombie, location);
             if (spawnLocation != null) {
                 spawnLocation.addActor(zombie);

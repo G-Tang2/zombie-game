@@ -19,9 +19,8 @@ public class BiteAction extends AttackAction {
      * Sets attack target
      * 
      * @param target The actor being targetted
-     * @throws Exception
      */
-    public BiteAction(Actor target) throws Exception {
+    public BiteAction(Actor target) {
         super(target);
     }
 

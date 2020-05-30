@@ -14,12 +14,8 @@ public class FollowBehaviour implements Behaviour {
 	 * Constructor.
 	 * 
 	 * @param subject the Actor to follow
-	 * @throws Exception
 	 */
-	public FollowBehaviour(Actor subject) throws Exception {
-		if (subject == null) {
-			throw new Exception("The Actor to follow does not exist");
-		}
+	public FollowBehaviour(Actor subject) {
 		this.target = subject;
 	}
 
