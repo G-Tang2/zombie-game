@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.Item;
 
 public class EatBehaviour implements Behaviour {
 
-    boolean missingHealth;
+    private boolean missingHealth;
 
     public EatBehaviour(boolean missingHealth) {
         this.missingHealth = missingHealth;

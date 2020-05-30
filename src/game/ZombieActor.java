@@ -13,9 +13,9 @@ import edu.monash.fit2099.engine.GameMap;
  *
  */
 public abstract class ZombieActor extends Actor {
-	Actions actions = new Actions();
-	int armCount = 2;
-	int legCount = 2;
+	Actions actions = new Actions(); // default visibility
+	int armCount = 2; // default visibility
+	int legCount = 2; // default visibility
 
 	/**
 	 * The constructor that creates default actors.
@@ -27,7 +27,6 @@ public abstract class ZombieActor extends Actor {
 	 */
 	public ZombieActor(String name, char displayChar, int hitPoints, ZombieCapability team) {
 		super(name, displayChar, hitPoints);
-
 		addCapability(team);
 		armCount = 2;
 		legCount = 2;

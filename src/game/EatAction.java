@@ -13,7 +13,7 @@ import edu.monash.fit2099.engine.Item;
  */
 public class EatAction extends Action {
 
-    Item item;
+    private Item item;
 
     /**
      * Constructor.

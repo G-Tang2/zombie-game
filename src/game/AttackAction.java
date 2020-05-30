@@ -18,13 +18,7 @@ import edu.monash.fit2099.engine.Weapon;
  */
 public class AttackAction extends Action {
 
-	/**
-	 * The Actor that is to be attacked
-	 */
 	protected Actor target;
-	/**
-	 * Random number generator
-	 */
 	protected Random rand = new Random();
 
 	/**

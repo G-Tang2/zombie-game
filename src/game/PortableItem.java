@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.Item;
  * 
  */
 public class PortableItem extends Item {
-     int nutrition = 0;
+     private int nutrition = 0;
 
      /**
       * Constructor.

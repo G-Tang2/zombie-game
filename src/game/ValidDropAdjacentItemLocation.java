@@ -11,7 +11,6 @@ public class ValidDropAdjacentItemLocation {
 
     private Location location;
     private Actor actor;
-    private Random rand = new Random();
 
     public ValidDropAdjacentItemLocation(Actor actor, Location location) {
         this.actor = actor;

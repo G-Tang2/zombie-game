@@ -21,10 +21,7 @@ import edu.monash.fit2099.engine.GameMap;
 public class AttackBehaviour implements Behaviour {
 
 	private ZombieCapability attackableTeam;
-	/**
-	 * Random number generator
-	 */
-	protected Random rand = new Random();
+	private Random rand = new Random();
 
 	/**
 	 * Constructor.

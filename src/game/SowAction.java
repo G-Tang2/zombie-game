@@ -13,7 +13,7 @@ import edu.monash.fit2099.engine.Location;
  */
 public class SowAction extends Action {
 
-    Location location;
+    private Location location;
 
     /**
      * Constructor.

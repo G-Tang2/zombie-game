@@ -12,8 +12,8 @@ import edu.monash.fit2099.engine.WeaponItem;
  */
 public abstract class ZombieLimb extends WeaponItem {
 
-    boolean onGround = true;
-    int nutrition = 0;
+    private boolean onGround = true;
+    private int nutrition = 0;
 
     /**
      * Constructor.

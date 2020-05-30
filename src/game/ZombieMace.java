@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.WeaponItem;
  * @author Mike Kevin Balapitiya
  */
 public class ZombieMace extends WeaponItem {
-     int nutrition = 0;
+     private int nutrition = 0;
 
      /**
       * Constructor.

@@ -10,7 +10,7 @@ import edu.monash.fit2099.engine.WeaponItem;
  */
 public class ZombieClub extends WeaponItem {
 
-     int nutrition = 0;
+     private int nutrition = 0;
 
      /**
       * Constructor.
