@@ -5,6 +5,11 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
+import game.eat.EatBehaviour;
+import game.eat.PickUpFoodBehaviour;
+import game.farming.FertilizeBehaviour;
+import game.farming.HarvestBehaviour;
+import game.farming.SowBehaviour;
 
 /**
  * Farmer Actor who extends Humans and can grow and fertilise crops

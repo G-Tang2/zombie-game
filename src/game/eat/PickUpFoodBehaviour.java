@@ -1,9 +1,10 @@
-package game;
+package game.eat;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
+import game.Behaviour;
 
 public class PickUpFoodBehaviour implements Behaviour {
 

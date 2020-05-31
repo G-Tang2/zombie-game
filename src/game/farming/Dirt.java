@@ -1,4 +1,4 @@
-package game;
+package game.farming;
 
 import edu.monash.fit2099.engine.Ground;
 

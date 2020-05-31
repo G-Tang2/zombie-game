@@ -1,9 +1,11 @@
-package game;
+package game.farming;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
+import game.ActorCapability;
+import game.ValidDropAdjacentItemLocation;
 
 /**
  * Harvest action for harvesting a crop in the ground
@@ -41,9 +43,9 @@ public class HarvestAction extends Action {
             if (validDropLocation == null) {
                 return actor + " could not harvest the crop as there is no valid drop location";
             }
-            validDropLocation.addItem(new Food());
+            validDropLocation.addItem(new Spinach("Spinach", 's', 20));
         } else if (actor.hasCapability(ActorCapability.POCKETS_HARVEST)) {
-            actor.addItemToInventory(new Food());
+            actor.addItemToInventory(new Spinach("Spinach", 's', 20));
         }
         location.setGround(new Dirt()); // harvested crop returns to dirt
         return actor + " harvested the ripe crop";

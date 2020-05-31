@@ -5,6 +5,8 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
+import game.eat.EatBehaviour;
+import game.eat.PickUpFoodBehaviour;
 
 /**
  * Class representing an ordinary human.
