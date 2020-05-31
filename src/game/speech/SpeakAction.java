@@ -1,4 +1,4 @@
-package game;
+package game.speech;
 
 import java.util.Random;
 
@@ -22,10 +22,10 @@ public class SpeakAction extends Action {
      * 
      * Sets the sentence of the speech.
      * 
-     * @param s a sentence that will be said
+     * @param speech a sentence that will be said
      */
-    public SpeakAction(String s) {
-        speech = s;
+    public SpeakAction(String speech) {
+        this.speech = speech;
     }
 
     /**

@@ -1,4 +1,4 @@
-package game;
+package game.human;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
@@ -19,10 +19,10 @@ public class Player extends Human {
 	 * @param name        Name to call the player in the UI
 	 * @param displayChar Character to represent the player in the UI
 	 * @param hitPoints   Player's starting number of hitpoints
-	 * @throws Exception
 	 */
-	public Player(String name, char displayChar, int hitPoints) throws Exception {
+	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
+		addCapability(ActorCapability.POCKETS_HARVEST);
 	}
 
 	@Override

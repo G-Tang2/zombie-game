@@ -1,4 +1,4 @@
-package game;
+package game.attack;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
@@ -19,9 +19,8 @@ public class BiteAction extends AttackAction {
      * Sets attack target
      * 
      * @param target The actor being targetted
-     * @throws Exception
      */
-    public BiteAction(Actor target) throws Exception {
+    public BiteAction(Actor target) {
         super(target);
     }
 

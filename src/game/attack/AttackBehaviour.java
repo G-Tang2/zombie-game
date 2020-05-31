@@ -1,4 +1,4 @@
-package game;
+package game.attack;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,6 +9,8 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
+import game.Behaviour;
+import game.ZombieCapability;
 
 /**
  * A class that generates an AttackAction if the current Actor is standing next
@@ -21,10 +23,7 @@ import edu.monash.fit2099.engine.GameMap;
 public class AttackBehaviour implements Behaviour {
 
 	private ZombieCapability attackableTeam;
-	/**
-	 * Random number generator
-	 */
-	protected Random rand = new Random();
+	private Random rand = new Random();
 
 	/**
 	 * Constructor.
@@ -48,16 +47,9 @@ public class AttackBehaviour implements Behaviour {
 	 * @param actor The Actor acting.
 	 * @param map   The map the actor is on.
 	 * @return an Action that actor can perform, or null if actor can't do this.
-	 * @throws Exception
 	 */
 	@Override
-	public Action getAction(Actor actor, GameMap map) throws Exception {
-		if (actor == null) {
-			throw new Exception("There is no actor who will attack");
-		}
-		if (map == null) {
-			throw new Exception("There is no map");
-		}
+	public Action getAction(Actor actor, GameMap map) {
 		// Is there an attackable Actor next to me?
 		List<Exit> exits = new ArrayList<Exit>(map.locationOf(actor).getExits());
 		Collections.shuffle(exits);
@@ -74,7 +66,6 @@ public class AttackBehaviour implements Behaviour {
 					} else if (actor.getArmCount() == 0) {
 						biteProbability = 100;
 					}
-
 					if (rand.nextInt(100) < biteProbability) {
 						return new BiteAction(e.getDestination().getActor());
 					}

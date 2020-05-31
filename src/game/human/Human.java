@@ -1,12 +1,16 @@
-package game;
+package game.human;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.PickUpItemAction;
+import game.Behaviour;
+import game.WanderBehaviour;
+import game.ZombieActor;
+import game.ZombieCapability;
+import game.eat.EatBehaviour;
+import game.eat.PickUpFoodBehaviour;
 
 /**
  * Class representing an ordinary human.
@@ -17,15 +21,15 @@ import edu.monash.fit2099.engine.PickUpItemAction;
  *
  */
 public class Human extends ZombieActor {
-	private Behaviour behaviour = new WanderBehaviour();
+	private Behaviour[] behaviours = { new EatBehaviour(this.hitPoints < this.maxHitPoints), new PickUpFoodBehaviour(),
+			new WanderBehaviour() };
 
 	/**
 	 * The default constructor creates default Humans
 	 * 
 	 * @param name the human's display name
-	 * @throws Exception
 	 */
-	public Human(String name) throws Exception {
+	public Human(String name) {
 		super(name, 'H', 50, ZombieCapability.ALIVE);
 	}
 
@@ -36,9 +40,8 @@ public class Human extends ZombieActor {
 	 * @param name        the human's display name
 	 * @param displayChar character that will represent the Human in the map
 	 * @param hitPoints   amount of damage that the Human can take before it dies
-	 * @throws Exception
 	 */
-	protected Human(String name, char displayChar, int hitPoints) throws Exception {
+	protected Human(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints, ZombieCapability.ALIVE);
 	}
 
@@ -51,56 +54,15 @@ public class Human extends ZombieActor {
 	 * @param map        the map where the current Zombie is
 	 * @param display    the Display where the Zombie's utterances will be displayed
 	 */
+
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
-		// FIXME humans are pretty dumb, maybe they should at least run away from
-		// zombies?
-
-		// prioritise consuming food when hurt
-		if (hitPoints < maxHitPoints) {
-			Action action = searchForFood(map);
+		for (Behaviour behaviour : behaviours) {
+			Action action = behaviour.getAction(this, map);
 			if (action != null) {
 				return action;
 			}
 		}
-		try {
-			return behaviour.getAction(this, map);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return new DoNothingAction();
-	}
-
-	protected Action searchForFood(GameMap map) {
-		Item item;
-		// consume food if they have food in their inventory
-		item = foodInInventory();
-		if (item != null) {
-			return new EatAction(item);
-		}
-		// pick up food if they are stand on top of it
-		item = pickUpFood(map);
-		if (item != null) {
-			return new PickUpItemAction(item);
-		}
-		return null;
-	}
-
-	private Item foodInInventory() {
-		for (Item item : inventory) {
-			if (item instanceof Food) {
-				return item;
-			}
-		}
-		return null;
-	}
-
-	private Item pickUpFood(GameMap map) {
-		for (Item item : map.locationOf(this).getItems()) {
-			if (item instanceof Food) {
-				return item;
-			}
-		}
-		return null;
 	}
 }

@@ -1,13 +1,11 @@
-package game;
-
-import java.util.ArrayList;
-import java.util.Random;
+package game.farming;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
+import game.drop.ValidDropAdjacentItemLocation;
+import game.human.ActorCapability;
 
 /**
  * Harvest action for harvesting a crop in the ground
@@ -18,7 +16,6 @@ import edu.monash.fit2099.engine.Location;
 public class HarvestAction extends Action {
 
     private Location location;
-    private Random rand = new Random();
 
     /**
      * Constructor.
@@ -40,18 +37,15 @@ public class HarvestAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        if (actor instanceof Farmer) {
-            ArrayList<Location> validDropLocations = new ArrayList<Location>();
-            // find passable location to drop harvested food by farmer
-            for (Exit exit : location.getExits()) {
-                Location destination = exit.getDestination();
-                if (destination.getGround().canActorEnter(actor)) {
-                    validDropLocations.add(destination);
-                }
+        if (actor.hasCapability(ActorCapability.DROPS_HARVEST)) {
+            Location here = map.locationOf(actor);
+            Location validDropLocation = new ValidDropAdjacentItemLocation().getValidLocation(actor, here);
+            if (validDropLocation == null) {
+                return actor + " could not harvest the crop as there is no valid drop location";
             }
-            validDropLocations.get(rand.nextInt(validDropLocations.size())).addItem(new Food());
-        } else if (actor instanceof Player) {
-            actor.addItemToInventory(new Food());
+            validDropLocation.addItem(new Spinach("Spinach", 's', 20));
+        } else if (actor.hasCapability(ActorCapability.POCKETS_HARVEST)) {
+            actor.addItemToInventory(new Spinach("Spinach", 's', 20));
         }
         location.setGround(new Dirt()); // harvested crop returns to dirt
         return actor + " harvested the ripe crop";

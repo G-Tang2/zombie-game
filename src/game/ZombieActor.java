@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.attack.AttackAction;
 
 /**
  * Base class for Actors in the Zombie World
@@ -13,9 +14,9 @@ import edu.monash.fit2099.engine.GameMap;
  *
  */
 public abstract class ZombieActor extends Actor {
-	Actions actions = new Actions();
-	int armCount = 2;
-	int legCount = 2;
+	protected Actions actions = new Actions();
+	protected int armCount = 2;
+	protected int legCount = 2;
 
 	/**
 	 * The constructor that creates default actors.
@@ -24,11 +25,9 @@ public abstract class ZombieActor extends Actor {
 	 * @param displayChar the character that represents the actor
 	 * @param hitPoints   the health points of the actor
 	 * @param team        identify if actor is alive or undead
-	 * @throws Exception
 	 */
-	public ZombieActor(String name, char displayChar, int hitPoints, ZombieCapability team) throws Exception {
+	public ZombieActor(String name, char displayChar, int hitPoints, ZombieCapability team) {
 		super(name, displayChar, hitPoints);
-
 		addCapability(team);
 		armCount = 2;
 		legCount = 2;
@@ -48,45 +47,8 @@ public abstract class ZombieActor extends Actor {
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions list = super.getAllowableActions(otherActor, direction, map);
 		if (otherActor.hasCapability(ZombieCapability.UNDEAD) != this.hasCapability(ZombieCapability.UNDEAD))
-			try {
-				list.add(new AttackAction(this));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			list.add(new AttackAction(this));
 		return list;
-	}
-
-	/**
-	 * Returns actor arm count.
-	 * 
-	 * @see ActionInterface#getArmCount()
-	 * @return actor arm count
-	 */
-	@Override
-	public int getArmCount() {
-		return armCount;
-	}
-
-	/**
-	 * Returns actor leg count.
-	 * 
-	 * @see ActionInterface#getLegCount()
-	 * @return actor leg count
-	 */
-	@Override
-	public int getLegCount() {
-		return legCount;
-	}
-
-	/**
-	 * Returns actor arm count.
-	 * 
-	 * @see ActionInterface#getLimbCount()
-	 * @return actor limb count
-	 */
-	@Override
-	public int getLimbCount() {
-		return armCount + legCount;
 	}
 
 	/**
@@ -109,5 +71,10 @@ public abstract class ZombieActor extends Actor {
 
 	private void resetActions() {
 		this.actions = new Actions();
+	}
+
+	@Override
+	public int getArmCount() {
+		return armCount;
 	}
 }

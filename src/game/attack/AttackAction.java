@@ -1,4 +1,4 @@
-package game;
+package game.attack;
 
 import java.util.Random;
 
@@ -8,6 +8,8 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
+import game.PortableItem;
+import game.ZombieCapability;
 
 /**
  * Special Action for attacking other Actors.
@@ -18,25 +20,15 @@ import edu.monash.fit2099.engine.Weapon;
  */
 public class AttackAction extends Action {
 
-	/**
-	 * The Actor that is to be attacked
-	 */
 	protected Actor target;
-	/**
-	 * Random number generator
-	 */
 	protected Random rand = new Random();
 
 	/**
 	 * Constructor.
 	 * 
 	 * @param target the Actor to attack
-	 * @throws Exception
 	 */
-	public AttackAction(Actor target) throws Exception {
-		if (target == null) {
-			throw new Exception("There is no target to attack");
-		}
+	public AttackAction(Actor target) {
 		this.target = target;
 	}
 

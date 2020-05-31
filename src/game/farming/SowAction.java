@@ -1,43 +1,42 @@
-package game;
+package game.farming;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
 
 /**
- * Eat Action for a Human to consume food to recover health
+ * Sow action for planting a crop in the ground
  * 
  * @author Garvin Tang
  * 
  */
-public class EatAction extends Action {
+public class SowAction extends Action {
 
-    Item item;
+    private Location location;
 
     /**
      * Constructor.
      *
-     * @see Action#EatAction(Item)
-     * @param item the item is the food we want to eat
+     * @see Action#SowAction(Location)
+     * @param location the location to plant the crop
      */
-    public EatAction(Item item) {
-        this.item = item;
+    public SowAction(Location location) {
+        this.location = location;
     }
 
     /**
-     * Actor heals itself.
+     * Actor sows crop into ground.
      *
      * @see Action#execute(Actor, GameMap)
      * @param actor The actor performing the action.
      * @param map   The map the actor is on.
-     * @return a string, e.g. "Player ate food to restore health".
+     * @return a string, e.g. "Player sowed a crop".
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        actor.removeItemFromInventory(item);
-        actor.heal(item.getNutrition());
-        return actor + " ate " + item + " to restore " + item.getNutrition() + " health";
+        this.location.setGround(new Crop());
+        return actor + " sowed a crop";
     }
 
     /**
@@ -45,11 +44,11 @@ public class EatAction extends Action {
      *
      * @see Action#menuDescription(Actor)
      * @param actor The actor performing the action.
-     * @return a string, e.g. "Fertilize crop".
+     * @return a string, e.g. "Sow a crop".
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " consume " + item;
+        return actor + " sow a crop";
     }
 
 }

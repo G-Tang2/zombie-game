@@ -1,5 +1,6 @@
 package game;
 
+import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.WeaponItem;
 
 /**
@@ -10,7 +11,7 @@ import edu.monash.fit2099.engine.WeaponItem;
  */
 public class Plank extends WeaponItem {
 
-	int nutrition = 0;
+	private int nutrition = 0;
 
 	public Plank() {
 		super("plank", ')', 20, "whacks");
@@ -24,6 +25,11 @@ public class Plank extends WeaponItem {
 	@Override
 	public int getNutrition() {
 		return nutrition;
+	}
+
+	@Override
+	public Item upgrade() {
+		return null;
 	}
 
 }

@@ -1,11 +1,7 @@
-package game;
-
-import java.util.ArrayList;
-import java.util.Random;
+package game.drop;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.DropItemAction;
-import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
@@ -17,8 +13,6 @@ import edu.monash.fit2099.engine.Location;
  * 
  */
 public class DropAdjacentItemAction extends DropItemAction {
-
-    protected Random rand = new Random();
 
     /**
      * Constructor.
@@ -40,18 +34,13 @@ public class DropAdjacentItemAction extends DropItemAction {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        ArrayList<Location> validDropLocations = new ArrayList<Location>();
         Location here = map.locationOf(actor);
-
-        actor.removeItemFromInventory(item);
-        // finds an adjacent passable location to drop the item
-        for (Exit exit : here.getExits()) {
-            Location destination = exit.getDestination();
-            if (destination.canActorEnter(actor)) {
-                validDropLocations.add(destination);
-            }
+        Location validDropLocation = new ValidDropAdjacentItemLocation().getValidLocation(actor, here);
+        if (validDropLocation == null) {
+            return actor + " could not drop " + item;
         }
-        validDropLocations.get(rand.nextInt(validDropLocations.size())).addItem(item); // random possible drop location
+        actor.removeItemFromInventory(item);
+        validDropLocation.addItem(item);
         return menuDescription(actor);
     }
 }
