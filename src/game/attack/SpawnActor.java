@@ -5,7 +5,7 @@ import java.util.Random;
 
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Location;
-import game.Zombie;
+import game.zombie.Zombie;
 
 public class SpawnActor {
 

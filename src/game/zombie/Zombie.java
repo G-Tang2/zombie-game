@@ -1,4 +1,4 @@
-package game;
+package game.zombie;
 
 import java.util.Random;
 
@@ -9,7 +9,16 @@ import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
+import game.Behaviour;
+import game.human.Human;
+import game.speech.SpeechBehaviour;
+import game.HuntBehaviour;
+import game.ScavengeBehaviour;
+import game.WanderBehaviour;
+import game.ZombieActor;
+import game.ZombieCapability;
 import game.attack.AttackBehaviour;
+import game.drop.DropAdjacentItemAction;
 
 /**
  * A Zombie.
@@ -35,7 +44,7 @@ public class Zombie extends ZombieActor {
 
 	@Override
 	public IntrinsicWeapon getIntrinsicWeapon() {
-		return new IntrinsicWeapon(100, "punches");
+		return new IntrinsicWeapon(10, "punches");
 	}
 
 	/**

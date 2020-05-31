@@ -1,4 +1,4 @@
-package game;
+package game.speech;
 
 import java.util.Random;
 

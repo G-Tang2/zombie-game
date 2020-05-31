@@ -1,4 +1,4 @@
-package game;
+package game.zombie;
 
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;

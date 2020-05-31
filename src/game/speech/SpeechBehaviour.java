@@ -1,10 +1,11 @@
-package game;
+package game.speech;
 
 import java.util.Random;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.Behaviour;
 
 /**
  * Returns a speak action or null

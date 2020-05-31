@@ -14,9 +14,9 @@ import game.attack.AttackAction;
  *
  */
 public abstract class ZombieActor extends Actor {
-	Actions actions = new Actions(); // default visibility
-	int armCount = 2; // default visibility
-	int legCount = 2; // default visibility
+	protected Actions actions = new Actions();
+	protected int armCount = 2;
+	protected int legCount = 2;
 
 	/**
 	 * The constructor that creates default actors.

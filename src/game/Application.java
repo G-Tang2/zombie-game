@@ -9,6 +9,10 @@ import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.World;
 import game.farming.Dirt;
+import game.human.Farmer;
+import game.human.Human;
+import game.human.Player;
+import game.zombie.Zombie;
 
 /**
  * The main class for the zombie apocalypse game.
@@ -53,7 +57,7 @@ public class Application {
 		GameMap gameMap = new GameMap(groundFactory, map);
 		world.addGameMap(gameMap);
 
-		Actor player = new Player("Player", '@', 1000);
+		Actor player = new Player("Player", '@', 100);
 
 		world.addPlayer(player, gameMap.at(42, 15));
 

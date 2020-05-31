@@ -4,8 +4,8 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
-import game.ActorCapability;
-import game.ValidDropAdjacentItemLocation;
+import game.drop.ValidDropAdjacentItemLocation;
+import game.human.ActorCapability;
 
 /**
  * Harvest action for harvesting a crop in the ground
