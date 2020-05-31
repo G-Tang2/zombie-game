@@ -9,16 +9,12 @@ import edu.monash.fit2099.engine.Location;
 
 public class ValidDropAdjacentItemLocation {
 
-    private Location location;
-    private Actor actor;
     private Random rand = new Random();
 
-    public ValidDropAdjacentItemLocation(Actor actor, Location location) {
-        this.actor = actor;
-        this.location = location;
+    public ValidDropAdjacentItemLocation() {
     }
 
-    public Location getValidLocation() {
+    public Location getValidLocation(Actor actor, Location location) {
         ArrayList<Location> validDropLocations = new ArrayList<Location>();
         for (Exit exit : location.getExits()) {
             Location destination = exit.getDestination();

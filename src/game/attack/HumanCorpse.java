@@ -1,11 +1,10 @@
-package game;
+package game.attack;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Location;
+import game.PortableItem;
 
 /**
  * Human Corpses for when a human dies but has not become a zombie yet
@@ -44,16 +43,8 @@ public class HumanCorpse extends PortableItem {
         super.tick(location);
         deathTime--;
         if (deathTime <= 0) {
-            Zombie zombie = new Zombie(name);
-            if (location.containsAnActor()) {
-                // spawn zombie in an adjacent location
-                Location spawnLocation = randAdjacentLocation(zombie, location);
-                if (spawnLocation != null) {
-                    spawnLocation.addActor(zombie);
-                    location.removeItem(this);
-                }
-            } else {
-                location.addActor(zombie);
+            SpawnActor spawnZombie = new SpawnActor();
+            if (spawnZombie.spawn(name, location)) {
                 location.removeItem(this);
             }
         }
@@ -71,30 +62,11 @@ public class HumanCorpse extends PortableItem {
     public void tick(Location location, Actor actor) {
         super.tick(location);
         deathTime--;
-        if (deathTime < 0) {
-            Zombie zombie = new Zombie(name);
-            Location spawnLocation = randAdjacentLocation(zombie, location);
-            if (spawnLocation != null) {
-                spawnLocation.addActor(zombie);
+        if (deathTime <= 0) {
+            SpawnActor spawnZombie = new SpawnActor();
+            if (spawnZombie.spawn(name, location)) {
                 actor.removeItemFromInventory(this);
             }
-        }
-    }
-
-    private Location randAdjacentLocation(Zombie actor, Location location) {
-        ArrayList<Location> validDropLocations = new ArrayList<Location>();
-
-        for (Exit exit : location.getExits()) {
-            Location destination = exit.getDestination();
-            if (destination.canActorEnter(actor)) {
-                validDropLocations.add(destination);
-            }
-        }
-
-        if (validDropLocations.size() > 0) {
-            return validDropLocations.get(rand.nextInt(validDropLocations.size()));
-        } else {
-            return null;
         }
     }
 

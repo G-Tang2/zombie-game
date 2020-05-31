@@ -39,7 +39,7 @@ public class HarvestAction extends Action {
     public String execute(Actor actor, GameMap map) {
         if (actor.hasCapability(ActorCapability.DROPS_HARVEST)) {
             Location here = map.locationOf(actor);
-            Location validDropLocation = new ValidDropAdjacentItemLocation(actor, here).getValidLocation();
+            Location validDropLocation = new ValidDropAdjacentItemLocation().getValidLocation(actor, here);
             if (validDropLocation == null) {
                 return actor + " could not harvest the crop as there is no valid drop location";
             }
