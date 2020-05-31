@@ -89,12 +89,12 @@ public class Application {
 			world.addGameMap(town);
 			
 			Car factoryCar = new Car();
-			factoryCar.addAction(new MoveActorAction(town.at(1, 2), "Drive to the town"));
-	        gameMap.at(1, 1).addItem(factoryCar);
+			factoryCar.addAction(new MoveActorAction(town.at(42, 21), "Drive to the town"));
+	        gameMap.at(42, 22).addItem(factoryCar);
 	        
 	        Car townCar = new Car();
-	        townCar.addAction(new MoveActorAction(town.at(1, 2), "Drive to the town"));
-	        town.at(1, 1).addItem(townCar);
+	        townCar.addAction(new MoveActorAction(gameMap.at(42, 21), "Drive to the factory"));
+	        town.at(42, 22).addItem(townCar);
 
 
 		Actor player = new Player("Player", '@', 100);
