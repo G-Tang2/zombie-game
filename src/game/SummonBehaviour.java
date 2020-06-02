@@ -17,7 +17,7 @@ public class SummonBehaviour implements Behaviour {
         turnCounter++;
         if (turnCounter >= SUMMON_INTERVAL) {
             turnCounter = 0;
-            return new ChantAction(2);
+            return new ChantAction(1);
         } else
             return null;
     }

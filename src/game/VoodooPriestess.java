@@ -21,10 +21,9 @@ public class VoodooPriestess extends ZombieActor {
         this.turnCounter++;
         if (this.turnCounter >= STAY_PERIOD) {
             turnCounter = 0;
-            map.removeActor(this);
-            return null;
+            return new LeaveMapAction();
         }
-        if (lastAction.getNextAction() != null)
+        if (lastAction != null && lastAction.getNextAction() != null)
             return lastAction.getNextAction();
         for (Behaviour behaviour : behaviours) {
             Action action = behaviour.getAction(this, map);

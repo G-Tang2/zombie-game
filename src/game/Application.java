@@ -56,7 +56,7 @@ public class Application {
 				".........................................................................++++...",
 				"..........................................................................++....",
 				"................................................................................");
-		GameMap gameMap = new GameMap(groundFactory, map);
+		GameMap gameMap = new SpecialGameMap(groundFactory, map, new VoodooPriestess("Mambo Marie"));
 		world.addGameMap(gameMap);
 
 		List<String> townMap = Arrays.asList(
@@ -124,9 +124,6 @@ public class Application {
 
 		// farmers
 		gameMap.at(40, 9).addActor(new Farmer("Bob"));
-
-		// priestess
-		gameMap.at(3, 10).addActor(new VoodooPriestess("Mambo Marie"));
 
 		world.run();
 	}
