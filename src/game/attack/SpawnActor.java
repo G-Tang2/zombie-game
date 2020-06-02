@@ -14,7 +14,7 @@ public class SpawnActor {
     public SpawnActor() {
     };
 
-    protected boolean spawn(String name, Location location) {
+    public boolean spawn(String name, Location location) {
         Zombie zombie = new Zombie(name);
         Location spawnLocation = location;
         if (spawnLocation.containsAnActor()) {
