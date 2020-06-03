@@ -1,3 +1,4 @@
+======== Assignment 1 ========
 Each member is to create his class diagrams, interaction diagram and design rationale for their own specific sub sections. The subsections and who is in charge of each is as bellow:
 
 Garvin:
@@ -26,14 +27,33 @@ Completion dates are as follows:
 Final Date to be complete tasks: Friday 8th May 11:55pm for later review by other team member
 Final Review process to be completed by Sunday 10th May 4pm 
 
-Assignment 2
+======== Assignment 2 ========
 Each person will implement their design from assignment 1.
 
 Completion dates are as follows:
 Final Date to be complete tasks: Wednesday 20th May 11:55pm for later review by other team member
 Final Review process to be completed by Friday 22th May 11:00pm
 
+======== Assignment 3 ========
+Garvin:
+- Implement and write up design rationale for Mambo Marie
+- Implement and write up design rationale for Ending the game
+- Class diagrams for zombie attacks, beating up the zombies, mambo marie, ending the game
+- Any interaction diagrams for zombie attacks, beating up the zombies, mambo marie, ending the game
+- Create/update javadoc for any class created/modified
+- Write up second part of game engine recommendation document ~1-1.5 page long
+- Update design rationale for classes created/modified from optimising Assignment 2 
+
+Kevin:
+- Implement and write up design rationale for Going to town
+- Implement and write up design rationale for New weapons: shotgun and sniper rifle
+- Class diagrams for crafting weapons, rising from the dead, farmers and food, going to town and new weapons: shotgun and sniper rifle
+- Any interaction diagrams for crafting weapons, rising from the dead, farmers and food, going to town and new weapons: shotgun and sniper rifle
+- Create/update javadoc for any class created/modified
+- Write up first part of game engine recommendation document ~1-1.5 page long
+
+======== Signatures ========
 Signed:
 I accept this WBA
-I accept this WBA
+
 
