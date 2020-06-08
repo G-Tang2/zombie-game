@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Menu;
 import game.Quit;
 
@@ -34,11 +33,5 @@ public class Player extends Human {
 			return lastAction.getNextAction();
 		actions.add(new Quit());
 		return menu.showMenu(this, actions, display);
-	}
-
-	// test
-	@Override
-	protected IntrinsicWeapon getIntrinsicWeapon() {
-		return new IntrinsicWeapon(200, "punches");
 	}
 }

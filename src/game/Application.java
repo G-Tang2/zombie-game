@@ -105,15 +105,13 @@ public class Application {
 		townCar.addAction(new MoveActorAction(gameMap.at(42, 21), "Drive to the factory"));
 		town.at(42, 22).addItem(townCar);
 
-		Actor player = new Player("Player", '@', 1000);
+		Actor player = new Player("Player", '@', 100);
 
 		world.addPlayer(player, gameMap.at(42, 15));
 
 		// Place some random humans
-		// String[] humans = { "Carlton", "May", "Vicente", "Andrea", "Wendy", "Elina",
-		// "Winter", "Clem", "Jacob",
-		// "Jaquelyn" };
-		String[] humans = { "Carlton" };
+		String[] humans = { "Carlton", "May", "Vicente", "Andrea", "Wendy", "Elina", "Winter", "Clem", "Jacob",
+				"Jaquelyn" };
 		int x, y;
 		for (String name : humans) {
 			do {
