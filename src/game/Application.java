@@ -26,7 +26,7 @@ import game.zombie.Zombie;
 public class Application {
 
 	public static void main(String[] args) {
-		World world = new World(new Display());
+		World world = new MultiMapWorld(new Display());
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Fence(), new Tree(), new Wall());
 
