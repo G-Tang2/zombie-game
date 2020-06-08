@@ -24,6 +24,11 @@ public class MultiMapWorld extends World {
         Location here = actorLocations.locationOf(actor);
         GameMap map = here.map();
 
+        // Actor at VoodooHome executes no action
+        if (map instanceof VoodooHome) {
+            return;
+        }
+
         Actions actions = new Actions();
         for (Item item : actor.getInventory()) {
             actions.add(item.getAllowableActions());
@@ -65,8 +70,29 @@ public class MultiMapWorld extends World {
 
     @Override
     protected boolean stillRunning() {
-        if (lastActionMap.get(player) instanceof Quit || !actorLocations.contains(player) || allUndeadDead()) {
+        if (lastActionMap.get(player) instanceof Quit || !actorLocations.contains(player) || allHumanDead()
+                || allUndeadDead()) {
             return false;
+        }
+        return true;
+    }
+
+    /**
+     * Return a string that can be displayed when the game ends.
+     *
+     * @return the string "Game Over"
+     */
+    protected String endGameMessage() {
+        return "Game Over";
+    }
+
+    private boolean allHumanDead() {
+        Iterator<Actor> itr = actorLocations.iterator();
+        while (itr.hasNext()) {
+            Actor actor = itr.next();
+            if (actor.hasCapability(ZombieCapability.ALIVE) && actor != player) {
+                return false;
+            }
         }
         return true;
     }

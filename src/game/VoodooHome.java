@@ -8,34 +8,37 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.GroundFactory;
 import edu.monash.fit2099.engine.Location;
 
-public class SpecialGameMap extends GameMap {
+public class VoodooHome extends GameMap {
 
-    private Actor specialActor;
-    private Random rand = new Random();
+    Actor actor;
+    GameMap gameMap;
+    Random rand = new Random();
 
-    public SpecialGameMap(GroundFactory groundFactory, List<String> lines, Actor actor) {
+    public VoodooHome(GroundFactory groundFactory, List<String> lines, Actor actor, GameMap gameMap) {
         super(groundFactory, lines);
-        specialActor = actor;
+        this.actor = actor;
+        this.gameMap = gameMap;
     }
 
     @Override
     public void tick() {
         super.tick();
-        if (!this.contains(specialActor) && rand.nextInt(100) < 5) {
-            this.mapBoundaryLocation().addActor(specialActor);
+        if (this.contains(actor) && rand.nextInt(100) < 5) {
+            gameMap.moveActor(actor, mapBoundaryLocation());
         }
     }
 
     private Location mapBoundaryLocation() {
-        int xMin = widths.min();
-        int xMax = widths.max();
-        int yMin = heights.min();
-        int yMax = heights.max();
+        int xMin = gameMap.getXRange().min();
+        int xMax = gameMap.getXRange().max();
+        int yMin = gameMap.getYRange().min();
+        int yMax = gameMap.getYRange().max();
         int x = 0;
         int y = 0;
         boolean validLocation = false;
 
         while (!validLocation) {
+            // random x co-ordinate generated first then y co-ordinate
             if (rand.nextBoolean()) {
                 x = rand.nextInt((xMax - xMin) + 1) + xMin;
                 if (x == xMin || x == xMax) {
@@ -47,7 +50,9 @@ public class SpecialGameMap extends GameMap {
                         y = yMax;
                     }
                 }
-            } else {
+            }
+            // rand y co-ordinate generated first then x co-ordinate
+            else {
                 y = rand.nextInt((yMax - yMin) + 1) + yMin;
                 if (y == yMin || y == yMax) {
                     x = rand.nextInt((xMax - xMin) + 1) + xMin;
@@ -59,8 +64,8 @@ public class SpecialGameMap extends GameMap {
                     }
                 }
             }
-            validLocation = this.at(x, y).canActorEnter(specialActor);
+            validLocation = gameMap.at(x, y).canActorEnter(actor);
         }
-        return at(x, y);
+        return gameMap.at(x, y);
     }
 }

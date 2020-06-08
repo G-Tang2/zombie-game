@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.GameMap;
 public class VoodooPriestess extends ZombieActor {
 
     private Behaviour[] behaviours = { new SummonBehaviour(10), new WanderBehaviour() };
+    GameMap home;
     private final int STAY_PERIOD = 30;
     private int turnCounter = 0;
 
@@ -21,10 +22,12 @@ public class VoodooPriestess extends ZombieActor {
         this.turnCounter++;
         if (this.turnCounter >= STAY_PERIOD) {
             turnCounter = 0;
-            return new LeaveMapAction();
+            return new VoodooLeaveAction(home);
         }
+        // voodoo chanting
         if (lastAction != null && lastAction.getNextAction() != null)
             return lastAction.getNextAction();
+        // summons zombies or wander
         for (Behaviour behaviour : behaviours) {
             Action action = behaviour.getAction(this, map);
             if (action != null) {
@@ -32,6 +35,10 @@ public class VoodooPriestess extends ZombieActor {
             }
         }
         return new DoNothingAction();
+    }
+
+    public void setHome(GameMap home) {
+        this.home = home;
     }
 
 }

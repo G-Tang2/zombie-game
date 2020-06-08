@@ -56,7 +56,7 @@ public class Application {
 				".........................................................................++++...",
 				"..........................................................................++....",
 				"................................................................................");
-		GameMap gameMap = new SpecialGameMap(groundFactory, map, new VoodooPriestess("Mambo Marie"));
+		GameMap gameMap = new GameMap(groundFactory, map);
 		world.addGameMap(gameMap);
 
 		List<String> townMap = Arrays.asList(
@@ -88,6 +88,15 @@ public class Application {
 		GameMap town = new GameMap(groundFactory, townMap);
 		world.addGameMap(town);
 
+		// Mambo Marie
+		VoodooPriestess mamboMarie = new VoodooPriestess("Mambo Marie");
+		List<String> voodooMap = Arrays.asList(".");
+		GameMap voodooHome = new VoodooHome(groundFactory, voodooMap, mamboMarie, gameMap);
+		world.addGameMap(voodooHome);
+
+		voodooHome.addActor(mamboMarie, voodooHome.at(0, 0));
+		mamboMarie.setHome(voodooHome);
+
 		Car factoryCar = new Car();
 		factoryCar.addAction(new MoveActorAction(town.at(42, 21), "Drive to the town"));
 		gameMap.at(42, 22).addItem(factoryCar);
@@ -96,13 +105,15 @@ public class Application {
 		townCar.addAction(new MoveActorAction(gameMap.at(42, 21), "Drive to the factory"));
 		town.at(42, 22).addItem(townCar);
 
-		Actor player = new Player("Player", '@', 100);
+		Actor player = new Player("Player", '@', 1000);
 
 		world.addPlayer(player, gameMap.at(42, 15));
 
 		// Place some random humans
-		String[] humans = { "Carlton", "May", "Vicente", "Andrea", "Wendy", "Elina", "Winter", "Clem", "Jacob",
-				"Jaquelyn" };
+		// String[] humans = { "Carlton", "May", "Vicente", "Andrea", "Wendy", "Elina",
+		// "Winter", "Clem", "Jacob",
+		// "Jaquelyn" };
+		String[] humans = { "Carlton" };
 		int x, y;
 		for (String name : humans) {
 			do {
@@ -116,11 +127,11 @@ public class Application {
 
 		// zombies
 		gameMap.at(30, 20).addActor(new Zombie("Groan"));
-		// gameMap.at(30, 18).addActor(new Zombie("Boo"));
-		// gameMap.at(10, 4).addActor(new Zombie("Uuuurgh"));
-		// gameMap.at(50, 18).addActor(new Zombie("Mortalis"));
-		// gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
-		// gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
+		gameMap.at(30, 18).addActor(new Zombie("Boo"));
+		gameMap.at(10, 4).addActor(new Zombie("Uuuurgh"));
+		gameMap.at(50, 18).addActor(new Zombie("Mortalis"));
+		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
+		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
 
 		// farmers
 		gameMap.at(40, 9).addActor(new Farmer("Bob"));
