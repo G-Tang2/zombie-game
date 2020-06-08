@@ -97,7 +97,7 @@ public class Application {
 		// Mambo Marie
 		VoodooPriestess mamboMarie = new VoodooPriestess("Mambo Marie");
 		List<String> voodooMap = Arrays.asList(".");
-		GameMap voodooHome = new VoodooHome(groundFactory, voodooMap, mamboMarie, gameMap);
+		VoodooHome voodooHome = new VoodooHome(groundFactory, voodooMap, mamboMarie, gameMap);
 		world.addGameMap(voodooHome);
 
 		voodooHome.addActor(mamboMarie, voodooHome.at(0, 0));

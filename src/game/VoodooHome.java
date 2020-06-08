@@ -3,28 +3,29 @@ package game;
 import java.util.List;
 import java.util.Random;
 
-import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.GroundFactory;
 import edu.monash.fit2099.engine.Location;
+import game.actors.VoodooPriestess;
 
 public class VoodooHome extends GameMap {
 
-    Actor actor;
+    VoodooPriestess voodooPriestess;
     GameMap gameMap;
     Random rand = new Random();
 
-    public VoodooHome(GroundFactory groundFactory, List<String> lines, Actor actor, GameMap gameMap) {
+    public VoodooHome(GroundFactory groundFactory, List<String> lines, VoodooPriestess voodooPriestess,
+            GameMap gameMap) {
         super(groundFactory, lines);
-        this.actor = actor;
+        this.voodooPriestess = voodooPriestess;
         this.gameMap = gameMap;
     }
 
     @Override
     public void tick() {
         super.tick();
-        if (this.contains(actor) && rand.nextInt(100) < 5) {
-            gameMap.moveActor(actor, mapBoundaryLocation());
+        if (this.contains(voodooPriestess) && rand.nextInt(100) < 5) {
+            gameMap.moveActor(voodooPriestess, mapBoundaryLocation());
         }
     }
 
@@ -64,7 +65,7 @@ public class VoodooHome extends GameMap {
                     }
                 }
             }
-            validLocation = gameMap.at(x, y).canActorEnter(actor);
+            validLocation = gameMap.at(x, y).canActorEnter(voodooPriestess);
         }
         return gameMap.at(x, y);
     }

@@ -13,7 +13,6 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.World;
 import game.actions.Quit;
-import game.actors.VoodooPriestess;
 import game.actors.ZombieCapability;
 
 public class MultiMapWorld extends World {
@@ -109,9 +108,5 @@ public class MultiMapWorld extends World {
             }
         }
         return true;
-    }
-
-    public void addSpecialActor(VoodooPriestess actor) {
-        this.addPlayer(actor, null);
     }
 }

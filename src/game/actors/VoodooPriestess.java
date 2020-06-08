@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
+import game.VoodooHome;
 import game.actions.VoodooLeaveAction;
 import game.behaviour.Behaviour;
 import game.behaviour.SummonBehaviour;
@@ -13,7 +14,7 @@ import game.behaviour.WanderBehaviour;
 public class VoodooPriestess extends ZombieActor {
 
     private Behaviour[] behaviours = { new SummonBehaviour(10), new WanderBehaviour() };
-    GameMap home;
+    VoodooHome home;
     private final int STAY_PERIOD = 30;
     private int turnCounter = 0;
 
@@ -41,7 +42,7 @@ public class VoodooPriestess extends ZombieActor {
         return new DoNothingAction();
     }
 
-    public void setHome(GameMap home) {
+    public void setHome(VoodooHome home) {
         this.home = home;
     }
 
