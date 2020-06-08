@@ -9,11 +9,17 @@ import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.World;
-import game.farming.Dirt;
-import game.human.Farmer;
-import game.human.Human;
-import game.human.Player;
-import game.zombie.Zombie;
+import game.actors.Farmer;
+import game.actors.Human;
+import game.actors.Player;
+import game.actors.VoodooPriestess;
+import game.actors.Zombie;
+import game.ground.Dirt;
+import game.ground.Fence;
+import game.ground.Tree;
+import game.ground.Wall;
+import game.item.Car;
+import game.item.Plank;
 
 /**
  * The main class for the zombie apocalypse game.
