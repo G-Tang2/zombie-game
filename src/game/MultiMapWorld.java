@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Iterator;
+
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
@@ -17,6 +19,7 @@ public class MultiMapWorld extends World {
         super(display);
     }
 
+    @Override
     protected void processActorTurn(Actor actor) {
         Location here = actorLocations.locationOf(actor);
         GameMap map = here.map();
@@ -58,5 +61,28 @@ public class MultiMapWorld extends World {
         if (map.contains(player)) {
             display.println(result);
         }
+    }
+
+    @Override
+    protected boolean stillRunning() {
+        if (lastActionMap.get(player) instanceof Quit || !actorLocations.contains(player) || allUndeadDead()) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean allUndeadDead() {
+        Iterator<Actor> itr = actorLocations.iterator();
+        while (itr.hasNext()) {
+            Actor actor = itr.next();
+            if (actor.hasCapability(ZombieCapability.UNDEAD)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void addSpecialActor(VoodooPriestess actor) {
+        this.addPlayer(actor, null);
     }
 }

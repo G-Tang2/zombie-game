@@ -116,11 +116,11 @@ public class Application {
 
 		// zombies
 		gameMap.at(30, 20).addActor(new Zombie("Groan"));
-		gameMap.at(30, 18).addActor(new Zombie("Boo"));
-		gameMap.at(10, 4).addActor(new Zombie("Uuuurgh"));
-		gameMap.at(50, 18).addActor(new Zombie("Mortalis"));
-		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
-		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
+		// gameMap.at(30, 18).addActor(new Zombie("Boo"));
+		// gameMap.at(10, 4).addActor(new Zombie("Uuuurgh"));
+		// gameMap.at(50, 18).addActor(new Zombie("Mortalis"));
+		// gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
+		// gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
 
 		// farmers
 		gameMap.at(40, 9).addActor(new Farmer("Bob"));
