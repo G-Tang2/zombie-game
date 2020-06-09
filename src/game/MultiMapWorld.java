@@ -12,8 +12,8 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.World;
-import game.actions.Quit;
-import game.actors.ZombieCapability;
+import game.action.Quit;
+import game.actor.ZombieCapability;
 
 public class MultiMapWorld extends World {
 

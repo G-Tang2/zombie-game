@@ -1,11 +1,11 @@
-package game.actors;
+package game.actor;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
-import game.actions.HarvestBehaviour;
+import game.action.HarvestBehaviour;
 import game.behaviour.Behaviour;
 import game.behaviour.EatBehaviour;
 import game.behaviour.FertilizeBehaviour;

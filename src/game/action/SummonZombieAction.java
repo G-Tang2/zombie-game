@@ -1,11 +1,11 @@
-package game.actions;
+package game.action;
 
 import java.util.Random;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import game.actors.SpawnActor;
+import game.actor.SpawnActor;
 
 public class SummonZombieAction extends Action {
     String[] names = { "Aberycusgentylis", "Ah", "Alphabeta", "Arse", "Burp", "Balls", "Banana", "Bony M", "Drug",

@@ -1,4 +1,4 @@
-package game.actions;
+package game.action;
 
 import java.util.Random;
 
@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
-import game.actors.ZombieCapability;
+import game.actor.ZombieCapability;
 import game.item.HumanCorpse;
 import game.item.PortableItem;
 

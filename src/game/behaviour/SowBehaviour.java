@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
-import game.actions.SowAction;
+import game.action.SowAction;
 import game.ground.GroundCapability;
 
 public class SowBehaviour implements Behaviour {

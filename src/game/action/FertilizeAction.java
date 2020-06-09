@@ -1,43 +1,42 @@
-package game.actions;
+package game.action;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Location;
-import game.ground.Crop;
+import edu.monash.fit2099.engine.Ground;
 
 /**
- * Sow action for planting a crop in the ground
+ * Fertilize action for fertilising a crop in the ground
  * 
  * @author Garvin Tang
  * 
  */
-public class SowAction extends Action {
+public class FertilizeAction extends Action {
 
-    private Location location;
+    private Ground ground;
 
     /**
      * Constructor.
      *
-     * @see Action#SowAction(Location)
-     * @param location the location to plant the crop
+     * @see Action#FertilizeAction(Ground)
+     * @param ground the ground where the crop is to fertilise
      */
-    public SowAction(Location location) {
-        this.location = location;
+    public FertilizeAction(Ground ground) {
+        this.ground = ground;
     }
 
     /**
-     * Actor sows crop into ground.
+     * Actor fertilises crop in ground.
      *
      * @see Action#execute(Actor, GameMap)
      * @param actor The actor performing the action.
      * @param map   The map the actor is on.
-     * @return a string, e.g. "Player sowed a crop".
+     * @return a string, e.g. "Player has fertilized the crop".
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        this.location.setGround(new Crop());
-        return actor + " sowed a crop";
+        ground.fertilize(10);
+        return actor + " fertilized the crop";
     }
 
     /**
@@ -45,11 +44,11 @@ public class SowAction extends Action {
      *
      * @see Action#menuDescription(Actor)
      * @param actor The actor performing the action.
-     * @return a string, e.g. "Sow a crop".
+     * @return a string, e.g. "Fertilize crop".
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " sow a crop";
+        return actor + " fertilize crop";
     }
 
 }

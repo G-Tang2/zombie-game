@@ -1,42 +1,43 @@
-package game.actions;
+package game.action;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Ground;
+import edu.monash.fit2099.engine.Item;
 
 /**
- * Fertilize action for fertilising a crop in the ground
+ * Eat Action for a Human to consume food to recover health
  * 
  * @author Garvin Tang
  * 
  */
-public class FertilizeAction extends Action {
+public class EatAction extends Action {
 
-    private Ground ground;
+    private Item item;
 
     /**
      * Constructor.
      *
-     * @see Action#FertilizeAction(Ground)
-     * @param ground the ground where the crop is to fertilise
+     * @see Action#EatAction(Item)
+     * @param item the item is the food we want to eat
      */
-    public FertilizeAction(Ground ground) {
-        this.ground = ground;
+    public EatAction(Item item) {
+        this.item = item;
     }
 
     /**
-     * Actor fertilises crop in ground.
+     * Actor heals itself.
      *
      * @see Action#execute(Actor, GameMap)
      * @param actor The actor performing the action.
      * @param map   The map the actor is on.
-     * @return a string, e.g. "Player has fertilized the crop".
+     * @return a string, e.g. "Player ate food to restore health".
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        ground.fertilize(10);
-        return actor + " fertilized the crop";
+        actor.removeItemFromInventory(item);
+        actor.heal(item.getNutrition());
+        return actor + " ate " + item + " to restore " + item.getNutrition() + " health";
     }
 
     /**
@@ -48,7 +49,7 @@ public class FertilizeAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " fertilize crop";
+        return actor + " consume " + item;
     }
 
 }

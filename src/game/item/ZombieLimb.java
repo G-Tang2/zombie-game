@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.WeaponItem;
-import game.actions.CraftWeaponAction;
+import game.action.CraftWeaponAction;
 
 /**
  * A limb of a zombie

@@ -3,7 +3,7 @@ package game.behaviour;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import game.actions.FertilizeAction;
+import game.action.FertilizeAction;
 import game.ground.CropCapability;
 
 public class FertilizeBehaviour implements Behaviour {

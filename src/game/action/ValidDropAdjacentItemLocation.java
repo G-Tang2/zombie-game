@@ -1,4 +1,4 @@
-package game.actions;
+package game.action;
 
 import java.util.ArrayList;
 import java.util.Random;

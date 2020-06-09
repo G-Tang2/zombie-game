@@ -6,7 +6,7 @@ import java.util.Random;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.GroundFactory;
 import edu.monash.fit2099.engine.Location;
-import game.actors.VoodooPriestess;
+import game.actor.VoodooPriestess;
 
 public class VoodooHome extends GameMap {
 

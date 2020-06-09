@@ -1,4 +1,4 @@
-package game.actors;
+package game.actor;
 
 import java.util.Random;
 
@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
-import game.actions.DropAdjacentItemAction;
+import game.action.DropAdjacentItemAction;
 import game.behaviour.AttackBehaviour;
 import game.behaviour.Behaviour;
 import game.behaviour.HuntBehaviour;

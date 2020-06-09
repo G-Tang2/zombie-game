@@ -1,4 +1,4 @@
-package game.actors;
+package game.actor;
 
 public enum ZombieCapability {
 	UNDEAD, ALIVE

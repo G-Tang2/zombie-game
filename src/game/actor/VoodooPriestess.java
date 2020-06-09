@@ -1,4 +1,4 @@
-package game.actors;
+package game.actor;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import game.VoodooHome;
-import game.actions.VoodooLeaveAction;
+import game.action.VoodooLeaveAction;
 import game.behaviour.Behaviour;
 import game.behaviour.SummonBehaviour;
 import game.behaviour.WanderBehaviour;

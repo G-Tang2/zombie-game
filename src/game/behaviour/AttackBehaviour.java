@@ -9,9 +9,9 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
-import game.actions.AttackAction;
-import game.actions.BiteAction;
-import game.actors.ZombieCapability;
+import game.action.AttackAction;
+import game.action.BiteAction;
+import game.actor.ZombieCapability;
 
 /**
  * A class that generates an AttackAction if the current Actor is standing next

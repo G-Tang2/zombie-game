@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
-import game.actions.HarvestAction;
+import game.action.HarvestAction;
 
 /**
  * Crop on the ground that will eventually ripen into fruit

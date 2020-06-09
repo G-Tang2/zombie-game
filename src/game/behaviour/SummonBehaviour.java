@@ -3,7 +3,7 @@ package game.behaviour;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import game.actions.ChantAction;
+import game.action.ChantAction;
 
 public class SummonBehaviour implements Behaviour {
     private final int SUMMON_INTERVAL;
