@@ -2,17 +2,10 @@ package game.human;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
-import game.Behaviour;
-import game.ShootAction;
-import game.WanderBehaviour;
-import game.ZombieCapability;
-import game.attack.AttackAction;
-import game.eat.EatBehaviour;
-import game.eat.PickUpFoodBehaviour;
+
 
 /**
  * Class representing the Player.

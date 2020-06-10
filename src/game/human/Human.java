@@ -9,7 +9,6 @@ import game.Behaviour;
 import game.WanderBehaviour;
 import game.ZombieActor;
 import game.ZombieCapability;
-import game.attack.ShootBehaviour;
 import game.eat.EatBehaviour;
 import game.eat.PickUpFoodBehaviour;
 
@@ -23,7 +22,7 @@ import game.eat.PickUpFoodBehaviour;
  */
 public class Human extends ZombieActor {
 	private Behaviour[] behaviours = { new EatBehaviour(this.hitPoints < this.maxHitPoints), new PickUpFoodBehaviour(),
-			new WanderBehaviour(), new ShootBehaviour(ZombieCapability.UNDEAD)};
+			new WanderBehaviour()};
 
 	/**
 	 * The default constructor creates default Humans

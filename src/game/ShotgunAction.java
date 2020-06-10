@@ -10,18 +10,18 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
 import game.attack.HumanCorpse;
 
-public class ShootAction extends Action {
+public class ShotgunAction extends Action {
 
-	protected Actor target;
+	protected Item weapon;
 	protected Random rand = new Random();
-
+	
 	/**
 	 * Constructor.
 	 * 
-	 * @param target the Actor to attack
+	 * @param shotgun the Actor to attack
 	 */
-	public ShootAction(Actor target) {
-		this.target = target;
+	public ShotgunAction(Shotgun shotgun) {
+		this.weapon = shotgun;
 	}
 
 	/**
