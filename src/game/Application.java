@@ -124,6 +124,25 @@ public class Application {
 
 		// farmers
 		gameMap.at(40, 9).addActor(new Farmer("Bob"));
+		
+		// Humans on town
+		town.at(23, 8).addActor(new Human("Jason"));
+		town.at(23, 18).addActor(new Human("Tommy"));
+		town.at(36, 3).addActor(new Human("Arjun"));
+		town.at(53, 9).addActor(new Human("Raquib"));
+		town.at(53, 16).addActor(new Human("Roshane"));
+		town.at(69, 17).addActor(new Human("Rushan"));
+		
+		// Zombies on town
+		town.at(10, 4).addActor(new Zombie("Sajith"));
+		town.at(5, 14).addActor(new Zombie("Sayan"));
+		town.at(60, 3).addActor(new Zombie("Atheish"));
+		town.at(60, 23).addActor(new Zombie("Ras"));
+		town.at(14, 19).addActor(new Zombie("Kartik"));
+		
+		// Place sniper and shotgun
+		town.at(71, 17).addItem(new Sniper());
+		town.at(26, 10).addItem(new Shotgun());
 
 		world.run();
 	}
