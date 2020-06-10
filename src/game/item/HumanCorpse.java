@@ -4,7 +4,7 @@ import java.util.Random;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Location;
-import game.actor.SpawnActor;
+import game.action.SpawnActor;
 
 /**
  * Human Corpses for when a human dies but has not become a zombie yet

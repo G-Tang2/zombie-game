@@ -5,15 +5,14 @@ import java.util.Random;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
-import game.actor.SpawnActor;
 
-public class SummonZombieAction extends Action {
+class SummonZombieAction extends Action { // package-private
     String[] names = { "Aberycusgentylis", "Ah", "Alphabeta", "Arse", "Burp", "Balls", "Banana", "Bony M", "Drug",
             "Earwacker", "Flappy", "Gassy", "Hairy", "One Too Many", "Sucker", "Poof" };
     private int numOfZombies;
     private Random rand = new Random();
 
-    public SummonZombieAction(int numOfZombies) {
+    SummonZombieAction(int numOfZombies) { // package-private
         this.numOfZombies = numOfZombies;
     }
 

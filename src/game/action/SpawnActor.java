@@ -1,10 +1,11 @@
-package game.actor;
+package game.action;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Location;
+import game.actor.Zombie;
 
 public class SpawnActor {
 

@@ -3,12 +3,13 @@ package game.action;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import game.VoodooHome;
 
 public class VoodooLeaveAction extends Action {
 
-    GameMap destination;
+    VoodooHome destination;
 
-    public VoodooLeaveAction(GameMap destination) {
+    public VoodooLeaveAction(VoodooHome destination) {
         this.destination = destination;
     }
 

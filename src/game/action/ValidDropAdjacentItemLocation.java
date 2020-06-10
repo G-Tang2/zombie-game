@@ -7,14 +7,14 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Location;
 
-public class ValidDropAdjacentItemLocation {
+class ValidDropAdjacentItemLocation { // package-private
 
     private Random rand = new Random();
 
-    public ValidDropAdjacentItemLocation() {
+    ValidDropAdjacentItemLocation() { // package-private
     }
 
-    public Location getValidLocation(Actor actor, Location location) {
+    Location getValidLocation(Actor actor, Location location) { // package-private
         ArrayList<Location> validDropLocations = new ArrayList<Location>();
         for (Exit exit : location.getExits()) {
             Location destination = exit.getDestination();
