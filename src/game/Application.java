@@ -9,11 +9,17 @@ import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.World;
-import game.farming.Dirt;
-import game.human.Farmer;
-import game.human.Human;
-import game.human.Player;
-import game.zombie.Zombie;
+import game.actor.Farmer;
+import game.actor.Human;
+import game.actor.Player;
+import game.actor.VoodooPriestess;
+import game.actor.Zombie;
+import game.ground.Dirt;
+import game.ground.Fence;
+import game.ground.Tree;
+import game.ground.Wall;
+import game.item.Car;
+import game.item.Plank;
 
 /**
  * The main class for the zombie apocalypse game.
@@ -87,6 +93,15 @@ public class Application {
 				"................................................................................");
 		GameMap town = new GameMap(groundFactory, townMap);
 		world.addGameMap(town);
+
+		// Mambo Marie
+		VoodooPriestess mamboMarie = new VoodooPriestess("Mambo Marie");
+		List<String> voodooMap = Arrays.asList(".");
+		VoodooHome voodooHome = new VoodooHome(groundFactory, voodooMap, mamboMarie, gameMap);
+		world.addGameMap(voodooHome);
+
+		voodooHome.addActor(mamboMarie, voodooHome.at(0, 0));
+		mamboMarie.setHome(voodooHome);
 
 		Car factoryCar = new Car();
 		factoryCar.addAction(new MoveActorAction(town.at(42, 21), "Drive to the town"));

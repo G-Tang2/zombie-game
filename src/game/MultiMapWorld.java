@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Iterator;
+
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
@@ -10,6 +12,8 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.World;
+import game.action.Quit;
+import game.actor.ZombieCapability;
 
 public class MultiMapWorld extends World {
 
@@ -17,9 +21,15 @@ public class MultiMapWorld extends World {
         super(display);
     }
 
+    @Override
     protected void processActorTurn(Actor actor) {
         Location here = actorLocations.locationOf(actor);
         GameMap map = here.map();
+
+        // Actor at VoodooHome executes no action
+        if (map instanceof VoodooHome) {
+            return;
+        }
 
         Actions actions = new Actions();
         for (Item item : actor.getInventory()) {
@@ -58,5 +68,45 @@ public class MultiMapWorld extends World {
         if (map.contains(player)) {
             display.println(result);
         }
+    }
+
+    @Override
+    protected boolean stillRunning() {
+        if (lastActionMap.get(player) instanceof Quit || !actorLocations.contains(player) || allHumanDead()
+                || allUndeadDead()) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Return a string that can be displayed when the game ends.
+     *
+     * @return the string "Game Over"
+     */
+    protected String endGameMessage() {
+        return "Game Over";
+    }
+
+    private boolean allHumanDead() {
+        Iterator<Actor> itr = actorLocations.iterator();
+        while (itr.hasNext()) {
+            Actor actor = itr.next();
+            if (actor.hasCapability(ZombieCapability.ALIVE) && actor != player) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean allUndeadDead() {
+        Iterator<Actor> itr = actorLocations.iterator();
+        while (itr.hasNext()) {
+            Actor actor = itr.next();
+            if (actor.hasCapability(ZombieCapability.UNDEAD)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
