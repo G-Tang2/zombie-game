@@ -13,6 +13,10 @@ public class HarvestBehaviour implements Behaviour {
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
+        if (map.locationOf(actor).getGround().hasCapability(CropCapability.RIPE)) {
+            return new HarvestAction(map.locationOf(actor));
+        }
+
         for (Exit exit : map.locationOf(actor).getExits()) {
             Location location = exit.getDestination();
             if (location.getGround().hasCapability(CropCapability.RIPE)) {
