@@ -1,27 +1,36 @@
-package game;
+package game.action;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.NumberRange;
 import edu.monash.fit2099.engine.Weapon;
-import game.attack.HumanCorpse;
+import game.actor.ZombieCapability;
+import game.item.HumanCorpse;
+import game.item.PortableItem;
+import game.item.Sniper;
 
-public class ShotgunAction extends Action {
+public class SniperAction extends Action {
 
 	protected Item weapon;
+	protected ArrayList<Actor> targets = new ArrayList<Actor>();
 	protected Random rand = new Random();
+	private Actor target;
 	
 	/**
 	 * Constructor.
 	 * 
 	 * @param shotgun the Actor to attack
 	 */
-	public ShotgunAction(Shotgun shotgun) {
-		this.weapon = shotgun;
+	public SniperAction(Sniper sniper) {
+		this.weapon = sniper;
 	}
 
 	/**
@@ -34,7 +43,47 @@ public class ShotgunAction extends Action {
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
+		Location here = map.locationOf(actor);
+		Location there;
+		
+		NumberRange xs, ys;
+		xs = new NumberRange(0, 80);
+		ys = new NumberRange(0, 25);
 
+		for (int x : xs) {
+			for (int y : ys) {
+				if (map.isAnActorAt(map.at(x, y))) {
+					targets.add(map.getActorAt(map.at(x, y)));
+				}
+			}
+		}
+		
+		for (int i = 0; i < targets.size(); i++) {
+			there = map.locationOf(targets.get(i));
+			if (here.x() == there.x() || here.y() == there.y()) {
+				xs = new NumberRange(Math.min(here.x(), there.x()), Math.abs(here.x() - there.x()) + 1);
+				ys = new NumberRange(Math.min(here.y(), there.y()), Math.abs(here.y() - there.y()) + 1);
+	
+				for (int x : xs) {
+					for (int y : ys) {
+						if(map.at(x, y).getGround().blocksThrownObjects())
+							targets.remove(i);
+
+					}
+				}
+			}
+		}
+		
+		Display display = new Display();
+		
+		display.println("Choose target:");
+		for (int j = 0; j < targets.size(); j++) {
+			display.println(Integer.toString(j) + ": " + targets.get(j));
+		}
+		
+		char choice = display.readChar();
+		this.target = targets.get(Integer.parseInt(Character.toString(choice)));
+		
 		Weapon weapon = actor.getWeapon();
 
 		if (rand.nextBoolean()) {
@@ -54,7 +103,7 @@ public class ShotgunAction extends Action {
 	 */
 	@Override
 	public String menuDescription(Actor actor) {
-		return actor + " shoots " + target;
+		return actor + " aims sniper";
 	}
 
 	String missDescription(Actor actor) { // default visibility
