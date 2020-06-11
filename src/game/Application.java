@@ -21,7 +21,9 @@ import game.ground.Wall;
 import game.item.Car;
 import game.item.Plank;
 import game.item.Shotgun;
+import game.item.ShotgunAmmunition;
 import game.item.Sniper;
+import game.item.SniperAmmunition;
 
 /**
  * The main class for the zombie apocalypse game.
@@ -163,7 +165,7 @@ public class Application {
 		// town.at(26, 10).addItem(new Shotgun());
 		town.at(42, 20).addItem(new Shotgun());
 		
-		town.at(41, 20).addItem(new ShotgunAmmunation());
+		town.at(41, 20).addItem(new ShotgunAmmunition());
 
 		world.run();
 	}

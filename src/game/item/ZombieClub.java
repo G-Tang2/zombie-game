@@ -23,7 +23,7 @@ public class ZombieClub extends WeaponItem {
       * @param verb        verb to use for this weapon, e.g. "hits", "zaps"
       */
      public ZombieClub() {
-          super("Club", 'p', 20, "thumps");
+          super("Club", 'p', 20, "thuds");
      }
 
      /**

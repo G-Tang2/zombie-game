@@ -15,7 +15,7 @@ public class Shotgun extends WeaponItem {
 	
 	public Shotgun() {
 		super("Shotgun", 's', 20, "Thunks!");
-		this.ammoCount = 0;
+		this.ammoCount = 7;
 	}
 
 	@Override
@@ -61,7 +61,12 @@ public class Shotgun extends WeaponItem {
     }
 	
     public void addAmmo(int ammo) {
-    	this.ammoCount += ammo;
+    	if (this.ammoCount < 0) {
+    		this.ammoCount = ammo;
+    	} 
+    	else {
+    		this.ammoCount += ammo;
+    	}
     }
 
 }

@@ -67,5 +67,6 @@ public abstract class Food extends PortableItem {
 	public int getNutrition() {
 		return nutritionVal;
 	}
+	
 
 }

@@ -39,8 +39,7 @@ public class PortableItem extends Item {
      }
 
 	@Override
-	public WeaponItem addAmmo(int ammo) {
-		// TODO Auto-generated method stub
-		return null;
+	public void addAmmo(int ammo) {
+		
 	}
 }
