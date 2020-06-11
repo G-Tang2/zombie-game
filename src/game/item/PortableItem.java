@@ -1,6 +1,7 @@
 package game.item;
 
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.WeaponItem;
 
 /**
  * Base class for any item that can be picked up and dropped.
@@ -36,4 +37,10 @@ public class PortableItem extends Item {
      public Item upgrade() {
           return null;
      }
+
+	@Override
+	public WeaponItem addAmmo(int ammo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

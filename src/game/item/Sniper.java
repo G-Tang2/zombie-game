@@ -13,7 +13,7 @@ public class Sniper extends WeaponItem {
 	
 	public Sniper() {
 		super("Sniper", 'S', 10, "Thunks");
-		this.ammoCount = 0;
+		this.ammoCount = 4;
 	}
 
 	@Override
@@ -57,6 +57,9 @@ public class Sniper extends WeaponItem {
         }
     }
 	
+    public void addAmmo(int ammo) {
+    	this.ammoCount += ammo;
+    }
 
 }
 

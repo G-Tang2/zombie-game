@@ -162,6 +162,8 @@ public class Application {
 		town.at(42, 19).addItem(new Sniper());
 		//town.at(26, 10).addItem(new Shotgun());
 		town.at(42, 20).addItem(new Shotgun());
+		
+		town.at(41, 20).addItem(new ShotgunAmmunation());
 
 		world.run();
 	}

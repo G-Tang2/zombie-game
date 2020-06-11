@@ -17,7 +17,7 @@ import game.item.HumanCorpse;
 import game.item.PortableItem;
 import game.item.Sniper;
 
-public class SniperAction extends Action {
+public class SniperAction extends AttackAction {
 
 	protected Item weapon;
 	protected ArrayList<Actor> targets = new ArrayList<Actor>();
@@ -52,27 +52,12 @@ public class SniperAction extends Action {
 
 		for (int x : xs) {
 			for (int y : ys) {
-				if (map.isAnActorAt(map.at(x, y))) {
+				if (map.isAnActorAt(map.at(x, y)) && !(x == here.x() && y == here.y())) {
 					targets.add(map.getActorAt(map.at(x, y)));
 				}
 			}
 		}
 		
-		for (int i = 0; i < targets.size(); i++) {
-			there = map.locationOf(targets.get(i));
-			if (here.x() == there.x() || here.y() == there.y()) {
-				xs = new NumberRange(Math.min(here.x(), there.x()), Math.abs(here.x() - there.x()) + 1);
-				ys = new NumberRange(Math.min(here.y(), there.y()), Math.abs(here.y() - there.y()) + 1);
-	
-				for (int x : xs) {
-					for (int y : ys) {
-						if(map.at(x, y).getGround().blocksThrownObjects())
-							targets.remove(i);
-
-					}
-				}
-			}
-		}
 		
 		Display display = new Display();
 		
