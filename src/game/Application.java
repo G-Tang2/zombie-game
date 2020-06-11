@@ -20,6 +20,8 @@ import game.ground.Tree;
 import game.ground.Wall;
 import game.item.Car;
 import game.item.Plank;
+import game.item.Shotgun;
+import game.item.Sniper;
 
 /**
  * The main class for the zombie apocalypse game.
@@ -104,11 +106,11 @@ public class Application {
 		mamboMarie.setHome(voodooHome);
 
 		Car factoryCar = new Car();
-		factoryCar.addAction(new MoveActorAction(town.at(42, 21), "Drive to the town"));
+		factoryCar.addAction(new MoveActorAction(town.at(42, 21), "to the town"));
 		gameMap.at(42, 22).addItem(factoryCar);
 
 		Car townCar = new Car();
-		townCar.addAction(new MoveActorAction(gameMap.at(42, 21), "Drive to the factory"));
+		townCar.addAction(new MoveActorAction(gameMap.at(42, 21), "to the factory"));
 		town.at(42, 22).addItem(townCar);
 
 		Actor player = new Player("Player", '@', 100);
@@ -156,8 +158,10 @@ public class Application {
 		town.at(14, 19).addActor(new Zombie("Kartik"));
 		
 		// Place sniper and shotgun
-		town.at(71, 17).addItem(new Sniper());
-		town.at(26, 10).addItem(new Shotgun());
+		//town.at(71, 17).addItem(new Sniper());
+		town.at(42, 19).addItem(new Sniper());
+		//town.at(26, 10).addItem(new Shotgun());
+		town.at(42, 20).addItem(new Shotgun());
 
 		world.run();
 	}

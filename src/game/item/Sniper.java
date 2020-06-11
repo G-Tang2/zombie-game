@@ -1,18 +1,18 @@
-package game;
+package game.item;
 
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.WeaponItem;
+import game.action.SniperAction;
 
-
-public class Shotgun extends WeaponItem {
+public class Sniper extends WeaponItem {
 	protected int ammoCount;
 	private boolean onGround = true;
 	
-	public Shotgun() {
-		super("Shotgun", 's', 10, "Wacks");
+	public Sniper() {
+		super("Sniper", 'S', 10, "Thunks");
 		this.ammoCount = 0;
 	}
 
@@ -24,7 +24,6 @@ public class Shotgun extends WeaponItem {
 
 	@Override
 	public Item upgrade() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
@@ -39,7 +38,7 @@ public class Shotgun extends WeaponItem {
     @Override
     public void tick(Location currentLocation, Actor actor) {
         if (onGround) {
-            allowableActions.add(new ShotgunAction(this));
+            allowableActions.add(new SniperAction(this));
             onGround = false;
         }
     }
@@ -60,3 +59,4 @@ public class Shotgun extends WeaponItem {
 	
 
 }
+
