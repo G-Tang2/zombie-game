@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Location;
 import game.action.EatAction;
-import game.action.EatCapability;
 
 /**
  * Food for Humans to eat to restore health
