@@ -17,7 +17,6 @@ import game.item.PortableItem;
 import game.item.Shotgun;
 
 public class ShotgunAction extends Action {
-	protected int ammo = 7;
 	protected WeaponItem weapon;
 	protected Random rand = new Random();
 	protected Actor target;
@@ -152,11 +151,11 @@ public class ShotgunAction extends Action {
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		if (this.ammo <= 0) {
+		if (this.weapon.getAmmo() <= 0) {
 			return "Shotgun out of ammo";
 		}
 		else {
-			this.ammo--;
+			this.weapon.addAmmo(-1);
 		}
 		
 		String[] directions = { "North", "North East", "East", "South East", "South", "South West", "West",
@@ -220,9 +219,9 @@ public class ShotgunAction extends Action {
 	}
 
 	String attackTarget(Actor actor, GameMap map, Weapon weapon) { // default visibility
-		String result = actor + " shotguns " + target + " for 80 damage.";
+		String result = actor + " shotguns " + target + " for 36 damage.";
 
-		target.hurt(80);
+		target.hurt(36);
 		result += target.executeReaction(map); // execute target reactions from receiving damage
 		if (!target.isConscious()) {
 			result += targetDeath(map);

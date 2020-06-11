@@ -37,4 +37,10 @@ public class Plank extends WeaponItem {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public int getAmmo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

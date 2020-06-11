@@ -13,4 +13,6 @@ public interface ItemInterface {
     Item upgrade();
     
     void addAmmo(int ammo);
+    
+    int getAmmo();
 }

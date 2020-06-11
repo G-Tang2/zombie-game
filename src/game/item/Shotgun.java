@@ -14,7 +14,7 @@ public class Shotgun extends WeaponItem {
 	private boolean onGround = true;
 	
 	public Shotgun() {
-		super("Shotgun", 's', 20, "Thunks!");
+		super("Shotgun", 's', 10, "Thunks!");
 		this.ammoCount = 7;
 	}
 
@@ -67,6 +67,10 @@ public class Shotgun extends WeaponItem {
     	else {
     		this.ammoCount += ammo;
     	}
+    }
+    
+    public int getAmmo() {
+    	return this.ammoCount;
     }
 
 }

@@ -160,12 +160,12 @@ public class Application {
 		town.at(14, 19).addActor(new Zombie("Kartik"));
 
 		// Place sniper and shotgun
-		// town.at(71, 17).addItem(new Sniper());
-		town.at(42, 19).addItem(new Sniper());
-		// town.at(26, 10).addItem(new Shotgun());
-		town.at(42, 20).addItem(new Shotgun());
+		town.at(71, 17).addItem(new Sniper());
+		town.at(26, 10).addItem(new Shotgun());
 		
+		// Placing Ammo
 		town.at(41, 20).addItem(new ShotgunAmmunition());
+		town.at(43, 19).addItem(new SniperAmmunition());
 
 		world.run();
 	}

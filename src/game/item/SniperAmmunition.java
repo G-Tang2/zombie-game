@@ -1,7 +1,7 @@
 package game.item;
 
 public class SniperAmmunition extends Ammunition {
-	int ammoCount = 5;
+	int ammoCount = 3;
 	
 	public SniperAmmunition() {
 		super(".50 Cal Rounds", ';');

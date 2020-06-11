@@ -12,7 +12,7 @@ public class Sniper extends WeaponItem {
     private boolean onGround = true;
 
     public Sniper() {
-        super("Sniper", 'S', 10, "Donks!");
+        super("Sniper", 'S', 10, "snipes");
         this.ammoCount = 4;
     }
 
@@ -58,7 +58,16 @@ public class Sniper extends WeaponItem {
     }
 
     public void addAmmo(int ammo) {
-    	this.ammoCount += ammo;
+    	if (this.ammoCount < 0) {
+    		this.ammoCount = ammo;
+    	} 
+    	else {
+    		this.ammoCount += ammo;
+    	}
+    }
+    
+    public int getAmmo() {
+    	return this.ammoCount;
     }
 
 }

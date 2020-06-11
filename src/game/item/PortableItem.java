@@ -42,4 +42,10 @@ public class PortableItem extends Item {
 	public void addAmmo(int ammo) {
 		
 	}
+
+	@Override
+	public int getAmmo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

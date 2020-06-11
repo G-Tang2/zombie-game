@@ -45,4 +45,10 @@ public class ZombieMace extends WeaponItem {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public int getAmmo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

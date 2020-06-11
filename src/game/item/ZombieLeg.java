@@ -19,4 +19,10 @@ public class ZombieLeg extends ZombieLimb {
 		
 	}
 
+	@Override
+	public int getAmmo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

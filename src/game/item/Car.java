@@ -30,4 +30,10 @@ public class Car extends Item {
 	public void addAmmo(int ammo) {
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public int getAmmo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
