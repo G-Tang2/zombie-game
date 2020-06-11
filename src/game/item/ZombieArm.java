@@ -13,4 +13,10 @@ public class ZombieArm extends ZombieLimb {
         return new ZombieClub();
     }
 
+	@Override
+	public void addAmmo(int ammo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

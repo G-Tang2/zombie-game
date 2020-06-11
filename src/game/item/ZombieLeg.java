@@ -13,4 +13,10 @@ public class ZombieLeg extends ZombieLimb {
         return new ZombieMace();
     }
 
+	@Override
+	public void addAmmo(int ammo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -2,6 +2,7 @@ package game.item;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.WeaponItem;
 
 public class Car extends Item {
 
@@ -21,6 +22,12 @@ public class Car extends Item {
 
 	@Override
 	public Item upgrade() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public WeaponItem addAmmo(int ammo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

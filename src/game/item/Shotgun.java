@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.WeaponItem;
+import game.action.ReloadAction;
 import game.action.ShotgunAction;
 
 
@@ -59,5 +60,8 @@ public class Shotgun extends WeaponItem {
         }
     }
 	
+    public void addAmmo(int ammo) {
+    	this.ammoCount += ammo;
+    }
 
 }

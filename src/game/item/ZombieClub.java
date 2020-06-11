@@ -40,4 +40,10 @@ public class ZombieClub extends WeaponItem {
      public Item upgrade() {
           return null;
      }
+
+	@Override
+	public void addAmmo(int ammo) {
+		// TODO Auto-generated method stub
+		
+	}
 }
