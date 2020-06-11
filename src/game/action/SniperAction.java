@@ -9,7 +9,6 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
 import edu.monash.fit2099.engine.NumberRange;
-import edu.monash.fit2099.engine.Weapon;
 import game.actor.ZombieCapability;
 import game.item.Sniper;
 

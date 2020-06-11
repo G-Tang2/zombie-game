@@ -5,7 +5,6 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.WeaponItem;
-import game.action.ReloadAction;
 import game.action.ShotgunAction;
 
 

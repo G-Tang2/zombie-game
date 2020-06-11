@@ -163,9 +163,23 @@ public class Application {
 		town.at(71, 17).addItem(new Sniper());
 		town.at(26, 10).addItem(new Shotgun());
 		
-		// Placing Ammo
-		town.at(41, 20).addItem(new ShotgunAmmunition());
-		town.at(43, 19).addItem(new SniperAmmunition());
+		// Placing Ammo on town
+		 town.at(50, 9).addItem(new ShotgunAmmunition()); 
+		 town.at(38, 3).addItem(new ShotgunAmmunition()); 
+		 town.at(50, 16).addItem(new SniperAmmunition());
+		 town.at(21, 18).addItem(new SniperAmmunition());
+		 
+		 // Placing Ammo on factory
+		 for(int i = 38; i < 44; i++) {
+			 if (i < 41) {
+				 gameMap.at(i, 4).addItem(new ShotgunAmmunition());
+			 }
+			 else {
+				 gameMap.at(i, 4).addItem(new SniperAmmunition());
+			 }
+		 }
+
+		 
 
 		world.run();
 	}
