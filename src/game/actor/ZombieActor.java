@@ -77,4 +77,9 @@ public abstract class ZombieActor extends Actor {
 	public int getArmCount() {
 		return armCount;
 	}
+
+	@Override
+	public int getHitPoints() {
+		return hitPoints;
+	}
 }

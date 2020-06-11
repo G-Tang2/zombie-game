@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.PickUpItemAction;
 
 /**
  * A class that generates a pick up item action at the actor's location if the
@@ -27,7 +26,7 @@ public class ScavengeBehaviour implements Behaviour {
     public Action getAction(Actor actor, GameMap map) {
         for (Item item : map.locationOf(actor).getItems()) {
             if (item.asWeapon() != null) {
-                return new PickUpItemAction(item);
+                return item.getPickUpAction();
             }
         }
         return null;

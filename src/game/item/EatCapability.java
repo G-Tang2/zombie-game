@@ -1,4 +1,4 @@
-package game.action;
+package game.item;
 
 public enum EatCapability {
     EDIBLE

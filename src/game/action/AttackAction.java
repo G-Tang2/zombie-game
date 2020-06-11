@@ -81,7 +81,7 @@ public class AttackAction extends Action {
 		return result;
 	}
 
-	private String targetDeath(GameMap map) {
+	String targetDeath(GameMap map) {
 
 		if (target.hasCapability(ZombieCapability.ALIVE)) {
 			map.locationOf(target).addItem(new HumanCorpse("Dead " + target, 'x'));

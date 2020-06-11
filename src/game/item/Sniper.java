@@ -8,6 +8,28 @@ import edu.monash.fit2099.engine.WeaponItem;
 import game.action.SniperAction;
 
 public class Sniper extends WeaponItem {
+<<<<<<< HEAD
+    protected int ammoCount;
+    private boolean onGround = true;
+
+    public Sniper() {
+        super("Sniper", 'S', 10, "Thunks");
+        this.ammoCount = 0;
+    }
+
+    @Override
+    public int getNutrition() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public Item upgrade() {
+        return null;
+    }
+
+    /**
+=======
 	protected int ammoCount;
 	private boolean onGround = true;
 	
@@ -28,6 +50,7 @@ public class Sniper extends WeaponItem {
 	}
 	
 	/**
+>>>>>>> 9c96b50ac5eebd7110f37f7f0583f3417742e77a
      * Inform a carried Item of the passage of time.
      * 
      * This method is called once per turn, if the Item is being carried.
@@ -38,7 +61,7 @@ public class Sniper extends WeaponItem {
     @Override
     public void tick(Location currentLocation, Actor actor) {
         if (onGround) {
-            allowableActions.add(new SniperAction(this));
+            allowableActions.add(new SniperAction(this, currentLocation.map(), actor));
             onGround = false;
         }
     }
@@ -56,10 +79,12 @@ public class Sniper extends WeaponItem {
             onGround = true;
         }
     }
+<<<<<<< HEAD
+=======
 	
     public void addAmmo(int ammo) {
     	this.ammoCount += ammo;
     }
+>>>>>>> 9c96b50ac5eebd7110f37f7f0583f3417742e77a
 
 }
-

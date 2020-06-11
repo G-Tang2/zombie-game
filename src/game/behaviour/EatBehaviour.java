@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import game.action.EatAction;
-import game.action.EatCapability;
+import game.item.EatCapability;
 
 public class EatBehaviour implements Behaviour {
 

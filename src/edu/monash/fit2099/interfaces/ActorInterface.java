@@ -23,4 +23,6 @@ public interface ActorInterface {
      * @return actor arm count
      */
     int getArmCount(); // required for AttackBehaviour
+
+    int getHitPoints();
 }

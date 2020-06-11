@@ -76,5 +76,4 @@ public class AttackBehaviour implements Behaviour {
 		}
 		return null;
 	}
-
 }

@@ -1,6 +1,5 @@
 package game.action;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import edu.monash.fit2099.engine.Action;
@@ -8,29 +7,27 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.Menu;
 import edu.monash.fit2099.engine.NumberRange;
 import edu.monash.fit2099.engine.Weapon;
 import game.actor.ZombieCapability;
-import game.item.HumanCorpse;
-import game.item.PortableItem;
-import game.item.Sniper;
 
-public class SniperAction extends AttackAction {
+public class SniperAction extends Action {
 
-	protected Item weapon;
-	protected ArrayList<Actor> targets = new ArrayList<Actor>();
+	protected Weapon weapon;
 	protected Random rand = new Random();
-	private Actor target;
-	
+	private Actor actor;
+	private Action lastAction = null;
+	private Menu menu = new Menu();
+
 	/**
 	 * Constructor.
 	 * 
 	 * @param shotgun the Actor to attack
 	 */
-	public SniperAction(Sniper sniper) {
-		this.weapon = sniper;
+	public SniperAction(Weapon weapon, GameMap map, Actor actor) {
+		this.weapon = weapon;
+		this.actor = actor;
 	}
 
 	/**
@@ -43,86 +40,40 @@ public class SniperAction extends AttackAction {
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		Location here = map.locationOf(actor);
-		Location there;
-		
+		Actions actions = findTargets(map);
+		String result = "There are no targets to snipe";
+		if (actions.size() > 0) {
+			Action action = menu.showMenu(actor, actions, new Display());
+			this.lastAction = action;
+			result = action.execute(actor, map);
+		}
+		return result;
+	}
+
+	@Override
+	public String menuDescription(Actor actor) {
+		return actor + " snipe someone";
+	}
+
+	@Override
+	public Action getNextAction() {
+		return this.lastAction.getNextAction();
+	}
+
+	private Actions findTargets(GameMap map) {
+		Actions actions = new Actions();
 		NumberRange xs, ys;
 		xs = new NumberRange(0, 80);
 		ys = new NumberRange(0, 25);
 
 		for (int x : xs) {
 			for (int y : ys) {
-				if (map.isAnActorAt(map.at(x, y)) && !(x == here.x() && y == here.y())) {
-					targets.add(map.getActorAt(map.at(x, y)));
+				if (map.isAnActorAt(map.at(x, y))
+						&& map.getActorAt(map.at(x, y)).hasCapability(ZombieCapability.UNDEAD)) {
+					actions.add(new SniperMenu(this.actor, map.getActorAt(map.at(x, y)), this.weapon, 0));
 				}
 			}
 		}
-		
-		
-		Display display = new Display();
-		
-		display.println("Choose target:");
-		for (int j = 0; j < targets.size(); j++) {
-			display.println(Integer.toString(j) + ": " + targets.get(j));
-		}
-		
-		char choice = display.readChar();
-		this.target = targets.get(Integer.parseInt(Character.toString(choice)));
-		
-		Weapon weapon = actor.getWeapon();
-
-		if (rand.nextBoolean()) {
-			return missDescription(actor);
-		}
-		String result = attackTarget(actor, map, weapon);
-
-		return result;
-	}
-
-	/**
-	 * Describe the action in a format suitable for displaying in the menu.
-	 *
-	 * @see Action#menuDescription(Actor)
-	 * @param actor The actor performing the action.
-	 * @return a string, e.g. "Player attacks rock".
-	 */
-	@Override
-	public String menuDescription(Actor actor) {
-		return actor + " aims sniper";
-	}
-
-	String missDescription(Actor actor) { // default visibility
-		return actor + " misses " + target + ".";
-	}
-
-	String attackTarget(Actor actor, GameMap map, Weapon weapon) { // default visibility
-		String result = actor + " " + weapon.verb() + " " + target + " for " + weapon.damage() + " damage.";
-
-		target.hurt(weapon.damage());
-		result += target.executeReaction(map); // execute target reactions from receiving damage
-		if (!target.isConscious()) {
-			result += targetDeath(map);
-		}
-		return result;
-	}
-
-	private String targetDeath(GameMap map) {
-
-		if (target.hasCapability(ZombieCapability.ALIVE)) {
-			map.locationOf(target).addItem(new HumanCorpse("Dead " + target, 'x'));
-		} else {
-			map.locationOf(target).addItem(new PortableItem("Dead" + target, '%'));
-		}
-
-		// corpse drop items and removed from map
-		Actions dropActions = new Actions();
-		for (Item item : target.getInventory())
-			dropActions.add(item.getDropAction());
-		for (Action drop : dropActions)
-			drop.execute(target, map);
-		map.removeActor(target);
-
-		String result = System.lineSeparator() + target + " is killed.";
-		return result;
+		return actions;
 	}
 }
