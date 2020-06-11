@@ -20,7 +20,7 @@ import game.behaviour.WanderBehaviour;
  */
 public class Human extends ZombieActor {
 	private Behaviour[] behaviours = { new EatBehaviour(this.hitPoints < this.maxHitPoints), new PickUpFoodBehaviour(),
-			new WanderBehaviour()};
+			new WanderBehaviour() };
 
 	/**
 	 * The default constructor creates default Humans
