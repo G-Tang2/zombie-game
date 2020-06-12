@@ -18,7 +18,6 @@ public class Sniper extends WeaponItem {
 
     @Override
     public int getNutrition() {
-        // TODO Auto-generated method stub
         return 0;
     }
 

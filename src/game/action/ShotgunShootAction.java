@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
+import game.ground.Crop;
 import game.item.Shotgun;
 
 /**
@@ -13,10 +14,12 @@ import game.item.Shotgun;
  * @author Garvin Tang
  * 
  */
-public class ShotgunShootAction extends AttackAction {
+class ShotgunShootAction extends AttackAction { // package-private
 
     private Shotgun weapon;
     private String direction;
+    private String result = "";
+    private int count = 3;
 
     /**
      * Constructor.
@@ -25,7 +28,7 @@ public class ShotgunShootAction extends AttackAction {
      * 
      * @param target The actor being targetted
      */
-    protected ShotgunShootAction(Shotgun weapon, String direction) {
+    ShotgunShootAction(Shotgun weapon, String direction) { // package-private
         super(null); // no specific target
         this.weapon = weapon;
         this.direction = direction;
@@ -94,8 +97,6 @@ public class ShotgunShootAction extends AttackAction {
     }
 
     private String diagonalShot(Actor actor, GameMap map, Location location, int north, int east, int south, int west) {
-        String result = "";
-
         for (int x = location.x() - (3 * west); x <= location.x() + (3 * east); x++) {
             for (int y = location.y() - (3 * north); y <= location.y() + (3 * south); y++) {
                 result += attackActorsInArea(actor, map, location, x, y);
@@ -105,9 +106,6 @@ public class ShotgunShootAction extends AttackAction {
     }
 
     private String north(Actor actor, GameMap map, Location location) {
-        String result = "";
-        int count = 3;
-
         for (int y = location.y() - 3; y <= location.y(); y++) {
             for (int x = location.x() - count; x <= location.x() + count; x++) {
                 result += attackActorsInArea(actor, map, location, x, y);
@@ -118,9 +116,6 @@ public class ShotgunShootAction extends AttackAction {
     }
 
     private String south(Actor actor, GameMap map, Location location) {
-        String result = "";
-        int count = 3;
-
         for (int y = location.y() + 3; y >= location.y(); y--) {
             for (int x = location.x() - count; x <= location.x() + count; x++) {
                 result += attackActorsInArea(actor, map, location, x, y);
@@ -131,10 +126,7 @@ public class ShotgunShootAction extends AttackAction {
     }
 
     private String east(Actor actor, GameMap map, Location location) {
-        String result = "";
-        int count = 3;
-
-        for (int x = location.x() + 3; x >= location.y(); x--) {
+        for (int x = location.x() + 3; x >= location.x(); x--) {
             for (int y = location.y() - count; y <= location.y() + count; y++) {
                 result += attackActorsInArea(actor, map, location, x, y);
             }
@@ -144,10 +136,7 @@ public class ShotgunShootAction extends AttackAction {
     }
 
     private String west(Actor actor, GameMap map, Location location) {
-        String result = "";
-        int count = 3;
-
-        for (int x = location.x() - 3; x <= location.y(); x++) {
+        for (int x = location.x() - 3; x <= location.x(); x++) {
             for (int y = location.y() - count; y <= location.y() + count; y++) {
                 result += attackActorsInArea(actor, map, location, x, y);
             }
@@ -158,6 +147,7 @@ public class ShotgunShootAction extends AttackAction {
 
     private String attackActorsInArea(Actor actor, GameMap map, Location location, int x, int y) {
         String result = "";
+        map.at(x, y).setGround(new Crop());
         if (map.isAnActorAt(map.at(x, y)) && !(x == location.x() && y == location.y())) {
             target = map.getActorAt(map.at(x, y));
             if (rand.nextInt(100) < 25) {

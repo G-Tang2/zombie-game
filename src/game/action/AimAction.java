@@ -9,11 +9,11 @@ import edu.monash.fit2099.engine.GameMap;
  * 
  * Use this to implement waiting or similar actions in game clients.
  */
-public class AimAction extends Action {
+class AimAction extends Action { // package-private
 
 	private Actor target;
 
-	public AimAction(Actor target) {
+	AimAction(Actor target) { // package-private
 		this.target = target;
 	}
 

@@ -1,7 +1,5 @@
 package game.action;
 
-import java.util.Random;
-
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
@@ -11,9 +9,7 @@ import edu.monash.fit2099.engine.Menu;
 import game.item.Shotgun;
 
 public class ShotgunMenu extends Action {
-	protected Shotgun weapon;
-	protected Random rand = new Random();
-	protected Actor target;
+	private Shotgun weapon;
 
 	/**
 	 * Constructor.

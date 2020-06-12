@@ -119,6 +119,8 @@ public class Application {
 
 		world.addPlayer(player, gameMap.at(42, 15));
 
+		gameMap.at(42, 15).addItem(new Shotgun());
+
 		// Place some random humans
 		String[] humans = { "Carlton", "May", "Vicente", "Andrea", "Wendy", "Elina", "Winter", "Clem", "Jacob",
 				"Jaquelyn" };
