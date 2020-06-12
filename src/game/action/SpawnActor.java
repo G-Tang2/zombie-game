@@ -9,7 +9,7 @@ import game.actor.Zombie;
 
 public class SpawnActor {
 
-    Random rand = new Random();
+    private Random rand = new Random();
 
     public SpawnActor() {
     };

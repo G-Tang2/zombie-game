@@ -41,13 +41,12 @@ public class SniperShootAction extends AttackAction {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-    	if (this.weapon.getAmmo() <= 0) {
-			return "Sniper out of ammo";
-		}
-		else {
-			this.weapon.addAmmo(-1);
-		}
-    	int missProbability;
+        if (this.weapon.getAmmo() <= 0) {
+            return "Sniper out of ammo";
+        } else {
+            this.weapon.addAmmo(-1);
+        }
+        int missProbability;
         if (aimTime == 0) {
             missProbability = 25;
             this.damage = this.weapon.damage();
@@ -62,6 +61,7 @@ public class SniperShootAction extends AttackAction {
             return missDescription(actor);
         }
         String result = attackTarget(actor, map, this.weapon);
+        result += "\nSniper has " + weapon.getAmmo() + " ammo left";
         return result;
     }
 

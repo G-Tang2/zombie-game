@@ -5,20 +5,19 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.WeaponItem;
-import game.action.SniperAction;
+import game.action.SniperMenu;
 
 public class Sniper extends WeaponItem {
     protected int ammoCount;
     private boolean onGround = true;
 
     public Sniper() {
-        super("Sniper", 'S', 10, "snipes");
+        super("Sniper", 'S', 30, "snipes");
         this.ammoCount = 4;
     }
 
     @Override
     public int getNutrition() {
-        // TODO Auto-generated method stub
         return 0;
     }
 
@@ -33,12 +32,13 @@ public class Sniper extends WeaponItem {
      * This method is called once per turn, if the Item is being carried.
      * 
      * @param currentLocation The location of the actor carrying this Item.
-     * @param actor           The actor carrying this Item.
+     * 
+     * @param actor The actor carrying this Item.
      */
     @Override
     public void tick(Location currentLocation, Actor actor) {
         if (onGround) {
-            allowableActions.add(new SniperAction(this, currentLocation.map(), actor));
+            allowableActions.add(new SniperMenu(this, currentLocation.map(), actor));
             onGround = false;
         }
     }
@@ -58,16 +58,15 @@ public class Sniper extends WeaponItem {
     }
 
     public void addAmmo(int ammo) {
-    	if (this.ammoCount < 0) {
-    		this.ammoCount = ammo;
-    	} 
-    	else {
-    		this.ammoCount += ammo;
-    	}
+        if (this.ammoCount < 0) {
+            this.ammoCount = ammo;
+        } else {
+            this.ammoCount += ammo;
+        }
     }
-    
+
     public int getAmmo() {
-    	return this.ammoCount;
+        return this.ammoCount;
     }
 
 }

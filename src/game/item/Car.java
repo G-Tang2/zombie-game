@@ -2,7 +2,6 @@ package game.item;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.WeaponItem;
 
 public class Car extends Item {
 

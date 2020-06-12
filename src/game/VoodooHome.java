@@ -10,9 +10,9 @@ import game.actor.VoodooPriestess;
 
 public class VoodooHome extends GameMap {
 
-    VoodooPriestess voodooPriestess;
-    GameMap gameMap;
-    Random rand = new Random();
+    private VoodooPriestess voodooPriestess;
+    private GameMap gameMap;
+    private Random rand = new Random();
 
     public VoodooHome(GroundFactory groundFactory, List<String> lines, VoodooPriestess voodooPriestess,
             GameMap gameMap) {
