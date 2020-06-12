@@ -5,7 +5,6 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.WeaponItem;
-import game.action.ReloadAction;
 import game.action.ShotgunAction;
 
 
@@ -14,8 +13,8 @@ public class Shotgun extends WeaponItem {
 	private boolean onGround = true;
 	
 	public Shotgun() {
-		super("Shotgun", 's', 20, "Thunks!");
-		this.ammoCount = 0;
+		super("Shotgun", 's', 10, "Thunks!");
+		this.ammoCount = 7;
 	}
 
 	@Override
@@ -61,7 +60,16 @@ public class Shotgun extends WeaponItem {
     }
 	
     public void addAmmo(int ammo) {
-    	this.ammoCount += ammo;
+    	if (this.ammoCount < 0) {
+    		this.ammoCount = ammo;
+    	} 
+    	else {
+    		this.ammoCount += ammo;
+    	}
+    }
+    
+    public int getAmmo() {
+    	return this.ammoCount;
     }
 
 }

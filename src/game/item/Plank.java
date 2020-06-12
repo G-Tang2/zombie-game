@@ -33,9 +33,14 @@ public class Plank extends WeaponItem {
 	}
 
 	@Override
-	public WeaponItem addAmmo(int ammo) {
+	public void addAmmo(int ammo) {
 		// TODO Auto-generated method stub
-		return null;
+	}
+
+	@Override
+	public int getAmmo() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

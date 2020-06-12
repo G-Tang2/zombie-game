@@ -4,14 +4,13 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.WeaponItem;
-import game.item.Ammunation;
+import game.item.Ammunition;
 
 
 public class ReloadAction extends Action {
 	
-	private WeaponItem weapon;
-	private Ammunation ammo;
+	private Item weapon;
+	private Ammunition ammo;
 	
 
     /**
@@ -20,16 +19,16 @@ public class ReloadAction extends Action {
      * @see Action#ReloadAction(Item)
      * @param item the item is the weapon we want to reload
      */
-    public ReloadAction(WeaponItem weapon, Ammunation ammo) {
+    public ReloadAction(Item weapon, Ammunition ammo) {
         this.weapon = weapon;
         this.ammo = ammo;
     }
 	
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		actor.removeItemFromInventory(ammo);
 		weapon.addAmmo(ammo.getAmmo());
-        return actor + " relaods " + weapon + " with " + ammo.getNutrition() + " bullets";
+		actor.removeItemFromInventory(ammo);
+        return actor + " relaods " + weapon + " with " + ammo.getAmmo() + " bullets";
     }
 	
 

@@ -23,7 +23,7 @@ public class ZombieClub extends WeaponItem {
       * @param verb        verb to use for this weapon, e.g. "hits", "zaps"
       */
      public ZombieClub() {
-          super("Club", 'p', 20, "thumps");
+          super("Club", 'p', 20, "thuds");
      }
 
      /**
@@ -45,5 +45,11 @@ public class ZombieClub extends WeaponItem {
 	public void addAmmo(int ammo) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int getAmmo() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

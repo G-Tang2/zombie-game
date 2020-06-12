@@ -1,11 +1,16 @@
 package game.item;
 
-public class ShotgunAmmunition extends Ammunation {
-	int ammoCount = 7;
+public class ShotgunAmmunition extends Ammunition {
+	protected int ammoCount = 7;
 	
-	public ShotgunAmmunition(String name, char displayChar) {
+	public ShotgunAmmunition() {
 		super("Shotgun Pellets", ':');
 	
+	}
+
+	@Override
+	public int getAmmo() {
+		return this.ammoCount;
 	}
 	
 

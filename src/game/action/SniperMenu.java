@@ -6,19 +6,19 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
-import edu.monash.fit2099.engine.Weapon;
+import game.item.Sniper;
 
 public class SniperMenu extends Action {
 
 	private Actor target;
 	private int targetInitHitPoints;
 	private int aimTime;
-	private Weapon weapon;
+	private Sniper weapon;
 	private Actor actor;
 	private Menu menu = new Menu();
 	private boolean sniperShot = false;
 
-	public SniperMenu(Actor actor, Actor target, Weapon weapon, int aimTime) {
+	public SniperMenu(Actor actor, Actor target, Sniper weapon, int aimTime) {
 		this.actor = actor;
 		this.target = target;
 		this.targetInitHitPoints = target.getHitPoints();

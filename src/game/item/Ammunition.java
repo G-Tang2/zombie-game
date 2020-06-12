@@ -2,13 +2,13 @@ package game.item;
 
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.action.ReloadAction;
 
-public class Ammunation extends PortableItem {
-	int ammoCount;
+public abstract class Ammunition extends PortableItem {
 	
-	public Ammunation(String name, char displayChar) {
+	public Ammunition(String name, char displayChar) {
 		super(name, displayChar);
 		// TODO Auto-generated constructor stub
 	}
@@ -23,7 +23,12 @@ public class Ammunation extends PortableItem {
 	 */
 	@Override
 	public void tick(Location currentLocation, Actor actor) {
-		allowableActions.add(new ReloadAction(this)); // in inventory, can reload a gun
+		for (Item item:actor.getInventory()) {
+			if ((item instanceof Shotgun) || (item instanceof Sniper)) {
+				allowableActions.add(new ReloadAction(item, this)); // in inventory, can reload a gun
+			}
+		}
+			
 
 	}
 
@@ -38,8 +43,6 @@ public class Ammunation extends PortableItem {
 			allowableActions = new Actions(); // on ground, cannot reload
 	}
 	
-	public int getAmmo() {
-		return this.ammoCount;
-	}
+	public abstract int getAmmo();
 
 }

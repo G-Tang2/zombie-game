@@ -21,7 +21,9 @@ import game.ground.Wall;
 import game.item.Car;
 import game.item.Plank;
 import game.item.Shotgun;
+import game.item.ShotgunAmmunition;
 import game.item.Sniper;
+import game.item.SniperAmmunition;
 
 /**
  * The main class for the zombie apocalypse game.
@@ -158,12 +160,26 @@ public class Application {
 		town.at(14, 19).addActor(new Zombie("Kartik"));
 
 		// Place sniper and shotgun
-		// town.at(71, 17).addItem(new Sniper());
-		town.at(42, 19).addItem(new Sniper());
-		// town.at(26, 10).addItem(new Shotgun());
-		town.at(42, 20).addItem(new Shotgun());
+		town.at(71, 17).addItem(new Sniper());
+		town.at(26, 10).addItem(new Shotgun());
 		
-		town.at(41, 20).addItem(new ShotgunAmmunation());
+		// Placing Ammo on town
+		 town.at(50, 9).addItem(new ShotgunAmmunition()); 
+		 town.at(38, 3).addItem(new ShotgunAmmunition()); 
+		 town.at(50, 16).addItem(new SniperAmmunition());
+		 town.at(21, 18).addItem(new SniperAmmunition());
+		 
+		 // Placing Ammo on factory
+		 for(int i = 38; i < 44; i++) {
+			 if (i < 41) {
+				 gameMap.at(i, 4).addItem(new ShotgunAmmunition());
+			 }
+			 else {
+				 gameMap.at(i, 4).addItem(new SniperAmmunition());
+			 }
+		 }
+
+		 
 
 		world.run();
 	}

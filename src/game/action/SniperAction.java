@@ -9,12 +9,12 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
 import edu.monash.fit2099.engine.NumberRange;
-import edu.monash.fit2099.engine.Weapon;
 import game.actor.ZombieCapability;
+import game.item.Sniper;
 
 public class SniperAction extends Action {
 
-	protected Weapon weapon;
+	protected Sniper weapon;
 	protected Random rand = new Random();
 	private Actor actor;
 	private Action lastAction = null;
@@ -25,7 +25,7 @@ public class SniperAction extends Action {
 	 * 
 	 * @param shotgun the Actor to attack
 	 */
-	public SniperAction(Weapon weapon, GameMap map, Actor actor) {
+	public SniperAction(Sniper weapon, GameMap map, Actor actor) {
 		this.weapon = weapon;
 		this.actor = actor;
 	}

@@ -1,7 +1,6 @@
 package edu.monash.fit2099.interfaces;
 
 import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.WeaponItem;
 
 /**
  * This interface provides the ability to add methods to Item, without modifying
@@ -13,4 +12,6 @@ public interface ItemInterface {
     Item upgrade();
     
     void addAmmo(int ammo);
+    
+    int getAmmo();
 }

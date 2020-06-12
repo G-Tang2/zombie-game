@@ -1,10 +1,15 @@
 package game.item;
 
-public class SniperAmmunition extends Ammunation {
-	int ammoCount = 5;
+public class SniperAmmunition extends Ammunition {
+	int ammoCount = 3;
 	
-	public SniperAmmunition(String name, char displayChar) {
+	public SniperAmmunition() {
 		super(".50 Cal Rounds", ';');
+	}
+
+	@Override
+	public int getAmmo() {
+		return this.ammoCount;
 	}
 
 }

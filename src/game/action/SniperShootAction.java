@@ -3,6 +3,7 @@ package game.action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Weapon;
+import game.item.Sniper;
 
 /**
  * Bite action for attacking other Actors.
@@ -13,7 +14,7 @@ import edu.monash.fit2099.engine.Weapon;
  */
 public class SniperShootAction extends AttackAction {
 
-    private Weapon weapon;
+    private Sniper weapon;
     private int aimTime;
     private int damage;
 
@@ -24,7 +25,7 @@ public class SniperShootAction extends AttackAction {
      * 
      * @param target The actor being targetted
      */
-    public SniperShootAction(Actor target, Weapon weapon, int aimTime) {
+    public SniperShootAction(Actor target, Sniper weapon, int aimTime) {
         super(target);
         this.weapon = weapon;
         this.aimTime = aimTime;
@@ -40,7 +41,13 @@ public class SniperShootAction extends AttackAction {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        int missProbability;
+    	if (this.weapon.getAmmo() <= 0) {
+			return "Sniper out of ammo";
+		}
+		else {
+			this.weapon.addAmmo(-1);
+		}
+    	int missProbability;
         if (aimTime == 0) {
             missProbability = 25;
             this.damage = this.weapon.damage();
