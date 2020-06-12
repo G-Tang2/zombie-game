@@ -5,31 +5,30 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.WeaponItem;
-import game.action.ShotgunAction;
-
+import game.action.ShotgunMenu;
 
 public class Shotgun extends WeaponItem {
-	protected int ammoCount;
-	private boolean onGround = true;
-	
-	public Shotgun() {
-		super("Shotgun", 's', 10, "Thunks!");
-		this.ammoCount = 7;
-	}
+    protected int ammoCount;
+    private boolean onGround = true;
 
-	@Override
-	public int getNutrition() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    public Shotgun() {
+        super("Shotgun", 's', 20, "thunks");
+        this.ammoCount = 7;
+    }
 
-	@Override
-	public Item upgrade() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	/**
+    @Override
+    public int getNutrition() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public Item upgrade() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /**
      * Inform a carried Item of the passage of time.
      * 
      * This method is called once per turn, if the Item is being carried.
@@ -40,7 +39,7 @@ public class Shotgun extends WeaponItem {
     @Override
     public void tick(Location currentLocation, Actor actor) {
         if (onGround) {
-            allowableActions.add(new ShotgunAction(this));
+            allowableActions.add(new ShotgunMenu(this));
             onGround = false;
         }
     }
@@ -58,18 +57,17 @@ public class Shotgun extends WeaponItem {
             onGround = true;
         }
     }
-	
+
     public void addAmmo(int ammo) {
-    	if (this.ammoCount < 0) {
-    		this.ammoCount = ammo;
-    	} 
-    	else {
-    		this.ammoCount += ammo;
-    	}
+        if (this.ammoCount < 0) {
+            this.ammoCount = ammo;
+        } else {
+            this.ammoCount += ammo;
+        }
     }
-    
+
     public int getAmmo() {
-    	return this.ammoCount;
+        return this.ammoCount;
     }
 
 }

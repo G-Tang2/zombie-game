@@ -1,70 +1,79 @@
 package game.action;
 
+import java.util.Random;
+
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
+import edu.monash.fit2099.engine.NumberRange;
+import game.actor.ZombieCapability;
 import game.item.Sniper;
 
 public class SniperMenu extends Action {
 
-	private Actor target;
-	private int targetInitHitPoints;
-	private int aimTime;
-	private Sniper weapon;
+	protected Sniper weapon;
+	protected Random rand = new Random();
 	private Actor actor;
-	private Menu menu = new Menu();
-	private boolean sniperShot = false;
+	private Action lastAction = null;
 
-	public SniperMenu(Actor actor, Actor target, Sniper weapon, int aimTime) {
-		this.actor = actor;
-		this.target = target;
-		this.targetInitHitPoints = target.getHitPoints();
+	/**
+	 * Constructor.
+	 * 
+	 * @param shotgun the Actor to attack
+	 */
+	public SniperMenu(Sniper weapon, GameMap map, Actor actor) {
 		this.weapon = weapon;
-		this.aimTime = aimTime;
+		this.actor = actor;
 	}
 
+	/**
+	 * Actor attacks target.
+	 *
+	 * @see Action#execute(Actor, GameMap)
+	 * @param actor The actor performing the action.
+	 * @param map   The map the actor is on.
+	 * @return a string, e.g. "Player attacks rock".
+	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		if (actor.getHitPoints() < this.targetInitHitPoints) {
-			this.aimTime = 0;
+		Actions actions = findTargets(map);
+		String result = "There are no targets to snipe";
+		if (actions.size() > 0) {
+			Menu menu = new Menu();
+			Action action = menu.showMenu(actor, actions, new Display());
+			this.lastAction = action;
+			result = action.execute(actor, map);
 		}
-		Actions actions = new Actions();
-		if (this.aimTime < 2) {
-			actions.add(new AimAction(this.target));
-		}
-		actions.add(new SniperShootAction(this.target, this.weapon, this.aimTime));
-
-		Action action = menu.showMenu(actor, actions, new Display());
-		if (action instanceof AimAction) {
-			this.aimTime++;
-		} else if (action instanceof SniperShootAction) {
-			sniperShot = true;
-		}
-		String result = action.execute(actor, map);
-
 		return result;
 	}
 
 	@Override
 	public String menuDescription(Actor actor) {
-		return actor + " targets " + this.target;
+		return actor + " snipe someone";
 	}
 
 	@Override
 	public Action getNextAction() {
-		if (sniperShot) {
-			return null;
-		}
+		return this.lastAction.getNextAction();
+	}
+
+	private Actions findTargets(GameMap map) {
 		Actions actions = new Actions();
-		actions.add(this);
-		actions.add(new StopAimingAction(target));
-		Action action = this.menu.showMenu(actor, actions, new Display());
-		if (action instanceof StopAimingAction) {
-			return null;
+		NumberRange xs, ys;
+		xs = new NumberRange(0, 80);
+		ys = new NumberRange(0, 25);
+
+		for (int x : xs) {
+			for (int y : ys) {
+				if (map.isAnActorAt(map.at(x, y))
+						&& map.getActorAt(map.at(x, y)).hasCapability(ZombieCapability.UNDEAD)) {
+					actions.add(new SniperSubMenu(this.actor, map.getActorAt(map.at(x, y)), this.weapon, 0));
+				}
+			}
 		}
-		return action;
+		return actions;
 	}
 }

@@ -5,14 +5,14 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.WeaponItem;
-import game.action.SniperAction;
+import game.action.SniperMenu;
 
 public class Sniper extends WeaponItem {
     protected int ammoCount;
     private boolean onGround = true;
 
     public Sniper() {
-        super("Sniper", 'S', 10, "snipes");
+        super("Sniper", 'S', 30, "snipes");
         this.ammoCount = 4;
     }
 
@@ -39,7 +39,7 @@ public class Sniper extends WeaponItem {
     @Override
     public void tick(Location currentLocation, Actor actor) {
         if (onGround) {
-            allowableActions.add(new SniperAction(this, currentLocation.map(), actor));
+            allowableActions.add(new SniperMenu(this, currentLocation.map(), actor));
             onGround = false;
         }
     }
