@@ -14,7 +14,6 @@ import game.action.CraftWeaponAction;
 public abstract class ZombieLimb extends WeaponItem {
 
     private boolean onGround = true;
-    private int nutrition = 0;
 
     /**
      * Constructor.
@@ -67,7 +66,10 @@ public abstract class ZombieLimb extends WeaponItem {
      */
     @Override
     public int getNutrition() {
-        return nutrition;
+        return 0;
     }
 
+    @Override
+    public void addAmmo(int ammo) {
+    }
 }

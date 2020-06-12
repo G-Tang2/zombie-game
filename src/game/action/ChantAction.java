@@ -26,7 +26,7 @@ public class ChantAction extends Action {
     @Override
     public Action getNextAction() {
         if (this.duration <= 0) {
-            return new SummonZombieAction(5);
+            return new SummonZombieAction(5); // summon five zombies
         }
         return this;
     }

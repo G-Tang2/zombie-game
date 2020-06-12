@@ -10,8 +10,7 @@ public interface ItemInterface {
     int getNutrition();
 
     Item upgrade();
-    
+
     void addAmmo(int ammo);
-    
-    int getAmmo();
+
 }

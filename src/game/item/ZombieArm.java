@@ -4,25 +4,13 @@ import edu.monash.fit2099.engine.Item;
 
 public class ZombieArm extends ZombieLimb {
 
-    public ZombieArm(String name, char displayChar, int damage, String verb) {
-        super(name, displayChar, damage, verb);
-    }
-
-    @Override
-    public Item upgrade() {
-        return new ZombieClub();
-    }
-
-	@Override
-	public void addAmmo(int ammo) {
-		// TODO Auto-generated method stub
-		
+	public ZombieArm(String name, char displayChar, int damage, String verb) {
+		super(name, displayChar, damage, verb);
 	}
 
 	@Override
-	public int getAmmo() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Item upgrade() {
+		return new ZombieClub();
 	}
 
 }
