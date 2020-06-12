@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.GameMap;
  */
 public class AimAction extends Action {
 
-	Actor target;
+	private Actor target;
 
 	public AimAction(Actor target) {
 		this.target = target;

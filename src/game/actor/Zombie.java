@@ -31,10 +31,8 @@ public class Zombie extends ZombieActor {
 
 	private Random rand = new Random();
 	private boolean movedLastTurn = false;
-
 	private Behaviour[] behaviours = { new ScavengeBehaviour(), new SpeechBehaviour(),
 			new AttackBehaviour(ZombieCapability.ALIVE) };
-
 	private Behaviour[] moveBehaviours = { new HuntBehaviour(Human.class, 10), new WanderBehaviour() };
 
 	public Zombie(String name) {

@@ -7,7 +7,7 @@ import game.VoodooHome;
 
 public class VoodooLeaveAction extends Action {
 
-    VoodooHome destination;
+    private VoodooHome destination;
 
     public VoodooLeaveAction(VoodooHome destination) {
         this.destination = destination;

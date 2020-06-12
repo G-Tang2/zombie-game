@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.GameMap;
 
 public class StopAimingAction extends Action {
 
-    Actor target;
+    private Actor target;
 
     public StopAimingAction(Actor target) {
         this.target = target;

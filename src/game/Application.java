@@ -144,8 +144,6 @@ public class Application {
 		// farmers
 		gameMap.at(40, 9).addActor(new Farmer("Bob"));
 
-		gameMap.at(42, 16).addItem(new Sniper());
-
 		// Humans on town
 		town.at(23, 8).addActor(new Human("Jason"));
 		town.at(23, 18).addActor(new Human("Tommy"));

@@ -14,7 +14,7 @@ import game.behaviour.WanderBehaviour;
 public class VoodooPriestess extends ZombieActor {
 
     private Behaviour[] behaviours = { new SummonBehaviour(10), new WanderBehaviour() };
-    VoodooHome home;
+    private VoodooHome home;
     private final int STAY_PERIOD = 30;
     private int turnCounter = 0;
 
