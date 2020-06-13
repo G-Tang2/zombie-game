@@ -1,5 +1,8 @@
 package game.action.shotgundirection;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
@@ -9,15 +12,18 @@ import edu.monash.fit2099.engine.Menu;
 import game.item.Shotgun;
 
 public class ShotgunMenu extends Action {
-	private Shotgun weapon;
+	private ArrayList<ShootDirection> directions = new ArrayList<ShootDirection>();
 
 	/**
 	 * Constructor.
 	 * 
 	 * @param shotgun the Actor to attack
 	 */
-	public ShotgunMenu(Shotgun shotgun) {
-		this.weapon = shotgun;
+	public ShotgunMenu(Shotgun weapon) {
+		directions.addAll(Arrays.asList(new ShootNorth(weapon), new ShootNorthEast(weapon), new ShootEast(weapon),
+				new ShootSouthEast(weapon), new ShootSouth(weapon), new ShootSouthWest(weapon), new ShootWest(weapon),
+				new ShootNorthWest(weapon)));
+
 	}
 
 	/**
@@ -30,9 +36,6 @@ public class ShotgunMenu extends Action {
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		ShootDirection[] directions = { new ShootNorth(weapon), new ShootNorthEast(weapon), new ShootEast(weapon),
-				new ShootSouthEast(weapon), new ShootSouth(weapon), new ShootSouthWest(weapon), new ShootWest(weapon),
-				new ShootNorthWest(weapon) };
 		Actions actions = new Actions();
 		for (ShootDirection direction : directions) {
 			actions.add(direction);

@@ -18,13 +18,11 @@ public class Shotgun extends WeaponItem {
 
     @Override
     public int getNutrition() {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public Item upgrade() {
-        // TODO Auto-generated method stub
         return null;
     }
 
