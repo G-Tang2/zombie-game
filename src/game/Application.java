@@ -132,7 +132,6 @@ public class Application {
 		}
 		// place a simple weapon
 		gameMap.at(74, 20).addItem(new Plank());
-		gameMap.at(42, 15).addItem(new Shotgun()); // TODO: remove after testing
 
 		// zombies
 		gameMap.at(30, 20).addActor(new Zombie("Groan"));

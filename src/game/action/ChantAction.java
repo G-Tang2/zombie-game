@@ -6,15 +6,16 @@ import edu.monash.fit2099.engine.GameMap;
 
 public class ChantAction extends Action {
 
-    private int duration;
+    private final int DURATION;
+    private int counter = 0;
 
     public ChantAction(int duration) {
-        this.duration = duration;
+        DURATION = duration;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        this.duration--;
+        counter++;
         return actor + " is chanting";
     }
 
@@ -25,7 +26,7 @@ public class ChantAction extends Action {
 
     @Override
     public Action getNextAction() {
-        if (this.duration <= 0) {
+        if (counter >= DURATION) {
             return new SummonZombieAction(5); // summon five zombies
         }
         return this;
