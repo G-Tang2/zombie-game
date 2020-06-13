@@ -19,7 +19,7 @@ import game.item.Shotgun;
  * 
  */
 public class ShotgunMenu extends Action {
-	private ArrayList<ShootDirection> directions = new ArrayList<ShootDirection>();
+	private Shotgun weapon;
 
 	/**
 	 * Constructor.
@@ -27,14 +27,15 @@ public class ShotgunMenu extends Action {
 	 * @param weapon the weapon used
 	 */
 	public ShotgunMenu(Shotgun weapon) {
-		directions.addAll(Arrays.asList(new ShootNorth(weapon), new ShootNorthEast(weapon), new ShootEast(weapon),
-				new ShootSouthEast(weapon), new ShootSouth(weapon), new ShootSouthWest(weapon), new ShootWest(weapon),
-				new ShootNorthWest(weapon)));
+		this.weapon = weapon;
 
 	}
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
+		ShootDirection[] directions = { new ShootNorth(weapon), new ShootNorthEast(weapon), new ShootEast(weapon),
+				new ShootSouthEast(weapon), new ShootSouth(weapon), new ShootSouthWest(weapon), new ShootWest(weapon),
+				new ShootNorthWest(weapon) };
 		Actions actions = new Actions();
 		for (ShootDirection direction : directions) {
 			actions.add(direction);
