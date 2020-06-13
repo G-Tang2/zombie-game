@@ -8,6 +8,12 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
 import game.item.Sniper;
 
+/**
+ * Sniper submenu for selecting aim or shoot at target.
+ * 
+ * @author Garvin Tang
+ * 
+ */
 public class SniperSubMenu extends Action {
 
 	private Actor target;
@@ -18,6 +24,14 @@ public class SniperSubMenu extends Action {
 	private Menu menu = new Menu();
 	private boolean sniperShot = false;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param actor   The actor performing the action.
+	 * @param target  The actor being attacked.
+	 * @param weapon  The weapon used to attack target.
+	 * @param aimTime The current number of turns aiming.
+	 */
 	public SniperSubMenu(Actor actor, Actor target, Sniper weapon, int aimTime) {
 		this.actor = actor;
 		this.target = target;

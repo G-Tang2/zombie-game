@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.Location;
 import game.action.AttackAction;
 import game.item.Shotgun;
 
-public abstract class ShootDirection extends AttackAction {
+abstract class ShootDirection extends AttackAction { // package-private
 
     private Random rand = new Random();
     private Shotgun weapon;
@@ -16,12 +16,20 @@ public abstract class ShootDirection extends AttackAction {
     protected int range = 3; // maximum distance the pellets reaches from the shooter
     protected int spread = 3; // maximum width the pellets spreads from the center
 
-    public ShootDirection(Shotgun weapon, String direction) {
+    ShootDirection(Shotgun weapon, String direction) { // package-private
         super(null); // there is no specific target aimed at
         this.weapon = weapon;
         this.direction = direction;
     }
 
+    /**
+     * Actor attacks target.
+     *
+     * @see AttackAction#execute(Actor, GameMap)
+     * @param actor The actor performing the action.
+     * @param map   The map the actor is on.
+     * @return a string, e.g. "Player attacks rock".
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         return shoot(actor, map, map.locationOf(actor));
@@ -39,13 +47,13 @@ public abstract class ShootDirection extends AttackAction {
         return actor + " " + weapon.verb() + " " + direction;
     }
 
-    public abstract String shoot(Actor actor, GameMap map, Location location);
+    abstract String shoot(Actor actor, GameMap map, Location location); // package-private
 
     protected String useAmmo() {
         if (this.weapon.getAmmo() <= 0) {
             return "Shotgun out of ammo";
         } else {
-            this.weapon.addAmmo(-1);
+            this.weapon.addAmmo(-1); // decrement ammo count
         }
         return "";
     }

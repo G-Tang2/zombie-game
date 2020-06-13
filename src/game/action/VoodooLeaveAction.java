@@ -5,10 +5,22 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import game.VoodooHome;
 
+/**
+ * Voodoo leaving the compound map action.
+ * 
+ * @author Garvin Tang
+ * 
+ */
 public class VoodooLeaveAction extends Action {
 
     private VoodooHome destination;
 
+    /**
+     * Constructor.
+     * 
+     * @param actor The actor performing the action.
+     * @return the text we put on the menu
+     */
     public VoodooLeaveAction(VoodooHome destination) {
         this.destination = destination;
     }

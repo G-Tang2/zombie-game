@@ -4,11 +4,11 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 
-public class StopAimingAction extends Action {
+class StopAimingAction extends Action { // package-private
 
     private Actor target;
 
-    public StopAimingAction(Actor target) {
+    StopAimingAction(Actor target) { // package-private
         this.target = target;
     }
 

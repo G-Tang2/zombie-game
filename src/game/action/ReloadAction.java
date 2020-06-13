@@ -6,12 +6,16 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import game.item.Ammunition;
 
-
+/**
+ * Reload weapon action.
+ * 
+ * @author Mike Kevin Balapitiya
+ * 
+ */
 public class ReloadAction extends Action {
-	
-	private Item weapon;
-	private Ammunition ammo;
-	
+
+    private Item weapon;
+    private Ammunition ammo;
 
     /**
      * Constructor.
@@ -23,18 +27,17 @@ public class ReloadAction extends Action {
         this.weapon = weapon;
         this.ammo = ammo;
     }
-	
-	@Override
-	public String execute(Actor actor, GameMap map) {
-		weapon.addAmmo(ammo.getAmmo());
-		actor.removeItemFromInventory(ammo);
+
+    @Override
+    public String execute(Actor actor, GameMap map) {
+        weapon.addAmmo(ammo.getAmmo());
+        actor.removeItemFromInventory(ammo);
         return actor + " relaods " + weapon + " with " + ammo.getAmmo() + " bullets";
     }
-	
 
-	@Override
-	public String menuDescription(Actor actor) {
-		return actor + " reloads " + weapon;
-	}
+    @Override
+    public String menuDescription(Actor actor) {
+        return actor + " reloads " + weapon;
+    }
 
 }

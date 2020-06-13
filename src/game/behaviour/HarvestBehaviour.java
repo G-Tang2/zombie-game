@@ -9,6 +9,12 @@ import game.action.HarvestAction;
 import game.behaviour.Behaviour;
 import game.ground.CropCapability;
 
+/**
+ * Harvest behaviour
+ * 
+ * @author Garvin Tang
+ * 
+ */
 public class HarvestBehaviour implements Behaviour {
 
     @Override

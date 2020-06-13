@@ -7,10 +7,19 @@ import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.WeaponItem;
 import game.action.SniperMenu;
 
+/**
+ * Sniper.
+ * 
+ * @author Mike Kevin Balapitiya
+ * 
+ */
 public class Sniper extends WeaponItem {
     protected int ammoCount;
     private boolean onGround = true;
 
+    /**
+     * Constructor.
+     */
     public Sniper() {
         super("Sniper", 'S', 30, "snipes");
         this.ammoCount = 4;
@@ -57,6 +66,11 @@ public class Sniper extends WeaponItem {
         }
     }
 
+    /**
+     * Adds ammo to weapon.
+     * 
+     * @param ammo the amount of ammo to be added
+     */
     public void addAmmo(int ammo) {
         if (this.ammoCount < 0) {
             this.ammoCount = ammo;
@@ -65,6 +79,11 @@ public class Sniper extends WeaponItem {
         }
     }
 
+    /**
+     * Returns ammo count.
+     * 
+     * @return ammo count.
+     */
     public int getAmmo() {
         return this.ammoCount;
     }

@@ -7,10 +7,21 @@ import edu.monash.fit2099.engine.Item;
 import game.action.EatAction;
 import game.item.EatCapability;
 
+/**
+ * Eat behaviour.
+ * 
+ * @author Garvin Tang
+ * 
+ */
 public class EatBehaviour implements Behaviour {
 
     private boolean missingHealth;
 
+    /**
+     * Constructor.
+     * 
+     * @param missingHealth indicates if actor is missing health.
+     */
     public EatBehaviour(boolean missingHealth) {
         this.missingHealth = missingHealth;
     }

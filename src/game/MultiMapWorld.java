@@ -15,8 +15,22 @@ import edu.monash.fit2099.engine.World;
 import game.action.Quit;
 import game.actor.ZombieCapability;
 
+/**
+ *
+ * Class representing a multi-map game world, including the locations of all
+ * Actors, the player, and the playing grid.
+ * 
+ * @author Garvin Tang
+ * @author Mike Kevin Balapitiya
+ * 
+ */
 public class MultiMapWorld extends World {
 
+    /**
+     * Constructor.
+     * 
+     * @param display the Display that will display this World.
+     */
     public MultiMapWorld(Display display) {
         super(display);
     }

@@ -7,10 +7,20 @@ import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.WeaponItem;
 import game.action.shotgundirection.ShotgunMenu;
 
+/**
+ * A shotgun.
+ * 
+ * @author Mike Kevin Balapitiya
+ * 
+ */
 public class Shotgun extends WeaponItem {
     protected int ammoCount;
     private boolean onGround = true;
 
+    /**
+     * Constructor.
+     * 
+     */
     public Shotgun() {
         super("Shotgun", 's', 20, "thunks");
         this.ammoCount = 7;
@@ -56,6 +66,11 @@ public class Shotgun extends WeaponItem {
         }
     }
 
+    /**
+     * Adds ammo to shotgun.
+     * 
+     * @param ammo the number of ammo added
+     */
     public void addAmmo(int ammo) {
         if (this.ammoCount < 0) {
             this.ammoCount = ammo;
@@ -64,6 +79,11 @@ public class Shotgun extends WeaponItem {
         }
     }
 
+    /**
+     * Returns a descriptive string.
+     * 
+     * @return the ammo count.
+     */
     public int getAmmo() {
         return this.ammoCount;
     }

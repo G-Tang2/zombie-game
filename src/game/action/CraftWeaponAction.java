@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.Item;
  * Crafting a weapon from a zombie limb
  * 
  * @author Mike Kevin Balapitiya
+ * @author Garvin Tang
  */
 public class CraftWeaponAction extends Action {
 

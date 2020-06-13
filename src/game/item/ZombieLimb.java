@@ -30,6 +30,10 @@ public abstract class ZombieLimb extends WeaponItem {
         super(name, displayChar, damage, verb);
     }
 
+    /**
+     * Upgrades weapon.
+     * 
+     */
     public abstract Item upgrade();
 
     /**

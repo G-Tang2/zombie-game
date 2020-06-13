@@ -6,6 +6,12 @@ import edu.monash.fit2099.engine.GameMap;
 import game.action.FertilizeAction;
 import game.ground.CropCapability;
 
+/**
+ * Fertilize behaviour.
+ * 
+ * @author Garvin Tang
+ * 
+ */
 public class FertilizeBehaviour implements Behaviour {
 
     @Override

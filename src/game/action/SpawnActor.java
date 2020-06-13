@@ -7,13 +7,22 @@ import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Location;
 import game.actor.Zombie;
 
+/**
+ * Spawns a Zombie actor
+ * 
+ * @author Garvin Tang
+ * 
+ */
 public class SpawnActor {
 
     private Random rand = new Random();
 
-    public SpawnActor() {
-    };
-
+    /**
+     * Constructor.
+     * 
+     * @param name     name of actor being spawned
+     * @param location spawn location
+     */
     public boolean spawn(String name, Location location) {
         Zombie zombie = new Zombie(name);
         Location spawnLocation = location;

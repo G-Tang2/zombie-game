@@ -10,6 +10,12 @@ import edu.monash.fit2099.engine.Location;
 import game.action.SowAction;
 import game.ground.GroundCapability;
 
+/**
+ * Sow behaviour.
+ * 
+ * @author Garvin Tang
+ * 
+ */
 public class SowBehaviour implements Behaviour {
 
     private Random rand = new Random();

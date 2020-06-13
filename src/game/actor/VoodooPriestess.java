@@ -11,6 +11,12 @@ import game.behaviour.Behaviour;
 import game.behaviour.SummonBehaviour;
 import game.behaviour.WanderBehaviour;
 
+/**
+ * Mambo Marie as Voodoo Priestess
+ * 
+ * @author Garvin Tang
+ * 
+ */
 public class VoodooPriestess extends ZombieActor {
 
     private Behaviour[] behaviours = { new SummonBehaviour(10), new WanderBehaviour() };
@@ -18,6 +24,11 @@ public class VoodooPriestess extends ZombieActor {
     private final int STAY_PERIOD = 30;
     private int turnCounter = 0;
 
+    /**
+     * Constructor.
+     * 
+     * @param name The name of VoodooPriestess.
+     */
     public VoodooPriestess(String name) {
         super(name, 'V', 60, ZombieCapability.UNDEAD);
     }
@@ -42,6 +53,11 @@ public class VoodooPriestess extends ZombieActor {
         return new DoNothingAction();
     }
 
+    /**
+     * Set the home of VoodooPriestess
+     * 
+     * @param home A map were voodoo priestess goes when not in compound map.
+     */
     public void setHome(VoodooHome home) {
         this.home = home;
     }

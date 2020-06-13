@@ -8,12 +8,22 @@ import edu.monash.fit2099.engine.GroundFactory;
 import edu.monash.fit2099.engine.Location;
 import game.actor.VoodooPriestess;
 
+/**
+ * A gamemap for storing VoodooPriestess when it's not in the compound gamemap.
+ */
 public class VoodooHome extends GameMap {
 
     private VoodooPriestess voodooPriestess;
     private GameMap gameMap;
     private Random rand = new Random();
 
+    /**
+     * Constructor.
+     * 
+     * @param groundFactory   ground factor of ground
+     * @param lines           visual representation of map
+     * @param voodooPriestess voodoo priestess Mambo Marie
+     */
     public VoodooHome(GroundFactory groundFactory, List<String> lines, VoodooPriestess voodooPriestess,
             GameMap gameMap) {
         super(groundFactory, lines);

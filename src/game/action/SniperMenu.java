@@ -12,6 +12,12 @@ import edu.monash.fit2099.engine.NumberRange;
 import game.actor.ZombieCapability;
 import game.item.Sniper;
 
+/**
+ * Sniper menu for selecting target.
+ * 
+ * @author Garvin Tang
+ * 
+ */
 public class SniperMenu extends Action {
 
 	protected Sniper weapon;

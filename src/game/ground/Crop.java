@@ -17,8 +17,6 @@ public class Crop extends Ground {
 
 	/**
 	 * Constructor.
-	 *
-	 * @see PortableItem#Food(Location)
 	 * 
 	 */
 	public Crop() {

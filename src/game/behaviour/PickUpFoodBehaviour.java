@@ -6,6 +6,12 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import game.item.EatCapability;
 
+/**
+ * Pick up food behaviour.
+ * 
+ * @author Garvin Tang
+ * 
+ */
 public class PickUpFoodBehaviour implements Behaviour {
 
     @Override

@@ -6,9 +6,8 @@ import edu.monash.fit2099.engine.Weapon;
 import game.item.Sniper;
 
 /**
- * Bite action for attacking other Actors.
+ * Sniper shooting action.
  * 
- * @author ram
  * @author Garvin Tang
  * 
  */

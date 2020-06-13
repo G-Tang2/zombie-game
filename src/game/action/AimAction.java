@@ -4,11 +4,6 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 
-/**
- * An Action that doesn't do anything.
- * 
- * Use this to implement waiting or similar actions in game clients.
- */
 class AimAction extends Action { // package-private
 
 	private Actor target;

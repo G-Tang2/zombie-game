@@ -5,14 +5,14 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 import game.item.Shotgun;
 
-public class ShootSouthWest extends ShootDirection {
+class ShootSouthWest extends ShootDirection { // package-private
 
-    public ShootSouthWest(Shotgun weapon) {
+    ShootSouthWest(Shotgun weapon) { // package-private
         super(weapon, "south-west");
     }
 
     @Override
-    public String shoot(Actor actor, GameMap map, Location location) {
+    String shoot(Actor actor, GameMap map, Location location) { // package-private
         String result = useAmmo();
         if (!result.isEmpty()) {
             return result;

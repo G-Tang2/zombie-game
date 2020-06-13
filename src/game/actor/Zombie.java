@@ -25,6 +25,7 @@ import game.item.ZombieLeg;
  * This Zombie is pretty boring. It needs to be made more interesting.
  * 
  * @author ram
+ * @author Garvin Tang
  *
  */
 public class Zombie extends ZombieActor {

@@ -6,8 +6,19 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import game.action.ReloadAction;
 
+/**
+ * Ammunition for ranged weapons.
+ * 
+ * @author Mike Kevin Balapitiya
+ * 
+ */
 public abstract class Ammunition extends PortableItem {
-
+	/**
+	 * Constructor.
+	 * 
+	 * @param name        name of ammunition.
+	 * @param displayChar display character
+	 */
 	public Ammunition(String name, char displayChar) {
 		super(name, displayChar);
 	}
@@ -40,6 +51,9 @@ public abstract class Ammunition extends PortableItem {
 		allowableActions = new Actions(); // on ground, cannot reload
 	}
 
+	/**
+	 * Returns the ammo count for weapon
+	 */
 	public abstract int getAmmo();
 
 }

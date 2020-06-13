@@ -5,10 +5,21 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import game.action.ChantAction;
 
+/**
+ * Zombie summon behaviour.
+ * 
+ * @author Garvin Tang
+ * 
+ */
 public class SummonBehaviour implements Behaviour {
     private final int SUMMON_INTERVAL;
     private int turnCounter = 0;
 
+    /**
+     * Constructor.
+     * 
+     * @param interval the number of turns between each mass summons.
+     */
     public SummonBehaviour(int interval) {
         SUMMON_INTERVAL = interval;
     }
