@@ -1,8 +1,5 @@
 package game.action.shotgundirection;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
