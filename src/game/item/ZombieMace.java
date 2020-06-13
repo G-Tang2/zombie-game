@@ -9,7 +9,6 @@ import edu.monash.fit2099.engine.WeaponItem;
  * @author Mike Kevin Balapitiya
  */
 public class ZombieMace extends WeaponItem {
-     private int nutrition = 0;
 
      /**
       * Constructor.
@@ -32,7 +31,7 @@ public class ZombieMace extends WeaponItem {
       */
      @Override
      public int getNutrition() {
-          return nutrition;
+          return 0;
      }
 
      @Override
@@ -40,15 +39,8 @@ public class ZombieMace extends WeaponItem {
           return null;
      }
 
-	@Override
-	public void addAmmo(int ammo) {
-		// TODO Auto-generated method stub
-		
-	}
+     @Override
+     public void addAmmo(int ammo) {
 
-	@Override
-	public int getAmmo() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+     }
 }

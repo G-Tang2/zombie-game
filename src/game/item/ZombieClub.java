@@ -10,8 +10,6 @@ import edu.monash.fit2099.engine.WeaponItem;
  */
 public class ZombieClub extends WeaponItem {
 
-     private int nutrition = 0;
-
      /**
       * Constructor.
       * 
@@ -33,7 +31,7 @@ public class ZombieClub extends WeaponItem {
       */
      @Override
      public int getNutrition() {
-          return nutrition;
+          return 0;
      }
 
      @Override
@@ -41,15 +39,7 @@ public class ZombieClub extends WeaponItem {
           return null;
      }
 
-	@Override
-	public void addAmmo(int ammo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int getAmmo() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+     @Override
+     public void addAmmo(int ammo) {
+     }
 }

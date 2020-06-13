@@ -15,24 +15,15 @@ public class Car extends Item {
 
 	@Override
 	public int getNutrition() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public Item upgrade() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void addAmmo(int ammo) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public int getAmmo() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 }

@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.WeaponItem;
-import game.action.ShotgunMenu;
+import game.action.shotgundirection.ShotgunMenu;
 
 public class Shotgun extends WeaponItem {
     protected int ammoCount;

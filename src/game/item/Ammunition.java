@@ -7,12 +7,11 @@ import edu.monash.fit2099.engine.Location;
 import game.action.ReloadAction;
 
 public abstract class Ammunition extends PortableItem {
-	
+
 	public Ammunition(String name, char displayChar) {
 		super(name, displayChar);
-		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * Inform a carried Item of the passage of time.
 	 * 
@@ -23,13 +22,11 @@ public abstract class Ammunition extends PortableItem {
 	 */
 	@Override
 	public void tick(Location currentLocation, Actor actor) {
-		for (Item item:actor.getInventory()) {
+		for (Item item : actor.getInventory()) {
 			if ((item instanceof Shotgun) || (item instanceof Sniper)) {
-				allowableActions.add(new ReloadAction(item, this)); // in inventory, can reload a gun
+				allowableActions = new Actions(new ReloadAction(item, this)); // in inventory, can reload a gun
 			}
 		}
-			
-
 	}
 
 	/**
@@ -40,9 +37,9 @@ public abstract class Ammunition extends PortableItem {
 	 */
 	@Override
 	public void tick(Location currentLocation) {
-			allowableActions = new Actions(); // on ground, cannot reload
+		allowableActions = new Actions(); // on ground, cannot reload
 	}
-	
+
 	public abstract int getAmmo();
 
 }

@@ -35,7 +35,10 @@ public class DropAdjacentItemAction extends DropItemAction {
     @Override
     public String execute(Actor actor, GameMap map) {
         Location here = map.locationOf(actor);
-        Location validDropLocation = new ValidDropAdjacentItemLocation().getValidLocation(actor, here);
+        Location validDropLocation = new ValidDropAdjacentItemLocation().getValidLocation(actor, here); // a valid
+                                                                                                        // location item
+                                                                                                        // can dropped
+                                                                                                        // at
         if (validDropLocation == null) {
             return actor + " could not drop " + item;
         }

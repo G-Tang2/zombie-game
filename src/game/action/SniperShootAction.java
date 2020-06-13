@@ -66,7 +66,7 @@ public class SniperShootAction extends AttackAction {
     }
 
     @Override
-    String attackTarget(Actor actor, GameMap map, Weapon weapon) { // default visibility
+    protected String attackTarget(Actor actor, GameMap map, Weapon weapon) { // default visibility
         String result = actor + " " + weapon.verb() + " " + target + " for " + this.damage + " damage.";
 
         target.hurt(this.damage);

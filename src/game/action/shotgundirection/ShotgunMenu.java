@@ -1,4 +1,4 @@
-package game.action;
+package game.action.shotgundirection;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
@@ -30,11 +30,12 @@ public class ShotgunMenu extends Action {
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		String[] directions = { "north", "north-east", "east", "south-east", "south", "south-west", "west",
-				"north-west" };
+		ShootDirection[] directions = { new ShootNorth(weapon), new ShootNorthEast(weapon), new ShootEast(weapon),
+				new ShootSouthEast(weapon), new ShootSouth(weapon), new ShootSouthWest(weapon), new ShootWest(weapon),
+				new ShootNorthWest(weapon) };
 		Actions actions = new Actions();
-		for (String direction : directions) {
-			actions.add(new ShotgunShootAction(weapon, direction));
+		for (ShootDirection direction : directions) {
+			actions.add(direction);
 		}
 
 		Menu menu = new Menu();
