@@ -2,6 +2,7 @@ package game.item;
 
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.WeaponItem;
 import game.action.CraftWeaponAction;
@@ -28,6 +29,8 @@ public abstract class ZombieLimb extends WeaponItem {
     public ZombieLimb(String name, char displayChar, int damage, String verb) {
         super(name, displayChar, damage, verb);
     }
+
+    public abstract Item upgrade();
 
     /**
      * Inform a carried Item of the passage of time.
