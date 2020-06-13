@@ -66,11 +66,11 @@ public class AttackAction extends Action {
 		return actor + " melees " + target;
 	}
 
-	String missDescription(Actor actor) { // default visibility
+	protected String missDescription(Actor actor) {
 		return actor + " misses " + target + ".";
 	}
 
-	String attackTarget(Actor actor, GameMap map, Weapon weapon) { // default visibility
+	protected String attackTarget(Actor actor, GameMap map, Weapon weapon) { // default visibility
 		String result = actor + " " + weapon.verb() + " " + target + " for " + weapon.damage() + " damage.";
 
 		target.hurt(weapon.damage());

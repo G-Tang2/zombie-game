@@ -1,26 +1,27 @@
-package game.action;
+package game.action.shotgundirection;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 import game.item.Shotgun;
 
-public class ShootSouthWest extends ShootDirection {
+public class ShootNorth extends ShootDirection {
 
-    public ShootSouthWest(Shotgun weapon) {
-        super(weapon);
+    public ShootNorth(Shotgun weapon) {
+        super(weapon, "north");
     }
 
     @Override
     public String shoot(Actor actor, GameMap map, Location location) {
         String result = useAmmo();
-        if (result != null) {
+        if (!result.isEmpty()) {
             return result;
         }
-        for (int x = location.x() - range; x <= location.x(); x++) {
-            for (int y = location.y(); y <= location.y() + range; y++) {
+        for (int y = location.y() - range; y <= location.y(); y++) {
+            for (int x = location.x() - spread; x <= location.x() + spread; x++) {
                 result += attackActorsInArea(actor, map, location, x, y);
             }
+            spread--;
         }
         result += endDescription(actor, result);
         return result;
