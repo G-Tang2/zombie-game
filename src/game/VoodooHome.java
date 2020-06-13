@@ -39,6 +39,7 @@ public class VoodooHome extends GameMap {
         }
     }
 
+    // to get a location at the map's boundary
     private Location mapBoundaryLocation() {
         int xMin = gameMap.getXRange().min();
         int xMax = gameMap.getXRange().max();
@@ -62,7 +63,7 @@ public class VoodooHome extends GameMap {
                     }
                 }
             }
-            // rand y co-ordinate generated first then x co-ordinate
+            // random y co-ordinate generated first then x co-ordinate
             else {
                 y = rand.nextInt((yMax - yMin) + 1) + yMin;
                 if (y == yMin || y == yMax) {

@@ -35,7 +35,7 @@ public class FertilizeAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        ground.fertilize(10);
+        ground.fertilize(10); // fertilise quickens ripe time by 10 turns
         return actor + " fertilized the crop";
     }
 

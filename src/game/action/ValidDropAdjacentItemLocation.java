@@ -18,11 +18,12 @@ class ValidDropAdjacentItemLocation { // package-private
         ArrayList<Location> validDropLocations = new ArrayList<Location>();
         for (Exit exit : location.getExits()) {
             Location destination = exit.getDestination();
-            if (destination.getGround().canActorEnter(actor)) {
+            if (destination.getGround().canActorEnter(actor)) { // if an actor can enter the location then the item can
+                                                                // be dropped there
                 validDropLocations.add(destination);
             }
         }
-        if (validDropLocations.size() > 0) {
+        if (validDropLocations.size() > 0) { // if there are any valid drop locations
             return validDropLocations.get(rand.nextInt(validDropLocations.size()));
         }
         return null;

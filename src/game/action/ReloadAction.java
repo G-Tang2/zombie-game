@@ -30,7 +30,7 @@ public class ReloadAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        weapon.addAmmo(ammo.getAmmo());
+        weapon.addAmmo(ammo.getAmmo()); // reloads weapon
         actor.removeItemFromInventory(ammo);
         return actor + " relaods " + weapon + " with " + ammo.getAmmo() + " bullets";
     }

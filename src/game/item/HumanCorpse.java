@@ -44,7 +44,7 @@ public class HumanCorpse extends PortableItem {
         deathTime--;
         if (deathTime <= 0) {
             SpawnActor spawnZombie = new SpawnActor();
-            if (spawnZombie.spawn(name, location)) {
+            if (spawnZombie.spawn(name, location)) { // if spawn was successful
                 location.removeItem(this);
             }
         }
@@ -64,7 +64,7 @@ public class HumanCorpse extends PortableItem {
         deathTime--;
         if (deathTime <= 0) {
             SpawnActor spawnZombie = new SpawnActor();
-            if (spawnZombie.spawn(name, location)) {
+            if (spawnZombie.spawn(name, location)) { // if spawn was successful
                 actor.removeItemFromInventory(this);
             }
         }

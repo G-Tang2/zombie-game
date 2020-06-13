@@ -39,13 +39,17 @@ public class HarvestAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         if (actor.hasCapability(ActorCapability.DROPS_HARVEST)) {
-            Location here = map.locationOf(actor);
-            Location validDropLocation = new ValidDropAdjacentItemLocation().getValidLocation(actor, here);
-            if (validDropLocation == null) {
+            Location here = map.locationOf(actor); // current location of actor
+            Location validDropLocation = new ValidDropAdjacentItemLocation().getValidLocation(actor, here); // get a
+                                                                                                            // valid
+                                                                                                            // adjacent
+                                                                                                            // drop
+                                                                                                            // location
+            if (validDropLocation == null) { // no valid drop location
                 return actor + " could not harvest the crop as there is no valid drop location";
             }
             validDropLocation.addItem(new Spinach("Spinach", 's', 20));
-        } else if (actor.hasCapability(ActorCapability.POCKETS_HARVEST)) {
+        } else if (actor.hasCapability(ActorCapability.POCKETS_HARVEST)) { // actor pockets the spinach
             actor.addItemToInventory(new Spinach("Spinach", 's', 20));
         }
         location.setGround(new Dirt()); // harvested crop returns to dirt

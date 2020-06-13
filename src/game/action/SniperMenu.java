@@ -72,11 +72,17 @@ public class SniperMenu extends Action {
 		xs = new NumberRange(0, 80);
 		ys = new NumberRange(0, 25);
 
+		// search every location in map
 		for (int x : xs) {
 			for (int y : ys) {
 				if (map.isAnActorAt(map.at(x, y))
-						&& map.getActorAt(map.at(x, y)).hasCapability(ZombieCapability.UNDEAD)) {
-					actions.add(new SniperSubMenu(this.actor, map.getActorAt(map.at(x, y)), this.weapon, 0));
+						&& map.getActorAt(map.at(x, y)).hasCapability(ZombieCapability.UNDEAD)) { // if undead actor is
+																									// at (x, y)
+																									// location
+					actions.add(new SniperSubMenu(this.actor, map.getActorAt(map.at(x, y)), this.weapon, 0)); // actor
+																												// can
+																												// be
+																												// sniped
 				}
 			}
 		}

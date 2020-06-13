@@ -46,13 +46,19 @@ public class SniperShootAction extends AttackAction {
             this.weapon.addAmmo(-1);
         }
         int missProbability;
+        // 25% miss probability, standard damage
         if (aimTime == 0) {
             missProbability = 25;
             this.damage = this.weapon.damage();
-        } else if (aimTime == 1) {
+        }
+        // 10% miss probability, double damage
+        else if (aimTime == 1) {
             missProbability = 10;
             this.damage = this.weapon.damage() * 2;
-        } else {
+        }
+        // 0% miss probability, one hit kill
+        else {
+            // aimTime should be 2
             missProbability = 0;
             this.damage = this.target.getHitPoints();
         }

@@ -22,8 +22,12 @@ class SummonZombieAction extends Action { // package-private
         for (int i = 0; i < numOfZombies; i++) {
             Boolean spawnSuccessful = false;
             while (!spawnSuccessful) {
-                int x = rand.nextInt((map.getXRange().max() - map.getXRange().min()) + 1) + map.getXRange().min();
-                int y = rand.nextInt((map.getYRange().max() - map.getYRange().min()) + 1) + map.getYRange().min();
+                int x = rand.nextInt((map.getXRange().max() - map.getXRange().min()) + 1) + map.getXRange().min(); // random
+                                                                                                                   // x
+                                                                                                                   // co-ordinate
+                int y = rand.nextInt((map.getYRange().max() - map.getYRange().min()) + 1) + map.getYRange().min(); // random
+                                                                                                                   // y
+                                                                                                                   // co-ordinate
                 spawnSuccessful = action.spawn(this.names[rand.nextInt(this.names.length)], map.at(x, y));
             }
         }

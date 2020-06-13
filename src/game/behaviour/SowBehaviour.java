@@ -28,7 +28,7 @@ public class SowBehaviour implements Behaviour {
                 if (rand.nextInt(100) < 33) {
                     return new SowAction(location);
                 } else {
-                    break;
+                    break; // has one attempt at sowing per turn
                 }
             }
         }

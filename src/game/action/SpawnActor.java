@@ -42,12 +42,13 @@ public class SpawnActor {
 
         for (Exit exit : location.getExits()) {
             Location destination = exit.getDestination();
-            if (destination.canActorEnter(actor)) {
+            if (destination.canActorEnter(actor)) { // if an actor can enter this location, then an item can be dropped
+                                                    // there
                 validDropLocations.add(destination);
             }
         }
 
-        if (validDropLocations.size() > 0) {
+        if (validDropLocations.size() > 0) { // if there is a valid drop location
             return validDropLocations.get(rand.nextInt(validDropLocations.size()));
         }
         return null;

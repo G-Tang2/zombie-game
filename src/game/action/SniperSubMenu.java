@@ -43,19 +43,24 @@ public class SniperSubMenu extends Action {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		if (actor.getHitPoints() < this.targetInitHitPoints) {
+			// if actor gets hurt, aim time resets
 			this.aimTime = 0;
 		}
 		Actions actions = new Actions();
 		if (this.aimTime < 2) {
+			// aim action
 			actions.add(new AimAction(this.target));
 		}
+		// fire action
 		actions.add(new SniperShootAction(this.target, this.weapon, this.aimTime));
 
 		Action action = menu.showMenu(actor, actions, new Display());
 		if (action instanceof AimAction) {
+			// continue aiming
 			this.aimTime++;
 		} else if (action instanceof SniperShootAction) {
-			sniperShot = true;
+			// fire sniper
+			sniperShot = true; // overhead to keep track if last turn was a sniper shot
 		}
 		String result = action.execute(actor, map);
 
@@ -69,12 +74,13 @@ public class SniperSubMenu extends Action {
 
 	@Override
 	public Action getNextAction() {
+		// previous action was a fired sniper this object should be destroyed
 		if (sniperShot) {
 			return null;
 		}
 		Actions actions = new Actions();
-		actions.add(this);
-		actions.add(new StopAimingAction(target));
+		actions.add(this); // action to continue aiming or fire sniper
+		actions.add(new StopAimingAction(target)); // action to stop aiming at a target and do another action
 		Action action = this.menu.showMenu(actor, actions, new Display());
 		if (action instanceof StopAimingAction) {
 			return null;

@@ -79,7 +79,7 @@ public class MultiMapWorld extends World {
         lastActionMap.put(actor, action);
 
         String result = action.execute(actor, map);
-        if (map.contains(player)) {
+        if (map.contains(player)) { // only prints actions execute in the map the player is on
             display.println(result);
         }
     }
@@ -102,6 +102,7 @@ public class MultiMapWorld extends World {
         return "Game Over";
     }
 
+    // checks if there isn't an alive type actor in the map
     private boolean allHumanDead() {
         Iterator<Actor> itr = actorLocations.iterator();
         while (itr.hasNext()) {
@@ -113,6 +114,7 @@ public class MultiMapWorld extends World {
         return true;
     }
 
+    // checks if there isn't an undead type actor in the map
     private boolean allUndeadDead() {
         Iterator<Actor> itr = actorLocations.iterator();
         while (itr.hasNext()) {

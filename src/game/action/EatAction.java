@@ -36,7 +36,7 @@ public class EatAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         actor.removeItemFromInventory(item);
-        actor.heal(item.getNutrition());
+        actor.heal(item.getNutrition()); // heal actor base off item nutritional value
         return actor + " ate " + item + " to restore " + item.getNutrition() + " health";
     }
 

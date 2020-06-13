@@ -6,5 +6,9 @@ package edu.monash.fit2099.interfaces;
  */
 
 public interface GroundInterface {
+    /**
+     * Fertilizes a crop
+     * 
+     */
     void fertilize(int time);
 }
